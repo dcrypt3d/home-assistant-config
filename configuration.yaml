@@ -1,0 +1,79 @@
+homeassistant:
+  name: Home
+  latitude: 
+  longitude: 
+  temperature_unit: F
+  time_zone: 
+  customize: !include customize.yaml
+
+frontend:
+#conversation:
+#updater:
+discovery:
+history:
+logbook:
+sun:
+
+#zones
+zone 1:
+  name: Work
+  latitude: 
+  longitude:
+  radius: 300
+
+#includes
+script: !include scripts.yaml
+automation: !include auto.yaml
+sensor: !include sensors.yaml
+device_tracker: !include device_trackers.yaml
+media_player: !include media_players.yaml
+#input_select: !include input_select.yaml
+input_boolean: !include input_boolean.yaml
+group: !include groups.yaml
+#scene: !include scenes.yaml
+
+http:
+  api_password: 
+
+camera:
+  platform: generic
+  still_image_url: http://camera.local:7080/api/2.0/snapshot/camera/rtspID?force=true&apiKey=key
+  name: Garage
+  username: 
+  password: 
+
+garage_door:
+  platform: myq
+  name: Garage Opener
+  username: 
+  password: 
+
+ecobee:
+  api_key:  
+  hold_temp: True
+
+notify:
+  - platform: pushbullet
+    api_key: 
+    name: pushbullet
+  - platform: googlevoice
+    username:
+    password: 
+    name: Home Assistant
+
+ifttt:
+  key: 
+
+mqtt:
+  broker: 127.0.0.1
+  port: 1883
+  client_id: ha
+  keepalive: 60
+
+zwave:
+  usb_path: /dev/ttyACM0
+  config_path: /usr/local/lib/python3.5/dist-packages/libopenzwave-0.3.0b9-py3.5-linux-x86_64.egg/config
+  polling_interval: 30000
+#  customize:
+#    sensor.greenwave_powernode_6_port_energy_10:
+#        polling_intensity: 1

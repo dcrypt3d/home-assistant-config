@@ -1,0 +1,97 @@
+#garage
+timed_garage:
+  alias: "On open garage set timer"
+  sequence:
+      # Cancel old timers
+    - service: script.turn_off
+      data:
+        entity_id: script.garage_timer_off
+    - service: garage_door.open
+      data:
+        entity_id: garage_door.garage_opener
+        # Set new timer
+    - service: script.turn_on
+      data:
+        entity_id: script.garage_timer_off
+
+garage_timer_off:
+  alias: "Close garage after minutes"
+  sequence:
+    - delay:
+        minutes: 5
+    - service: garage_door.close
+      data:
+        entity_id: garage_door.garage_opener
+
+#locks
+timed_backdoor:
+  alias: "On unlock back door set timer"
+  sequence:
+      # Cancel old timers
+    - service: script.turn_off
+      data:
+        entity_id: script.lock_timer_off
+    - service: lock.unlock
+      data:
+        entity_id: lock.back_door__2
+        # Set new timer
+    - service: script.turn_on
+      data:
+        entity_id: script.backdoor_timer_off
+
+backdoor_timer_off:
+  alias: "Lock back door after minutes"
+  sequence:
+    - delay:
+        minutes: 5
+    - service: lock.lock
+      data:
+        entity_id: lock.back_door__2
+
+timed_frontdoor:
+  alias: "On unlock front door set timer"
+  sequence:
+      # Cancel old timers
+    - service: script.turn_off
+      data:
+        entity_id: script.frontdoor_timer_off
+    - service: lock.unlock
+      data:
+        entity_id: lock.front_door__3
+        # Set new timer
+    - service: script.turn_on
+      data:
+        entity_id: script.frontdoor_timer_off
+
+frontdoor_timer_off:
+  alias: "Lock front door after minutes"
+  sequence:
+    - delay:
+        minutes: 5
+    - service: lock.lock
+      data:
+        entity_id: lock.front_door__3
+
+timed_garagedoor:
+  alias: "On unlock garage door set timer"
+  sequence:
+      # Cancel old timers
+    - service: script.turn_off
+      data:
+        entity_id: script.garagedoor_timer_off
+    - service: lock.unlock
+      data:
+        entity_id: lock.garage_door__4
+        # Set new timer
+    - service: script.turn_on
+      data:
+        entity_id: script.garagedoor_timer_off
+
+garagedoor_timer_off:
+  alias: "Lock garage door after minutes"
+  sequence:
+    - delay:
+        minutes: 5
+    - service: lock.lock
+      data:
+        entity_id: lock.garage_door__4

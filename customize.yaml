@@ -1,0 +1,61 @@
+#locks
+sensor.batt_backdoor:
+  icon: mdi:battery
+  friendly_name: 'Back Door Battery'
+sensor.batt_frontdoor:
+  icon: mdi:battery
+  friendly_name: 'Front Door Battery'
+sensor.batt_garagedoor:
+  icon: mdi:battery
+  friendly_name: 'Garage Door Battery'
+
+#garage
+sensor.garage_status:
+  friendly_name: 'Garage Status'
+
+#thermostat
+thermostat.home:
+  icon: mdi:fan
+  friendly_name: 'Ecobee'
+
+sensor.ecobee_away:
+  icon: mdi:account
+  friendly_name: 'Away Mode'
+  
+#devices
+device_tracker.ipad:
+  icon: mdi:tablet-ipad
+device_tracker.mbp:
+  icon: mdi:laptop-mac
+
+#weather
+sensor.weather_summary:
+  friendly_name: 'Summary'
+sensor.weather_temperature:
+  friendly_name: 'Temperature'
+sensor.weather_cloud_coverage:
+  icon: mdi:weather-cloudy
+  friendly_name: 'Cloud Coverage'
+sensor.weather_dew_point:
+  friendly_name: 'Dew Point'
+sensor.weather_humidity:
+  icon: mdi:water-percent
+  friendly_name: 'Humidity'
+sensor.weather_pressure:
+  friendly_name: 'Pressure'
+sensor.weather_nearest_storm_distance:
+  icon: mdi:weather-lightning
+  friendly_name: 'Storm Distance'
+sensor.weather_precip:
+  icon: mdi:weather-pouring
+  friendly_name: 'Precipitation'
+sensor.weather_precip_probability:
+  icon: mdi:weather-pouring
+  friendly_name: 'Probability'
+sensor.weather_visibility:
+  friendly_name: 'Visibility'
+sensor.weather_wind_speed:
+  icon: mdi:weather-windy
+  friendly_name: 'Wind Speed'
+sensor.weather_wind_bearing:
+  friendly_name: 'Wind Bearing'

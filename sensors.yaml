@@ -1,0 +1,79 @@
+#lock
+- platform: template
+  sensors:
+    batt_frontdoor:
+      value_template: '{{ states.lock.front_door__3.attributes.battery_level }}'
+      unit_of_measurement: '%'
+
+- platform: template
+  sensors:
+    batt_backdoor:
+      value_template: '{{ states.lock.back_door__2.attributes.battery_level }}'
+      unit_of_measurement: '%'
+
+- platform: template
+  sensors:
+    batt_garagedoor:
+      value_template: '{{ states.lock.garage_door__4.attributes.battery_level }}'
+      unit_of_measurement: '%'
+
+#garage
+- platform: template
+  sensors:
+    garagedoor_status:
+      value_template: '{{ states.garage_door.garage_opener.state }}'
+
+#thermostat
+- platform: template
+  sensors:
+    tstat_away:
+      value_template: '{{ states.thermostat.home.attributes.away_mode }}'
+
+- platform: template
+  sensors:
+    garage_camera:
+      value_template: '{{ states.camera.garage.state }}'
+
+- platform: speedtest
+  minute: 30
+  hour:
+    - 0
+    - 6
+    - 12
+    - 18
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+- platform: forecast
+  api_key: 
+  monitored_conditions:
+    - summary
+    - icon
+    - nearest_storm_distance
+    - nearest_storm_bearing
+    - precip_type
+    - precip_intensity
+    - precip_probability
+    - temperature
+    - apparent_temperature
+    - dew_point
+    - wind_speed
+    - wind_bearing
+    - cloud_cover
+    - humidity
+    - pressure
+    - visibility
+    - ozone
+
+- platform: sabnzbd
+  name: SABnzbd
+  api_key: 
+  base_url: http://
+  monitored_variables:
+    - type: 'current_status'
+    - type: 'speed'
+    - type: 'queue_size'
+    - type: 'queue_remaining'
+    - type: 'disk_size'
+    - type: 'disk_free'

@@ -1,0 +1,14 @@
+thermo_home_away:
+    name: Disable Auto Away Mode
+    initial: off
+    icon: mdi:close-circle-outline
+
+thermo_away:
+    name: Away Mode
+    initial: off
+    icon: mdi:close-circle-outline
+
+garageopener_autoclose:
+    name: Disable Garage Auto Close
+    initial: off
+    icon: mdi:close-circle-outline

@@ -1,0 +1,183 @@
+default_view: 
+  view: yes
+  entities:
+    - group.users
+    - group.entry
+    - group.thermostat
+
+sensors:
+  name: Sensors
+  view: yes
+  icon: mdi:speedometer
+  entities:
+    - group.overrides
+    - group.climate
+    - group.speed 
+    - group.sabnzbd
+    - group.icloud
+    - group.batt_locks
+
+cameras:
+  name: Cameras
+  view: yes
+  icon: mdi:camera
+  entities:
+    - camera.garage
+  
+media:
+  name: Media
+  icon: mdi:headphones
+  view: yes
+  entities:
+    - media_player.kodi
+
+overrides:
+  name: Override
+  view: no
+  entities:
+    - input_boolean.thermo_away
+    - input_boolean.thermo_home_away
+
+entry:
+  name: Entry
+  view: no
+  entities:
+    - lock.front_door__3
+    - sensor.batt_frontdoor
+    - lock.back_door__2
+    - sensor.batt_backdoor
+    - lock.garage_door__4
+    - sensor.batt_garagedoor
+    - garage_door.garage_opener
+    - sensor.garagedoor_status
+    - sensor.garage_camera
+    - camera.garage
+
+locks:
+  name: locks
+  view: no
+  entities:
+    - lock.front_door__3
+    - lock.back_door__2
+    - lock.garage_door__4
+
+batt_locks:
+  name: lock battery
+  view: no
+  entities:
+    - sensor.batt_frontdoor
+    - sensor.batt_backdoor
+    - sensor.batt_garagedoor
+
+thermostat:
+  name: Thermostat
+  view: no
+  entities:
+    - thermostat.home
+    - sensor.ecobee_away
+    - sensor.home_humidity
+    - sensor.home_occupancy
+    - sensor.upstairs_temperature
+    - sensor.upstairs_occupancy
+
+garage:
+  name: Garage
+  view: no
+  entities:
+    - garage_door.garage_opener
+    - sensor.garagedoor_status
+    - sensor.garage_camera
+    - camera.garage
+
+rooms:                                                                                                                                                       
+  view: no
+  icon: mdi:hexagon                                                                                                                                              
+  name: Rooms
+  entities:                                                                                                                                                  
+    - group.livingroom                                                                                                                                      
+    - group.bedroom
+    - group.kitchen
+    - group.guestroom
+
+users:
+  name: Users
+  view: no
+  entities:
+    - device_tracker.me
+    - device_tracker.her
+
+alarm:
+  name: Alarm
+  icon: mdi:bell-ring
+  view: no
+  entities:
+
+bedroom:
+  view: no
+  name: Bed Room
+  entities:
+    - sensor.upstairs_occupancy
+    - sensor.upstairs_temperature
+
+guestroom:
+  view: no
+  name: Guest Room
+  entities:
+
+kitchen:
+  name: Kitchen
+  view: no
+  entities:
+
+livingroom:
+  name: Living Room
+  view: no
+  entities:
+
+icloud:
+  name: Devices
+  view: no
+  entities:
+    - device_tracker.mbp
+    - device_tracker.ipad
+    - device_tracker.me
+    - device_tracker.her
+
+climate:
+  name: Weather
+  icon: mdi:weather-partlycloudy
+  view: no
+  entities:
+    - sun.sun
+    - sensor.weather_summary
+    - sensor.home_temperature
+    - sensor.home_humidity
+    - sensor.weather_temperature
+    - sensor.weather_humidity
+    - sensor.weather_cloud_coverage
+    - sensor.weather_dew_point
+    - sensor.weather_pressure
+    - sensor.weather_nearest_storm_distance
+    - sensor.weather_precip
+    - sensor.weather_precip_probability
+    - sensor.weather_wind_speed
+    - sensor.weather_wind_bearing
+
+speed:
+  name: Speed
+  view: no
+  entities:
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.speedtest_ping
+
+sabnzbd:
+  name: SABnzbd
+  view: no
+  entities:
+    - sensor.sabnzbd_disk
+    - sensor.sabnzbd_speed
+    - sensor.sabnzbd_queue
+    - sensor.sabnzbd_status
+    - sensor.sabnzbd_left
+    - sensor.sabnzbd_disk_free
