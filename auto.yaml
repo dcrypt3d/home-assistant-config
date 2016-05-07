@@ -38,7 +38,7 @@
   condition: use_trigger_values
   action:
     service: homeassistant.turn_on
-    entity_id: script.timed_backdoor
+    entity_id: script.timed_garagedoor
 
 - alias: 'Battery Low Alert'
   trigger:
