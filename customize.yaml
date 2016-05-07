@@ -17,11 +17,14 @@ sensor.garagedoor_status:
 thermostat.home:
   icon: mdi:fan
   friendly_name: 'Ecobee'
-
 sensor.ecobee_away:
   icon: mdi:account
   friendly_name: 'Away Mode'
-  
+
+#cameras
+sensor.garage_camera:
+  friendly_name: 'Garage Camera'  
+
 #devices
 device_tracker.ipad:
   icon: mdi:tablet-ipad
