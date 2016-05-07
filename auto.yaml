@@ -1,4 +1,4 @@
-#Garage
+#garage
 - alias: Close Garage Door after set time
   trigger:
     platform: state
@@ -9,7 +9,7 @@
     service: homeassistant.turn_on
     entity_id: script.timed_garage
 
-#Locks
+#locks
 - alias: Lock back door after set time
   trigger:
     platform: state
@@ -64,7 +64,23 @@
     state: 'not_home'
   action:
     service: lock.lock
-
+    
+#thermostat
+- alias: Thermostat - Home
+  trigger:
+    platform: state
+    entity_id: group.users
+    to: 'home'
+  condition:
+    platform: state
+    entity_id: input_boolean.thermo_home_away
+    state: 'off'
+  action:
+    service: thermostat.set_away_mode
+    data:
+      entity_id: thermostat.home
+      away_mode: 'false'
+      
 - alias: Thermostat - Away
   trigger:
     platform: state
