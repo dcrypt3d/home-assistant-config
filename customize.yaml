@@ -10,7 +10,7 @@ sensor.batt_garagedoor:
   friendly_name: 'Garage Door Battery'
 
 #garage
-sensor.garage_status:
+sensor.garagedoor_status:
   friendly_name: 'Garage Status'
 
 #thermostat
