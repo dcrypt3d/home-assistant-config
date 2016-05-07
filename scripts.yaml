@@ -6,9 +6,6 @@ timed_garage:
     - service: script.turn_off
       data:
         entity_id: script.garage_timer_off
-    - service: garage_door.open
-      data:
-        entity_id: garage_door.garage_opener
         # Set new timer
     - service: script.turn_on
       data:
@@ -31,9 +28,6 @@ timed_backdoor:
     - service: script.turn_off
       data:
         entity_id: script.lock_timer_off
-    - service: lock.unlock
-      data:
-        entity_id: lock.back_door__2
         # Set new timer
     - service: script.turn_on
       data:
@@ -55,9 +49,6 @@ timed_frontdoor:
     - service: script.turn_off
       data:
         entity_id: script.frontdoor_timer_off
-    - service: lock.unlock
-      data:
-        entity_id: lock.front_door__3
         # Set new timer
     - service: script.turn_on
       data:
@@ -79,9 +70,6 @@ timed_garagedoor:
     - service: script.turn_off
       data:
         entity_id: script.garagedoor_timer_off
-    - service: lock.unlock
-      data:
-        entity_id: lock.garage_door__4
         # Set new timer
     - service: script.turn_on
       data:
