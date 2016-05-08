@@ -74,6 +74,12 @@ lights:
   entities:
     - switch.laundry_room_switch_6
 
+indoor_lights:
+  name: Indoor Lights
+  view: no
+  entities:
+    - switch.laundry_room_switch_6
+
 thermostat:
   name: Thermostat
   view: no
