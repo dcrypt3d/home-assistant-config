@@ -25,10 +25,14 @@ sensor.ecobee_away:
 sensor.garage_camera:
   friendly_name: 'Garage Camera'
 
+#lights
+switch.laundry_room_switch_6:
+  friendly_name: 'Laundry Room'
+
 #devices
-device_tracker.ipadmini:
+device_tracker.ipad:
   icon: mdi:tablet-ipad
-device_tracker.nmbp:
+device_tracker.mbp:
   icon: mdi:laptop-mac
 
 #weather

@@ -12,7 +12,3 @@ garageopener_autoclose:
     name: Disable Garage Auto Close
     initial: off
     icon: mdi:close-circle-outline
-
-laundryroom_switch:
-    name: Laundry Room Switch
-    initial: '{{ states.switch.laundry_room_switch_6.state }}'
