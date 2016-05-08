@@ -5,10 +5,14 @@ thermo_home_away:
 
 thermo_away:
     name: Away Mode
-    initial: off
+    initial: '{{ states.thermostat.home.attributes.away_mode }}'
     icon: mdi:close-circle-outline
 
 garageopener_autoclose:
     name: Disable Garage Auto Close
     initial: off
     icon: mdi:close-circle-outline
+
+laundryroom_switch:
+    name: Laundry Room Switch
+    initial: '{{ states.switch.laundry_room_switch_6.state }}'
