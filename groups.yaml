@@ -4,6 +4,7 @@ default_view:
     - group.users
     - group.entry
     - group.thermostat
+    - group.lights
 
 sensors:
   name: Sensors
@@ -30,6 +31,7 @@ media:
   view: yes
   entities:
     - media_player.kodi
+   - media_player.plex
 
 overrides:
   name: Override
@@ -43,11 +45,8 @@ entry:
   view: no
   entities:
     - lock.front_door__3
-    - sensor.batt_frontdoor
     - lock.back_door__2
-    - sensor.batt_backdoor
     - lock.garage_door__4
-    - sensor.batt_garagedoor
     - garage_door.garage_opener
     - sensor.garagedoor_status
     - sensor.garage_camera
@@ -68,6 +67,11 @@ batt_locks:
     - sensor.batt_frontdoor
     - sensor.batt_backdoor
     - sensor.batt_garagedoor
+
+lights:
+  name: Lights
+  view: no
+  entities: input_boolean.laundryroom_switch
 
 thermostat:
   name: Thermostat
@@ -138,10 +142,10 @@ icloud:
   name: Devices
   view: no
   entities:
-    - device_tracker.mbp
-    - device_tracker.ipad
     - device_tracker.me
     - device_tracker.her
+    - device_tracker.mbp
+    - device_tracker.ipad
 
 climate:
   name: Weather

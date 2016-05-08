@@ -23,12 +23,12 @@ sensor.ecobee_away:
 
 #cameras
 sensor.garage_camera:
-  friendly_name: 'Garage Camera'  
+  friendly_name: 'Garage Camera'
 
 #devices
-device_tracker.ipad:
+device_tracker.ipadmini:
   icon: mdi:tablet-ipad
-device_tracker.mbp:
+device_tracker.nmbp:
   icon: mdi:laptop-mac
 
 #weather

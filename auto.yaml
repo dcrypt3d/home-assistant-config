@@ -64,7 +64,44 @@
     state: 'not_home'
   action:
     service: lock.lock
-    
+
+#lights
+- alias: Laundry Room Light On
+  trigger:
+    platform: state
+    entity_id: input_boolean.laundryroom_switch
+    state: 'on'
+  action:
+    service: switch.turn_on
+    entity_id: switch.laundry_room_switch_6
+
+- alias: Laundry Room Light Off                      
+  trigger:
+    platform: state
+    entity_id: input_boolean.laundryroom_switch
+    state: 'off'
+  action:
+    service: switch.turn_off 
+    entity_id: switch.laundry_room_switch_6
+
+- alias: Turn on laundry room light when coming home
+  trigger:
+    platform: state
+    entity_id: group.users
+    state: 'home'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.timed_laundryroom
+
+- alias: Turn off laundry room light when not home
+  trigger:
+    platform: state
+    entity_id: group.users
+    to: 'not_home'
+  action:
+    service: switch.turn_off
+    entity_id: switch.laundry_room_switch_6
+
 #thermostat
 - alias: Thermostat - Home
   trigger:
@@ -80,7 +117,7 @@
     data:
       entity_id: thermostat.home
       away_mode: 'false'
-      
+
 - alias: Thermostat - Away
   trigger:
     platform: state
@@ -119,3 +156,11 @@
     data:
       entity_id: thermostat.home
       away_mode: 'true'
+
+#zwave
+- alias: heal at 2:30am
+  trigger:
+    platform: time
+    after: '2:30:00'
+  action:
+    service: zwave.heal_network

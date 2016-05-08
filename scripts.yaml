@@ -83,3 +83,27 @@ garagedoor_timer_off:
     - service: lock.lock
       data:
         entity_id: lock.garage_door__4
+#lights
+timed_laundryroom:
+  alias: "On home laundry room light"
+  sequence:
+      # Cancel old timers
+    - service: script.turn_off
+      data:
+        entity_id: script.laundryroom_timer_off
+    - service: switch.turn_on
+      data:
+        entity_id: switch.laundry_room_switch_6
+        # Set new timer
+    - service: script.turn_on
+      data:
+        entity_id: script.laundryroom_timer_off
+
+laundryroom_timer_off:
+  alias: "Shut off light after minutes"
+  sequence:
+    - delay:
+        minutes: 10
+    - service: switch.turn_off
+      data:
+        entity_id: switch.laundry_room_switch_6
