@@ -31,7 +31,7 @@ media:
   view: yes
   entities:
     - media_player.kodi
-   - media_player.plex
+    - media_player.plex
 
 overrides:
   name: Override
