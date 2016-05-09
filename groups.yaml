@@ -118,6 +118,7 @@ users:
   view: no
   entities:
     - device_tracker.me
+    - sensor.car_commute
     - device_tracker.her
 
 alarm:
