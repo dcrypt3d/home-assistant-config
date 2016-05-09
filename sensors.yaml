@@ -34,6 +34,13 @@
     garage_camera:
       value_template: '{{ states.camera.garage.state }}'
 
+#google
+- platform: google_travel_time
+  api_key: key
+  origin: street, city, state zip
+  destination: street, city, state zip
+  travel_mode: driving
+
 - platform: speedtest
   minute: 30
   hour:
