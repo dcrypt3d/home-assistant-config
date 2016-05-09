@@ -87,6 +87,21 @@
     service: switch.turn_off
     entity_id: group.indoor_lights
 
+#googletravel
+- alias: "Commute to work by car"
+  condition:
+    - condition: time
+      after: '7:00:00'
+      before: '8:00:00'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.google_travel_time
+    below: 30
+  action:
+    service: notify.pushbullet
+    data:
+      message: "Commute less than 30 minutes"
+
 #thermostat
 - alias: Thermostat - Home
   trigger:
