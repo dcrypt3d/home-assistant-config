@@ -41,6 +41,11 @@
   destination: street, city, state zip
   travel_mode: driving
 
+- platform: template
+  sensors:
+    car_commute:
+      value_template: '{{ states.sensor.google_travel_time.attributes.duration }}'
+
 - platform: speedtest
   minute: 30
   hour:
