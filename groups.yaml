@@ -71,8 +71,18 @@ batt_locks:
 lights:
   name: Lights
   view: no
-  entities: input_boolean.laundryroom_switch
+  entities: switch.laundry_room_switch_6
+  
+indoor_lights:
+  name: Indoor Lights
+  view: no
+  entities: switch.laundry_room_switch_6
 
+outdoor_lights:
+  name: Outdoor Lights
+  view: no
+  entities:
+  
 thermostat:
   name: Thermostat
   view: no
