@@ -22,17 +22,17 @@
   sensors:
     garagedoor_status:
       value_template: '{{ states.garage_door.garage_opener.state }}'
+      
+- platform: template
+  sensors:
+    garage_camera:
+      value_template: '{{ states.camera.garage.state }}'
 
 #thermostat
 - platform: template
   sensors:
     tstat_away:
       value_template: '{{ states.thermostat.home.attributes.away_mode }}'
-
-- platform: template
-  sensors:
-    garage_camera:
-      value_template: '{{ states.camera.garage.state }}'
 
 #googletravel
 - platform: google_travel_time
