@@ -34,7 +34,7 @@
     garage_camera:
       value_template: '{{ states.camera.garage.state }}'
 
-#google
+#googletravel
 - platform: google_travel_time
   api_key: key
   origin: street, city, state zip
@@ -46,6 +46,7 @@
     car_commute:
       value_template: '{{ states.sensor.google_travel_time.attributes.duration }}'
 
+#speedtest
 - platform: speedtest
   minute: 30
   hour:
@@ -57,6 +58,8 @@
     - ping
     - download
     - upload
+    
+#weather
 - platform: forecast
   api_key: 
   monitored_conditions:
@@ -78,6 +81,7 @@
     - visibility
     - ozone
 
+#sabnzbd
 - platform: sabnzbd
   name: SABnzbd
   api_key: 
