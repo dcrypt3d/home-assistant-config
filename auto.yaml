@@ -66,41 +66,26 @@
     service: lock.lock
 
 #lights
-- alias: Laundry Room Light On
-  trigger:
-    platform: state
-    entity_id: input_boolean.laundryroom_switch
-    state: 'on'
-  action:
-    service: switch.turn_on
-    entity_id: switch.laundry_room_switch_6
-
-- alias: Laundry Room Light Off                      
-  trigger:
-    platform: state
-    entity_id: input_boolean.laundryroom_switch
-    state: 'off'
-  action:
-    service: switch.turn_off 
-    entity_id: switch.laundry_room_switch_6
-
 - alias: Turn on laundry room light when coming home
   trigger:
-    platform: state
-    entity_id: group.users
-    state: 'home'
+    - platform: state
+      entity_id: device_tracker.me
+      state: 'home'
+    - platform: state
+      entity_id: device_tracker.her
+      state: 'home'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_laundryroom
 
-- alias: Turn off laundry room light when not home
+- alias: Turn off indoor lights when not home
   trigger:
     platform: state
     entity_id: group.users
     to: 'not_home'
   action:
     service: switch.turn_off
-    entity_id: switch.laundry_room_switch_6
+    entity_id: group.indoor_lights
 
 #thermostat
 - alias: Thermostat - Home
