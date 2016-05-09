@@ -17,6 +17,7 @@ sensors:
     - group.sabnzbd
     - group.icloud
     - group.batt_locks
+    - group.commute
 
 cameras:
   name: Cameras
@@ -118,8 +119,13 @@ users:
   view: no
   entities:
     - device_tracker.me
-    - sensor.car_commute
     - device_tracker.her
+
+commute:
+  name: Commute
+  view: no
+  entities:
+    - sensor.car_commute
 
 alarm:
   name: Alarm
