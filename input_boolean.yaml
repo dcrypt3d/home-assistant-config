@@ -2,7 +2,7 @@ auto_lock_timer:
     name: Disable Lock Timer
     initial: off
 
-auto_garage_opener:
-    name: Disable Garage Opener Timer
-    initial: off
-    icon: mdi:close-circle-outline
+#auto_garage_opener:
+#    name: Disable Garage Opener Timer
+#    initial: off
+#    icon: mdi:close-circle-outline
