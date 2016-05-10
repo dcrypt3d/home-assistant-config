@@ -31,8 +31,13 @@
 #thermostat
 - platform: template
   sensors:
-    tstat_away:
+    thermostat_away:
       value_template: '{{ states.thermostat.home.attributes.away_mode }}'
+
+- platform: template
+  sensors:
+    thermostat_mode:
+      value_template: '{{ states.thermostat.home.attributes.mode }}'
 
 #googletravel
 - platform: google_travel_time
