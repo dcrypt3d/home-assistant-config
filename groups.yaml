@@ -17,6 +17,7 @@ sensors:
     - group.sabnzbd
     - group.icloud
     - group.batt_locks
+    - group.commute
 
 cameras:
   name: Cameras
@@ -64,13 +65,14 @@ batt_locks:
   name: lock battery
   view: no
   entities:
-    - sensor.batt_frontdoor
-    - sensor.batt_backdoor
-    - sensor.batt_garagedoor
+    - sensor.front_door_batt
+    - sensor.back_door_batt
+    - sensor.garage_door_batt
 
 lights:
   name: Lights
   view: no
+<<<<<<< HEAD
   entities:
     - switch.laundry_room__6
 
@@ -79,13 +81,27 @@ indoor_lights:
   view: no
   entities:
     - switch.laundry_room__6
+=======
+  entities: switch.laundry_room_switch_6
+  
+indoor_lights:
+  name: Indoor Lights
+  view: no
+  entities: switch.laundry_room_switch_6
+>>>>>>> origin/master
 
+outdoor_lights:
+  name: Outdoor Lights
+  view: no
+  entities:
+  
 thermostat:
   name: Thermostat
   view: no
   entities:
     - thermostat.home
-    - sensor.ecobee_away
+    - sensor.thermostat_away
+    - sensor.thermostat_mode
     - sensor.home_humidity
     - sensor.home_occupancy
     - sensor.upstairs_temperature
@@ -116,6 +132,12 @@ users:
   entities:
     - device_tracker.me
     - device_tracker.her
+
+commute:
+  name: Commute
+  view: no
+  entities:
+    - sensor.google_travel_car_time
 
 alarm:
   name: Alarm

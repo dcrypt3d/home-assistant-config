@@ -1,8 +1,17 @@
 #garage
+<<<<<<< HEAD
 - alias: Close Garage Door after set time
   condition: state
   entity_id: garage_door.garage_opener
   state: 'open'
+=======
+- alias: Close garage door after set time
+  trigger:
+    platform: state
+    entity_id: garage_door.garage_opener
+    state: 'open'
+  condition: use_trigger_values
+>>>>>>> origin/master
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_garage
@@ -48,7 +57,6 @@
     service: notify.pushbullet
     data:
       message: "Time to change the front door's battery"
-      title: ""
 
 - alias: Lock all doors when not home
   condition: state
@@ -57,6 +65,7 @@
   action:
     service: lock.lock
 
+<<<<<<< HEAD
 #switch_lights
 - alias: Turn on laundry room light when coming home
   condition: or
@@ -65,16 +74,33 @@
       entity_id: device_tracker.me
       state: 'home'
     - condition: state
+=======
+#lights
+- alias: Turn on laundry room light when coming home
+  trigger:
+    - platform: state
+      entity_id: device_tracker.me
+      state: 'home'
+    - platform: state
+>>>>>>> origin/master
       entity_id: device_tracker.her
       state: 'home'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_laundryroom
 
+<<<<<<< HEAD
 - alias: Turn off all indoor lights
   condition: state
   entity_id: group.users
   state: 'not_home'
+=======
+- alias: Turn off indoor lights when not home
+  trigger:
+    platform: state
+    entity_id: group.users
+    to: 'not_home'
+>>>>>>> origin/master
   action:
     service: switch.turn_off
     entity_id: group.indoor_lights
@@ -83,6 +109,7 @@
 - alias: "Commute to work by car"
   condition:
     - condition: time
+<<<<<<< HEAD
       after: '9:00:00'
       before: '10:00:00'
   trigger:
@@ -113,18 +140,115 @@
   condition: state
   entity_id: group.users
   state: 'home'
+=======
+      after: '7:00:00'
+      before: '8:00:00'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.google_travel_time
+    below: 30
+  action:
+    service: notify.pushbullet
+    data:
+      message: "Commute less than 30 minutes"
+
+#thermostat
+- alias: Thermostat - Auto Home
+  trigger:
+    platform: state
+    entity_id: group.users
+    state: 'home'
+  condition: use_trigger_values
+>>>>>>> origin/master
   action:
     service: thermostat.set_away_mode
     data:
       entity_id: thermostat.home
+<<<<<<< HEAD
       away_mode: 'False'
       
 - alias: Thermostat - Auto Away
   condition:
   entity_id: group.users
   state: 'not_home'
+=======
+      away_mode: 'off'
+      
+- alias: Thermostat - Auto Away
+  trigger:
+    platform: state
+    entity_id: group.users
+    state: 'not_home'
+  condition: use_trigger_values
+>>>>>>> origin/master
   action:
     service: thermostat.set_away_mode
     data:
       entity_id: thermostat.home
+<<<<<<< HEAD
       away_mode: 'True'
+=======
+      away_mode: 'on'
+
+#- alias: Thermostat - Home
+#  trigger:
+#    platform: state
+#    entity_id: group.users
+#    to: 'home'
+#  condition:
+#    platform: state
+#    entity_id: input_boolean.thermo_home_away
+#    state: 'off'
+#  action:
+#    service: thermostat.set_away_mode
+#    data:
+#      entity_id: thermostat.home
+#      away_mode: 'false'
+
+#- alias: Thermostat - Away
+#  trigger:
+#    platform: state
+#    entity_id: group.users
+#    to: 'not_home'
+#  condition:
+#    platform: state
+#    entity_id: input_boolean.thermo_home_away
+#    state: 'off'
+#  action:
+#    service: thermostat.set_away_mode
+#    data:
+#      entity_id: thermostat.home
+#      away_mode: 'true'
+
+#- alias: Thermostat - Manual Away Off
+#  trigger:
+#    platform: state
+#    entity_id: input_boolean.thermo_away
+#    state: 'off'
+#  condition: use_trigger_values
+#  action:
+#    service: thermostat.set_away_mode
+#    data:
+#      entity_id: thermostat.home
+#      away_mode: 'false'
+
+#- alias: Thermostat - Manual Away On
+#  trigger:
+#    platform: state
+#    entity_id: input_boolean.thermo_away
+#    state: 'on'
+#  condition: use_trigger_values
+#  action:
+#    service: thermostat.set_away_mode
+#    data:
+#      entity_id: thermostat.home
+#      away_mode: 'true'
+
+#zwave
+- alias: heal at 2:30am
+  trigger:
+    platform: time
+    after: '2:30:00'
+  action:
+    service: zwave.heal_network
+>>>>>>> origin/master

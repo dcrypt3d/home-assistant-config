@@ -22,7 +22,7 @@ sensor.thermostat_mode:
   friendly_name: 'Schedule'
 sensor.thermostat_away:
   icon: mdi:account
-  friendly_name: 'Away Mode'
+  friendly_name: 'Away'
 
 #cameras
 sensor.garage_camera:
