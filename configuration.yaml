@@ -74,6 +74,7 @@ zwave:
   usb_path: /dev/ttyACM0
   config_path: /usr/local/lib/python3.5/dist-packages/libopenzwave-0.3.0b9-py3.5-linux-x86_64.egg/config
   polling_interval: 30000
-#  customize:
-#    sensor.greenwave_powernode_6_port_energy_10:
-#        polling_intensity: 1
+  customize:
+  #poll device every 30 seconds
+    binary_sensor.window_sensor_sensor_5:
+        polling_intensity: 1
