@@ -9,25 +9,40 @@
 
 #locks
 - alias: Lock back door after set time
-  condition: state
-  entity_id: lock.back_door__2
-  state: 'unlocked'
+  condition: and
+  conditions:
+  - condition: state
+    entity_id: input_boolean.auto_lock_timer
+    state: 'off'
+  - condition: state
+    entity_id: lock.back_door__2
+    state: 'unlocked'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_backdoor
 
 - alias: Lock front door after set time
-  condition: state
-  entity_id: lock.front_door__3
-  state: 'unlocked'
+  condition: and
+  conditions:
+  - condition: state
+    entity_id: input_boolean.auto_lock_timer
+    state: 'off'
+  - condition: state
+    entity_id: lock.front_door__3
+    state: 'unlocked'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_frontdoor
 
 - alias: Lock garage door after set time
-  condition: state
-  entity_id: lock.garage_door__4
-  state: 'unlocked'
+  condition: and
+  conditions:
+  - condition: state
+    entity_id: input_boolean.auto_lock_timer
+    state: 'off'
+  - condition: state
+    entity_id: lock.garage_door__4
+    state: 'unlocked'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_garagedoor
