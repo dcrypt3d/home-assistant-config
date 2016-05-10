@@ -31,7 +31,7 @@ media:
   view: yes
   entities:
     - media_player.kodi
-   - media_player.plex
+    - media_player.plex
 
 overrides:
   name: Override
@@ -72,13 +72,13 @@ lights:
   name: Lights
   view: no
   entities:
-    - switch.laundry_room_switch_6
+    - switch.laundry_room__6
 
 indoor_lights:
   name: Indoor Lights
   view: no
   entities:
-    - switch.laundry_room_switch_6
+    - switch.laundry_room__6
 
 thermostat:
   name: Thermostat

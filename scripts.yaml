@@ -5,13 +5,13 @@ timed_garage:
       # Cancel old timers
     - service: script.turn_off
       data:
-        entity_id: script.garage_timer_off
+        entity_id: script.garage_opener_timer
         # Set new timer
     - service: script.turn_on
       data:
-        entity_id: script.garage_timer_off
+        entity_id: script.garage_opener_timer
 
-garage_timer_off:
+garage_opener_timer:
   alias: "Close garage after minutes"
   sequence:
     - delay:
@@ -27,13 +27,13 @@ timed_backdoor:
       # Cancel old timers
     - service: script.turn_off
       data:
-        entity_id: script.lock_timer_off
+        entity_id: script.lock_lock_timer
         # Set new timer
     - service: script.turn_on
       data:
-        entity_id: script.backdoor_timer_off
+        entity_id: script.backdoor_lock_timer
 
-backdoor_timer_off:
+backdoor_lock_timer:
   alias: "Lock back door after minutes"
   sequence:
     - delay:
@@ -48,13 +48,13 @@ timed_frontdoor:
       # Cancel old timers
     - service: script.turn_off
       data:
-        entity_id: script.frontdoor_timer_off
+        entity_id: script.frontdoor_lock_timer
         # Set new timer
     - service: script.turn_on
       data:
-        entity_id: script.frontdoor_timer_off
+        entity_id: script.frontdoor_lock_timer
 
-frontdoor_timer_off:
+frontdoor_lock_timer:
   alias: "Lock front door after minutes"
   sequence:
     - delay:
@@ -69,13 +69,13 @@ timed_garagedoor:
       # Cancel old timers
     - service: script.turn_off
       data:
-        entity_id: script.garagedoor_timer_off
+        entity_id: script.garagedoor_lock_timer
         # Set new timer
     - service: script.turn_on
       data:
-        entity_id: script.garagedoor_timer_off
+        entity_id: script.garagedoor_lock_timer
 
-garagedoor_timer_off:
+garagedoor_lock_timer:
   alias: "Lock garage door after minutes"
   sequence:
     - delay:
@@ -90,20 +90,20 @@ timed_laundryroom:
       # Cancel old timers
     - service: script.turn_off
       data:
-        entity_id: script.laundryroom_timer_off
+        entity_id: script.laundryroom_light_timer
     - service: switch.turn_on
       data:
-        entity_id: switch.laundry_room_switch_6
+        entity_id: switch.laundry_room__6
         # Set new timer
     - service: script.turn_on
       data:
-        entity_id: script.laundryroom_timer_off
+        entity_id: script.laundryroom_light_timer
 
-laundryroom_timer_off:
+laundryroom_light_timer:
   alias: "Shut off light after minutes"
   sequence:
     - delay:
         minutes: 10
     - service: switch.turn_off
       data:
-        entity_id: switch.laundry_room_switch_6
+        entity_id: switch.laundry_room__6

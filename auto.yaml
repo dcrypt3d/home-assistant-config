@@ -1,54 +1,47 @@
 #garage
 - alias: Close Garage Door after set time
-  trigger:
-    platform: state
-    entity_id: garage_door.garage_opener
-    state: 'open'
-  condition: use_trigger_values
+  condition: state
+  entity_id: garage_door.garage_opener
+  state: 'open'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_garage
 
 #locks
 - alias: Lock back door after set time
-  trigger:
-    platform: state
-    entity_id: lock.back_door__2
-    state: 'unlocked'
-  condition: use_trigger_values
+  condition: state
+  entity_id: lock.back_door__2
+  state: 'unlocked'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_backdoor
 
 - alias: Lock front door after set time
-  trigger:
-    platform: state
-    entity_id: lock.front_door__3
-    state: 'unlocked'
-  condition: use_trigger_values
+  condition: state
+  entity_id: lock.front_door__3
+  state: 'unlocked'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_frontdoor
 
 - alias: Lock garage door after set time
-  trigger:
-    platform: state
-    entity_id: lock.garage_door__4
-    state: 'unlocked'
-  condition: use_trigger_values
+  condition: state
+  entity_id: lock.garage_door__4
+  state: 'unlocked'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_garagedoor
 
 - alias: 'Battery Low Alert'
-  trigger:
-  - platform: numeric_state
+  condition: or
+  conditions:
+  - condition: numeric_state
     entity_id: sensor.batt_frontdoor
     below: 5
-  - platform: numeric_state
+  - condition: numeric_state
     entity_id: sensor.batt_backdoor
     below: 5
-  - platform: numeric_state
+  - condition: numeric_state
     entity_id: sensor.batt_garagedoor
     below: 5
   action:
@@ -58,91 +51,80 @@
       title: ""
 
 - alias: Lock all doors when not home
-  trigger:
-    platform: state
-    entity_id: group.users
-    state: 'not_home'
+  condition: state
+  entity_id: group.users
+  state: 'not_home'
   action:
     service: lock.lock
 
-#lights
+#switch_lights
 - alias: Turn on laundry room light when coming home
-  trigger:
-    platform: state
-    entity_id: group.users
-    state: 'home'
+  condition: or
+  conditions:
+    - condition: state
+      entity_id: device_tracker.me
+      state: 'home'
+    - condition: state
+      entity_id: device_tracker.her
+      state: 'home'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_laundryroom
 
 - alias: Turn off all indoor lights
-  trigger:
-    platform: state
-    entity_id: group.users
-    to: 'not_home'
+  condition: state
+  entity_id: group.users
+  state: 'not_home'
   action:
     service: switch.turn_off
     entity_id: group.indoor_lights
 
+#googletravel
+- alias: "Commute to work by car"
+  condition:
+    - condition: time
+      after: '9:00:00'
+      before: '10:00:00'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.google_travel_time_car
+    below: 30
+  action:
+    service: notify.pushbullet
+    data:
+      message: "Commute by car less than 30 minutes"
+
+- alias: "Commute to work by bike"
+  condition:
+    - condition: time
+      after: '6:00:00'
+      before: '7:15:00'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.google_travel_time_bike
+    below: 50
+  action:
+    service: notify.pushbullet
+    data:
+      message: "Commute by bike less than 50 minutes"
+
 #thermostat
-- alias: Thermostat - Home
-  trigger:
-    platform: state
-    entity_id: group.users
-    to: 'home'
+- alias: Thermostat - Auto Home
+  condition: state
+  entity_id: group.users
+  state: 'home'
+  action:
+    service: thermostat.set_away_mode
+    data:
+      entity_id: thermostat.home
+      away_mode: 'False'
+      
+- alias: Thermostat - Auto Away
   condition:
-    platform: state
-    entity_id: input_boolean.thermo_home_away
-    state: 'off'
+  entity_id: group.users
+  state: 'not_home'
   action:
     service: thermostat.set_away_mode
     data:
       entity_id: thermostat.home
-      away_mode: 'false'
-
-- alias: Thermostat - Away
-  trigger:
-    platform: state
-    entity_id: group.users
-    to: 'not_home'
-  condition:
-    platform: state
-    entity_id: input_boolean.thermo_home_away
-    state: 'off'
-  action:
-    service: thermostat.set_away_mode
-    data:
-      entity_id: thermostat.home
-      away_mode: 'true'
-
-- alias: Thermostat - Manual Away Off
-  trigger:
-    platform: state
-    entity_id: input_boolean.thermo_away
-    state: 'off'
-  condition: use_trigger_values
-  action:
-    service: thermostat.set_away_mode
-    data:
-      entity_id: thermostat.home
-      away_mode: 'false'
-
-- alias: Thermostat - Manual Away On
-  trigger:
-    platform: state
-    entity_id: input_boolean.thermo_away
-    state: 'on'
-  condition: use_trigger_values
-  action:
-    service: thermostat.set_away_mode
-    data:
-      entity_id: thermostat.home
-      away_mode: 'true'
-
-#zwave
-- alias: heal at 2:30am
-  trigger:
-    platform: time
-    after: '2:30:00'
-  action:
-    service: zwave.heal_network
+      away_mode: 'True'

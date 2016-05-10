@@ -22,15 +22,16 @@ zone 1:
   radius: 300
 
 #includes
+notify: !include notify.yaml
+group: !include groups.yaml
 script: !include scripts.yaml
 automation: !include auto.yaml
 sensor: !include sensors.yaml
+#scene: !include scenes.yaml
 device_tracker: !include device_trackers.yaml
 media_player: !include media_players.yaml
 #input_select: !include input_select.yaml
-input_boolean: !include input_boolean.yaml
-group: !include groups.yaml
-#scene: !include scenes.yaml
+#input_boolean: !include input_boolean.yaml
 
 http:
   api_password: 
@@ -75,5 +76,6 @@ zwave:
   config_path: /usr/local/lib/python3.5/dist-packages/libopenzwave-0.3.0b9-py3.5-linux-x86_64.egg/config
   polling_interval: 30000
 #  customize:
-#    sensor.greenwave_powernode_6_port_energy_10:
+#    binary_sensor.window_sensor_sensor_5:
+# poll every 30 seconds
 #        polling_intensity: 1

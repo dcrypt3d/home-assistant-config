@@ -1,19 +1,19 @@
-#lock
+#locks
 - platform: template
   sensors:
-    batt_frontdoor:
+    front_door_batt:
       value_template: '{{ states.lock.front_door__3.attributes.battery_level }}'
       unit_of_measurement: '%'
 
 - platform: template
   sensors:
-    batt_backdoor:
+    back_door_batt:
       value_template: '{{ states.lock.back_door__2.attributes.battery_level }}'
       unit_of_measurement: '%'
 
 - platform: template
   sensors:
-    batt_garagedoor:
+    garage_door_batt:
       value_template: '{{ states.lock.garage_door__4.attributes.battery_level }}'
       unit_of_measurement: '%'
 
@@ -23,17 +23,48 @@
     garagedoor_status:
       value_template: '{{ states.garage_door.garage_opener.state }}'
 
-#thermostat
-- platform: template
-  sensors:
-    tstat_away:
-      value_template: '{{ states.thermostat.home.attributes.away_mode }}'
-
 - platform: template
   sensors:
     garage_camera:
       value_template: '{{ states.camera.garage.state }}'
 
+#thermostat
+- platform: template
+  sensors:
+    thermostat_mode:
+      value_template: '{{ states.thermostat.home.attributes.mode }}'
+
+- platform: template
+  sensors:
+    thermostat_away:
+      value_template: '{{ states.thermostat.home.attributes.away_mode }}'
+
+#googletravel
+- platform: google_travel_time
+  name: 'google_travel_time_car'
+  api_key: key
+  origin: street, city, state zip
+  destination: street, city, state zip
+  travel_mode: driving
+
+- platform: template
+  sensors:
+    google_travel_car_time:
+      value_template: '{{ states.sensor.google_travel_time_car.attributes.duration }}'
+
+- platform: google_travel_time
+  name: 'google_travel_time_bike'
+  api_key: key
+  origin: street, city, state zip
+  destination: street, city, state zip
+  travel_mode: bicycling
+
+- platform: template
+  sensors:
+    google_travel_bike_time:
+      value_template: '{{ states.sensor.google_travel_time_bike.attributes.duration }}'
+
+#speedtest
 - platform: speedtest
   minute: 30
   hour:
@@ -45,8 +76,10 @@
     - ping
     - download
     - upload
+
+#weather
 - platform: forecast
-  api_key: 
+  api_key: key
   monitored_conditions:
     - summary
     - icon
@@ -66,10 +99,11 @@
     - visibility
     - ozone
 
+#sabnzbd
 - platform: sabnzbd
   name: SABnzbd
-  api_key: 
-  base_url: http://
+  api_key: key
+  base_url: http://ip:port
   monitored_variables:
     - type: 'current_status'
     - type: 'speed'

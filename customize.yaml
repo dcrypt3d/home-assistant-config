@@ -1,11 +1,11 @@
 #locks
-sensor.batt_backdoor:
+sensor.back_door_batt:
   icon: mdi:battery
   friendly_name: 'Back Door Battery'
-sensor.batt_frontdoor:
+sensor.front_door_batt:
   icon: mdi:battery
   friendly_name: 'Front Door Battery'
-sensor.batt_garagedoor:
+sensor.garage_door_batt:
   icon: mdi:battery
   friendly_name: 'Garage Door Battery'
 
@@ -17,7 +17,10 @@ sensor.garagedoor_status:
 thermostat.home:
   icon: mdi:fan
   friendly_name: 'Ecobee'
-sensor.ecobee_away:
+sensor.thermostat_mode:
+  icon: mdi:calendar-clock
+  friendly_name: 'Schedule'
+sensor.thermostat_away:
   icon: mdi:account
   friendly_name: 'Away Mode'
 
@@ -26,8 +29,16 @@ sensor.garage_camera:
   friendly_name: 'Garage Camera'
 
 #lights
-switch.laundry_room_switch_6:
+switch.laundry_room__6:
   friendly_name: 'Laundry Room'
+
+#googletravel
+sensor.google_travel_car_time:
+  icon: mdi:car
+  friendly_name: 'Car Commute'
+sensor.google_travel_bike_time:
+  icon: mdi:bike
+  friendly_name: 'Bike Commute'
 
 #devices
 device_tracker.ipad:
