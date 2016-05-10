@@ -1,19 +1,19 @@
 #lock
 - platform: template
   sensors:
-    batt_frontdoor:
+    front_door_batt:
       value_template: '{{ states.lock.front_door__3.attributes.battery_level }}'
       unit_of_measurement: '%'
 
 - platform: template
   sensors:
-    batt_backdoor:
+    back_door_batt:
       value_template: '{{ states.lock.back_door__2.attributes.battery_level }}'
       unit_of_measurement: '%'
 
 - platform: template
   sensors:
-    batt_garagedoor:
+    garage_door_batt:
       value_template: '{{ states.lock.garage_door__4.attributes.battery_level }}'
       unit_of_measurement: '%'
 
@@ -41,6 +41,7 @@
 
 #googletravel
 - platform: google_travel_time
+  name: google_travel_time_car
   api_key: key
   origin: street, city, state zip
   destination: street, city, state zip
@@ -48,7 +49,7 @@
 
 - platform: template
   sensors:
-    car_commute:
+    google_travel_car_time:
       value_template: '{{ states.sensor.google_travel_time.attributes.duration }}'
 
 #speedtest
