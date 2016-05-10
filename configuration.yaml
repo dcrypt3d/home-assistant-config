@@ -31,7 +31,7 @@ sensor: !include sensors.yaml
 device_tracker: !include device_trackers.yaml
 media_player: !include media_players.yaml
 #input_select: !include input_select.yaml
-#input_boolean: !include input_boolean.yaml
+input_boolean: !include input_boolean.yaml
 
 http:
   api_password: 
