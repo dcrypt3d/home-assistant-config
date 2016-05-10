@@ -126,7 +126,7 @@ commute:
   name: Commute
   view: no
   entities:
-    - sensor.car_commute
+    - sensor.google_travel_car_time
 
 alarm:
   name: Alarm
