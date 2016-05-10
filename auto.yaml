@@ -1,5 +1,5 @@
 #garage
-- alias: Close Garage Door after set time
+- alias: Close garage door after set time
   trigger:
     platform: state
     entity_id: garage_door.garage_opener
@@ -55,7 +55,6 @@
     service: notify.pushbullet
     data:
       message: "Time to change the front door's battery"
-      title: ""
 
 - alias: Lock all doors when not home
   trigger:
@@ -103,59 +102,83 @@
       message: "Commute less than 30 minutes"
 
 #thermostat
-- alias: Thermostat - Home
+- alias: Thermostat - Auto Home
   trigger:
     platform: state
     entity_id: group.users
-    to: 'home'
-  condition:
-    platform: state
-    entity_id: input_boolean.thermo_home_away
-    state: 'off'
-  action:
-    service: thermostat.set_away_mode
-    data:
-      entity_id: thermostat.home
-      away_mode: 'false'
-
-- alias: Thermostat - Away
-  trigger:
-    platform: state
-    entity_id: group.users
-    to: 'not_home'
-  condition:
-    platform: state
-    entity_id: input_boolean.thermo_home_away
-    state: 'off'
-  action:
-    service: thermostat.set_away_mode
-    data:
-      entity_id: thermostat.home
-      away_mode: 'true'
-
-- alias: Thermostat - Manual Away Off
-  trigger:
-    platform: state
-    entity_id: input_boolean.thermo_away
-    state: 'off'
+    state: 'home'
   condition: use_trigger_values
   action:
     service: thermostat.set_away_mode
     data:
       entity_id: thermostat.home
-      away_mode: 'false'
-
-- alias: Thermostat - Manual Away On
+      away_mode: 'off'
+      
+- alias: Thermostat - Auto Away
   trigger:
     platform: state
-    entity_id: input_boolean.thermo_away
-    state: 'on'
+    entity_id: group.users
+    state: 'not_home'
   condition: use_trigger_values
   action:
     service: thermostat.set_away_mode
     data:
       entity_id: thermostat.home
-      away_mode: 'true'
+      away_mode: 'on'
+
+#- alias: Thermostat - Home
+#  trigger:
+#    platform: state
+#    entity_id: group.users
+#    to: 'home'
+#  condition:
+#    platform: state
+#    entity_id: input_boolean.thermo_home_away
+#    state: 'off'
+#  action:
+#    service: thermostat.set_away_mode
+#    data:
+#      entity_id: thermostat.home
+#      away_mode: 'false'
+
+#- alias: Thermostat - Away
+#  trigger:
+#    platform: state
+#    entity_id: group.users
+#    to: 'not_home'
+#  condition:
+#    platform: state
+#    entity_id: input_boolean.thermo_home_away
+#    state: 'off'
+#  action:
+#    service: thermostat.set_away_mode
+#    data:
+#      entity_id: thermostat.home
+#      away_mode: 'true'
+
+#- alias: Thermostat - Manual Away Off
+#  trigger:
+#    platform: state
+#    entity_id: input_boolean.thermo_away
+#    state: 'off'
+#  condition: use_trigger_values
+#  action:
+#    service: thermostat.set_away_mode
+#    data:
+#      entity_id: thermostat.home
+#      away_mode: 'false'
+
+#- alias: Thermostat - Manual Away On
+#  trigger:
+#    platform: state
+#    entity_id: input_boolean.thermo_away
+#    state: 'on'
+#  condition: use_trigger_values
+#  action:
+#    service: thermostat.set_away_mode
+#    data:
+#      entity_id: thermostat.home
+#      away_mode: 'true'
 
 #zwave
 - alias: heal at 2:30am
