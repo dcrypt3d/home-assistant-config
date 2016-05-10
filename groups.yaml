@@ -65,9 +65,9 @@ batt_locks:
   name: lock battery
   view: no
   entities:
-    - sensor.batt_frontdoor
-    - sensor.batt_backdoor
-    - sensor.batt_garagedoor
+    - sensor.front_door_batt
+    - sensor.back_door_batt
+    - sensor.garage_door_batt
 
 lights:
   name: Lights
@@ -89,7 +89,8 @@ thermostat:
   view: no
   entities:
     - thermostat.home
-    - sensor.ecobee_away
+    - sensor.thermostat_away
+    - sensor.thermostat_mode
     - sensor.home_humidity
     - sensor.home_occupancy
     - sensor.upstairs_temperature
