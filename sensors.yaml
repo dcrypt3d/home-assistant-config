@@ -22,11 +22,6 @@
   sensors:
     garagedoor_status:
       value_template: '{{ states.garage_door.garage_opener.state }}'
-      
-- platform: template
-  sensors:
-    garage_camera:
-      value_template: '{{ states.camera.garage.state }}'
 
 - platform: template
   sensors:
@@ -36,14 +31,11 @@
 #thermostat
 - platform: template
   sensors:
-<<<<<<< HEAD
     thermostat_mode:
       value_template: '{{ states.thermostat.home.attributes.mode }}'
 
 - platform: template
   sensors:
-=======
->>>>>>> origin/master
     thermostat_away:
       value_template: '{{ states.thermostat.home.attributes.away_mode }}'
 
@@ -57,7 +49,6 @@
 
 - platform: template
   sensors:
-<<<<<<< HEAD
     google_travel_car_time:
       value_template: '{{ states.sensor.google_travel_time_car.attributes.duration }}'
 
@@ -73,24 +64,6 @@
     google_travel_bike_time:
       value_template: '{{ states.sensor.google_travel_time_bike.attributes.duration }}'
 
-=======
-    thermostat_mode:
-      value_template: '{{ states.thermostat.home.attributes.mode }}'
-
-#googletravel
-- platform: google_travel_time
-  name: google_travel_time_car
-  api_key: key
-  origin: street, city, state zip
-  destination: street, city, state zip
-  travel_mode: driving
-
-- platform: template
-  sensors:
-    google_travel_car_time:
-      value_template: '{{ states.sensor.google_travel_time.attributes.duration }}'
-
->>>>>>> origin/master
 #speedtest
 - platform: speedtest
   minute: 30
@@ -103,11 +76,7 @@
     - ping
     - download
     - upload
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> origin/master
 #weather
 - platform: forecast
   api_key: key
