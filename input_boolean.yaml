@@ -1,14 +1,8 @@
-thermo_home_away:
-    name: Disable Auto Away Mode
+auto_lock_timer:
+    name: Disable Lock Timer
     initial: off
-    icon: mdi:close-circle-outline
 
-thermo_away:
-    name: Away Mode
-    initial: '{{ states.thermostat.home.attributes.away_mode }}'
-    icon: mdi:close-circle-outline
-
-garageopener_autoclose:
-    name: Disable Garage Auto Close
+auto_garage_opener:
+    name: Disable Garage Opener Timer
     initial: off
     icon: mdi:close-circle-outline
