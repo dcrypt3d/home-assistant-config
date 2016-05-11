@@ -37,8 +37,8 @@ overrides:
   name: Override
   view: no
   entities:
-    - input_boolean.thermo_away
-    - input_boolean.thermo_home_away
+    - input_boolean.auto_lock_timer
+    - input_boolean.auto_garage_timer
 
 entry:
   name: Entry
