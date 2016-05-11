@@ -111,7 +111,6 @@
   condition:
     platform: time
     after: '7:00'
-    before: '8:00'
   action:
     service: notify.pushbullet
     data:
@@ -126,7 +125,6 @@
   condition:
     platform: time
     after: '6:00'
-    before: '7:15'
   action:
     service: notify.pushbullet
     data:
