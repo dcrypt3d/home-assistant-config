@@ -84,8 +84,10 @@
     - platform: state
       entity_id: device_tracker.her
       state: 'home'
-  condition: sun
-  event: sunset
+  condition:
+    platform: sun
+    after: sunset
+    after_offset: '-4:00:00'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_laundryroom
@@ -103,12 +105,13 @@
 #googletravel
 - alias: "Commute to work by car"
   trigger:
+    platform: numeric_state
+    entity_id: sensor.google_travel_time_car
+    below: 30
+  condition:
     platform: time
-    after: '7:00:00'
-    before: '8:00:00'
-  condition: numeric_state
-  entity_id: sensor.google_travel_time_car
-  below: 30
+    after: '7:00'
+    before: '8:00'
   action:
     service: notify.pushbullet
     data:
@@ -117,12 +120,13 @@
 
 - alias: "Commute to work by bike"
   trigger:
+    platform: numeric_state
+    entity_id: sensor.google_travel_time_bike
+    below: 50
+  condition:
     platform: time
-    after: '6:00:00'
-    before: '7:15:00'
-  condition: numeric_state
-  entity_id: sensor.google_travel_time_bike
-  below: 50
+    after: '6:00'
+    before: '7:15'
   action:
     service: notify.pushbullet
     data:
