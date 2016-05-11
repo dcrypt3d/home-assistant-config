@@ -22,14 +22,16 @@ sensor.thermostat_mode:
   friendly_name: 'Schedule'
 sensor.thermostat_away:
   icon: mdi:account
-  friendly_name: 'Away'
+  friendly_name: 'Away Mode'
 
 #cameras
 sensor.garage_camera:
+  icon: mdi:camcorder
   friendly_name: 'Garage Camera'
 
 #lights
 switch.laundry_room__6:
+  icon: mdi:hanger
   friendly_name: 'Laundry Room'
 
 #googletravel
@@ -45,6 +47,28 @@ device_tracker.ipad:
   icon: mdi:tablet-ipad
 device_tracker.mbp:
   icon: mdi:laptop-mac
+
+#speedtest
+sensor.speedtest_download:
+  icon: mdi:arrow-down
+sensor.speedtest_upload
+  icon: mdi:arrow-up
+sensor.speedtest_ping
+  icon: mdi:autorenew
+
+#sabnzbd
+sensor.sabnzbd_disk:
+  icon: mdi:harddisk
+sensor.sabnzbd_disk_free:
+  icon: mdi:harddisk
+sensor.sabnzbd_left:
+  icon: mdi:database-minus
+sensor.sabnzbd_queue:
+  icon: mdi:database-plus
+sensor.sabnzbd_speed:
+  icon: mdi:speedometer
+sensor.sabnzbd_status:
+  icon: mdi:alert-circle-outline
 
 #weather
 sensor.weather_summary:
