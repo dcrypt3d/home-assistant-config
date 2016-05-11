@@ -83,10 +83,10 @@
   trigger:
     - platform: state
       entity_id: device_tracker.me
-      state: 'home'
+      to: 'home'
     - platform: state
       entity_id: device_tracker.her
-      state: 'home'
+      to: 'home'
   condition:
     platform: sun
     after: sunset
