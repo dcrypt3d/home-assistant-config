@@ -9,7 +9,7 @@ default_view:
 sensors:
   name: Sensors
   view: yes
-  icon: mdi:speedometer
+  icon: mdi:google-circles-extended
   entities:
     - group.overrides
     - group.climate
