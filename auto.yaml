@@ -15,9 +15,8 @@
     platform: state
     entity_id: lock.back_door__2
     state: 'unlocked'
-  condition: state
-  entity_id: input_boolean.auto_lock_timer
-  state: 'off'
+  condition: template
+  value_template: '{{ state.input_boolean.auto_lock_timer > off }}'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_backdoor
@@ -27,9 +26,8 @@
     platform: state
     entity_id: lock.front_door__3
     state: 'unlocked'
-  condition: state
-  entity_id: input_boolean.auto_lock_timer
-  state: 'off'
+  condition: template
+  value_template: '{{ state.input_boolean.auto_lock_timer > off }}'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_frontdoor
@@ -39,9 +37,8 @@
     platform: state
     entity_id: lock.garage_door__4
     state: 'unlocked'
-  condition: state
-  entity_id: input_boolean.auto_lock_timer
-  state: 'off'
+  condition: template
+  value_template: '{{ state.input_boolean.auto_lock_timer > off }}'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_garagedoor
