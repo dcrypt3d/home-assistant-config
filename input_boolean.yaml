@@ -1,9 +1,9 @@
 auto_lock_timer:
     name: Disable Lock Timer
     initial: off
-    icon: mdi:close-circle-outline
+    icon: mdi:lock-open
 
 auto_garage_timer:
     name: Disable Garage Timer
     initial: off
-    icon: mdi:close-circle-outline
+    icon: mdi:glassdoor
