@@ -1,116 +1,111 @@
 #garage
 - alias: Close Garage Door after set time
-  condition:
-    condition: state
+  trigger:  
+    platform: state
     entity_id: garage_door.garage_opener
-    state: 'open'
+    state: open
+  condition: use_trigger_values
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_garage
 
 #locks
 - alias: Lock back door after set time
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.auto_lock_timer
-        state: 'off'
-      - condition: state
-        entity_id: lock.back_door__2
-        state: 'unlocked'
+  trigger:
+    platform: state
+    entity_id: lock.back_door__2
+    state: 'unlocked'
+  condition: state
+  entity_id: input_boolean.auto_lock_timer
+  state: 'off'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_backdoor
 
 - alias: Lock front door after set time
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.auto_lock_timer
-        state: 'off'
-      - condition: state
-        entity_id: lock.front_door__3
-        state: 'unlocked'
+  trigger:
+    platform: state
+    entity_id: lock.front_door__3
+    state: 'unlocked'
+  condition: state
+  entity_id: input_boolean.auto_lock_timer
+  state: 'off'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_frontdoor
 
 - alias: Lock garage door after set time
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.auto_lock_timer
-        state: 'off'
-      - condition: state
-        entity_id: lock.garage_door__4
-        state: 'unlocked'
+  trigger:
+    platform: state
+    entity_id: lock.garage_door__4
+    state: 'unlocked'
+  condition: state
+  entity_id: input_boolean.auto_lock_timer
+  state: 'off'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_garagedoor
 
 - alias: 'Battery Low Alert'
-  condition:
-    condition: or
-    conditions:
-      - condition: numeric_state
+  trigger:
+      - platform: numeric_state
         entity_id: sensor.batt_frontdoor
         below: 5
-      - condition: numeric_state
+      - platform: numeric_state
         entity_id: sensor.batt_backdoor
         below: 5
-      - condition: numeric_state
+      - platform: numeric_state
         entity_id: sensor.batt_garagedoor
         below: 5
+  condition: use_trigger_values
   action:
     service: notify.pushbullet
     data:
       message: "Time to change the front door's battery"
 
 - alias: Lock all doors when not home
-  condition:
-    condition: state
+  trigger:
+    platform: state
     entity_id: group.users
     state: 'not_home'
+  condition: use_trigger_values
   action:
     service: lock.lock
 
 #switch_lights
 - alias: Turn on laundry room light when coming home
-  condition:
-    condition: or
-    conditions:
-      - condition: state
-        entity_id: device_tracker.iph0n36
-        state: 'home'
-      - condition: state
-        entity_id: device_tracker.daniellefreysiphone
-        state: 'home'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.me
+      state: 'home'
+    - platform: state
+      entity_id: device_tracker.her
+      state: 'home'
+  condition: sun
+  event: sunset
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_laundryroom
 
 - alias: Turn off all indoor lights
-  condition:
-    condition: state
+  trigger:
+    platform: state
     entity_id: group.users
     state: 'not_home'
+  condition: use_trigger_values
   action:
     service: switch.turn_off
     entity_id: group.indoor_lights
 
 #googletravel
 - alias: "Commute to work by car"
-  condition:
-    - condition: time
-      after: '9:00:00'
-      before: '10:00:00'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.google_travel_time_car
-    below: 30
+    platform: time
+    after: '7:00:00'
+    before: '8:00:00'
+  condition: numeric_state
+  entity_id: sensor.google_travel_time_car
+  below: 30
   action:
     service: notify.pushbullet
     data:
@@ -118,14 +113,13 @@
       target: "device/me"
 
 - alias: "Commute to work by bike"
-  condition:
-    - condition: time
-      after: '6:00:00'
-      before: '7:15:00'
   trigger:
-    platform: numeric_state
-    entity_id: sensor.google_travel_time_bike
-    below: 50
+    platform: time
+    after: '6:00:00'
+    before: '7:15:00'
+  condition: numeric_state
+  entity_id: sensor.google_travel_time_bike
+  below: 50
   action:
     service: notify.pushbullet
     data:
@@ -134,10 +128,11 @@
 
 #thermostat
 - alias: Thermostat - Auto Home
-  condition:
-    condition: state
+  trigger:
+    platform: state
     entity_id: group.users
     state: 'home'
+  condition: use_trigger_values
   action:
     service: thermostat.set_away_mode
     data:
@@ -145,12 +140,22 @@
       away_mode: 'False'
       
 - alias: Thermostat - Auto Away
-  condition:
-    condition: state
+  trigger:
+    platform: state
     entity_id: group.users
     state: 'not_home'
+  condition: use_trigger_values
   action:
     service: thermostat.set_away_mode
     data:
       entity_id: thermostat.home
       away_mode: 'True'
+     
+#zwave
+- alias: heal at 2:30am
+  trigger:
+    platform: time
+    after: '2:30:00'
+  condition: use_trigger_values
+  action:
+    service: zwave.heal_network
