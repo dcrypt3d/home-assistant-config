@@ -4,7 +4,10 @@
     platform: state
     entity_id: garage_door.garage_opener
     state: open
-  condition: use_trigger_values
+  condition:
+    platform: state
+    entity_id: input_boolean.auto_garage_timer
+    state: 'off'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_garage
