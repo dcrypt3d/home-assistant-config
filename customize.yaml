@@ -51,9 +51,9 @@ device_tracker.mbp:
 #speedtest
 sensor.speedtest_download:
   icon: mdi:arrow-down
-sensor.speedtest_upload
+sensor.speedtest_upload:
   icon: mdi:arrow-up
-sensor.speedtest_ping
+sensor.speedtest_ping:
   icon: mdi:autorenew
 
 #sabnzbd
