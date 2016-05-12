@@ -186,9 +186,8 @@ sabnzbd:
   name: SABnzbd
   view: no
   entities:
-    - sensor.sabnzbd_disk
+    - sensor.sabnzbd_status
+    - sensor.sabnzbd_disk_free
     - sensor.sabnzbd_speed
     - sensor.sabnzbd_queue
-    - sensor.sabnzbd_status
     - sensor.sabnzbd_left
-    - sensor.sabnzbd_disk_free
