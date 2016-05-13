@@ -1,4 +1,3 @@
-#locks
 - platform: template
   sensors:
     front_door_batt:
@@ -43,9 +42,11 @@
 - platform: google_travel_time
   name: 'google_travel_time_car'
   api_key: key
-  origin: street, city, state zip
-  destination: street, city, state zip
-  travel_mode: driving
+  origin: latitude, longitude
+  destination: latitude, longitude
+  options:
+    arrival_time: 08:00:00
+    mode: driving
 
 - platform: template
   sensors:
@@ -55,9 +56,11 @@
 - platform: google_travel_time
   name: 'google_travel_time_bike'
   api_key: key
-  origin: street, city, state zip
-  destination: street, city, state zip
-  travel_mode: bicycling
+  origin: latitude, longitude
+  destination: latitude, longitude
+  options:
+    mode: bicycling
+    
 
 - platform: template
   sensors:
