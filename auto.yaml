@@ -1,25 +1,237 @@
-#garage
-- alias: Close Garage Door after set time
-  trigger:  
+#security
+- alias: Panic Mode On
+  trigger:
     platform: state
-    entity_id: garage_door.garage_opener
-    state: open
-  condition:
+    entity_id: input_boolean.panic_mode
+    state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+        
+- alias: Panic Mode Off
+  trigger:
     platform: state
-    entity_id: input_boolean.auto_garage_timer
+    entity_id: input_boolean.panic_mode
     state: 'off'
   action:
     service: homeassistant.turn_on
-    entity_id: script.timed_garage
+    entity_id: script.all_clear
+
+- alias: Security Garage Opener
+  trigger:
+    platform: state
+    entity_id: garage_door.garage_opener
+    state: 'open'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+     
+- alias: Security Garage Door
+  trigger:
+    platform: state
+    entity_id: lock.garage_door__4
+    state: 'unlocked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+
+- alias: Security Garage Door Burglar
+  trigger:
+    platform: template
+    value_template: "{% if is_state('sensor.garage_door_burglar_4.state', '0') %}false{% endif %}"
+    state: 'unlocked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+
+- alias: Security Back Door
+  trigger:
+    platform: state
+    entity_id: lock.back_door__2
+    state: 'unlocked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+
+- alias: Security Back Door Burglar
+  trigger:
+    platform: template
+    value_template: "{% if is_state('sensor.back_door_burglar_2.state', '0') %}false{% endif %}"
+    state: 'unlocked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+
+- alias: Security Front Door
+  trigger:
+    platform: state
+    entity_id: lock.front_door__3
+    state: 'unlocked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+
+- alias: Security Front Door Burglar
+  trigger:
+    platform: template
+    value_template: "{% if is_state('sensor.front_door_burglar_3.state', '0') %}false{% endif %}"
+    state: 'unlocked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+
+- alias: Security Upstairs
+  trigger:
+    platform: state
+    entity_id: sensor.upstairs_occupancy
+    state: 'true'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+
+- alias: Security Downstairs
+  trigger:
+    platform: state
+    entity_id: sensor.home_occupancy
+    state: 'true'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+     
+- alias: Security Laundry Room Light
+  trigger:
+    platform: state
+    entity_id: switch.laundry_room__6
+    state: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+     
+- alias: Security Basement Window Sensor
+  trigger:
+    platform: state
+    entity_id: binary_sensor.basement_window_sensor_sensor_5
+    state: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
 
 #locks
+- alias: Lock All Doors
+  trigger:
+    platform: state
+    entity_id: input_boolean.lock_all_doors
+    state: 'on'
+  condition: use_trigger_values
+  action:
+    service: lock.lock
+
 - alias: Lock back door after set time
   trigger:
     platform: state
     entity_id: lock.back_door__2
     state: 'unlocked'
   condition:
-    platform: state
+    condition: state
     entity_id: input_boolean.auto_lock_timer
     state: 'off'
   action:
@@ -32,7 +244,7 @@
     entity_id: lock.front_door__3
     state: 'unlocked'
   condition:         
-    platform: state
+    condition: state
     entity_id: input_boolean.auto_lock_timer
     state: 'off'
   action:
@@ -45,7 +257,7 @@
     entity_id: lock.garage_door__4
     state: 'unlocked'
   condition:         
-    platform: state
+    condition: state
     entity_id: input_boolean.auto_lock_timer
     state: 'off'
   action:
@@ -65,9 +277,10 @@
         below: 5
   condition: use_trigger_values
   action:
-    service: notify.pushbullet
+    service: notify.googlevoice
     data:
       message: "Time to change the front door's battery"
+      target: me
 
 - alias: Lock all doors when not home
   trigger:
@@ -76,19 +289,36 @@
     state: 'not_home'
   condition: use_trigger_values
   action:
-    service: lock.lock
+    - service: homeassistant.turn_off
+      data:
+        entity_id: input_boolean.disable_alarm
+    - service: lock.lock
+
+#garage
+- alias: Close Garage Door after set time
+  trigger:  
+    platform: state
+    entity_id: garage_door.garage_opener
+    state: 'open'
+  condition:
+    condition: state
+    entity_id: input_boolean.garageopener_autoclose
+    state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.timed_garage
 
 #switch_lights
 - alias: Turn on laundry room light when coming home
   trigger:
     - platform: state
       entity_id: device_tracker.me
-      to: 'home'
+      state: 'home'
     - platform: state
       entity_id: device_tracker.her
       to: 'home'
   condition:
-    platform: sun
+    condition: sun
     after: sunset
     after_offset: '-4:00:00'
   action:
@@ -108,31 +338,31 @@
 #googletravel
 - alias: "Commute to work by car"
   trigger:
-    platform: numeric_state
+    platform: time
+    after: '7:30'
+  condition:
+    condition: numeric_state
     entity_id: sensor.google_travel_time_car
     below: 30
-  condition:
-    platform: time
-    after: '7:00'
   action:
-    service: notify.pushbullet
+    service: notify.googlevoice
     data:
       message: "Commute by car less than 30 minutes"
-      target: "device/me"
+      target: me
 
 - alias: "Commute to work by bike"
   trigger:
-    platform: numeric_state
+    platform: time
+    after: '6:15'
+  condition:
+    condition: numeric_state
     entity_id: sensor.google_travel_time_bike
     below: 50
-  condition:
-    platform: time
-    after: '6:00'
   action:
-    service: notify.pushbullet
+    service: notify.googlevoice
     data:
       message: "Commute by bike less than 50 minutes"
-      target: "device/me"
+      target: me
 
 #thermostat
 - alias: Thermostat - Auto Home
