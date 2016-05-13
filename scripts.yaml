@@ -1,3 +1,27 @@
+#security
+all_clear:
+  alias: "All Clear"
+  sequence:
+    - service: homeassistant.turn_off
+      data:
+        entity_id: input_boolean.alarm_tripped
+
+alarm_tripped:
+  alias: "Alarm Tripped"
+  sequence:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: input_boolean.alarm_tripped
+
+    - service: homeassistant.turn_on
+      data:
+        entity_id: input_boolean.panic_mode
+
+    - service: notify.googlevoice
+      data:
+        message: "Alarm Has Been Tripped!"
+        target: me
+
 #garage
 timed_garage:
   alias: "On open garage set timer"
@@ -83,6 +107,7 @@ garagedoor_lock_timer:
     - service: lock.lock
       data:
         entity_id: lock.garage_door__4
+
 #lights
 timed_laundryroom:
   alias: "On home laundry room light"
