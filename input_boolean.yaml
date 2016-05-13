@@ -1,9 +1,29 @@
+lock_all_doors:
+    name: Lock Doors
+    initial: off
+    icon: mdi:lock
+
 auto_lock_timer:
     name: Disable Lock Timer
     initial: off
     icon: mdi:lock-open
 
-auto_garage_timer:
-    name: Disable Garage Timer
+garageopener_autoclose:
+    name: Disable Garage Auto Close
     initial: off
-    icon: mdi:glassdoor
+    icon: mdi:lock-open
+
+disable_security:
+    name: Disable Alarm
+    initial: on
+    icon: mdi:close-circle-outline
+
+panic_mode:
+    name: Panic Mode
+    initial: off
+    icon: mdi:shield-outline
+
+alarm_tripped:
+    name: Alarm Tripped
+    initial: off
+    icon: mdi:shield-outline
