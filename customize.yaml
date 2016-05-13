@@ -8,6 +8,48 @@ sensor.front_door_batt:
 sensor.garage_door_batt:
   icon: mdi:battery
   friendly_name: 'Garage Door Battery'
+sensor.front_door_access_control_3:
+    friendly_name: 'Front Door Access Control'
+sensor.front_door_alarm_level_3:
+    friendly_name: 'Front Door Alarm Level'
+sensor.front_door_alarm_type_3:
+    friendly_name: 'Front Door Alarm Type'
+sensor.front_door_burglar_3:
+    friendly_name: 'Front Door Burglar'
+sensor.front_door_power_management_3:
+    friendly_name: 'Front Door Power'
+sensor.front_door_sourcenodeid_3:
+    friendly_name: 'Front Door Source'
+sensor.front_door_system_3:
+    friendly_name: 'Front Door System'
+sensor.back_door_access_control_2:
+    friendly_name: 'Back Door Access Control'
+sensor.back_door_alarm_level_2:
+    friendly_name: 'Back Door Alarm Level'
+sensor.back_door_alarm_type_2:
+    friendly_name: 'Back Door Alarm Type'
+sensor.back_door_burglar_2:
+    friendly_name: 'Back Door Burglar'
+sensor.back_door_power_management_2:
+    friendly_name: 'Back Door Power'
+sensor.back_door_sourcenodeid_2:
+    friendly_name: 'Back Door Source'
+sensor.back_door_system_2:
+    friendly_name: 'Back Door System'
+sensor.garage_door_access_control_4:
+    friendly_name: 'Garage Door Access Control'
+sensor.garage_door_alarm_level_4:
+    friendly_name: 'Garage Door Alarm Level'
+sensor.garage_door_alarm_type_4:
+    friendly_name: 'Garage Door Alarm Type'
+sensor.garage_door_burglar_4:
+    friendly_name: 'Garage Door Burglar'
+sensor.garage_door_power_management_4:
+    friendly_name: 'Garage Door Power'
+sensor.garage_door_sourcenodeid_4:
+    friendly_name: 'Garage Door Source'
+sensor.garage_door_system_4:
+    friendly_name: 'Garage Door System'
 
 #garage
 sensor.garagedoor_status:
