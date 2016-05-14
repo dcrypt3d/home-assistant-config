@@ -29,8 +29,8 @@
         entity_id: group.users
         state: 'not_home'
       - condition: state
-        entity_id: input_boolean.disable_security
-        state: 'off'
+        entity_id: input_boolean.security_system
+        state: 'on'
   action:
     service: homeassistant.turn_on
     entity_id: script.alarm_tripped
@@ -47,8 +47,8 @@
         entity_id: group.users
         state: 'not_home'
       - condition: state
-        entity_id: input_boolean.disable_security
-        state: 'off'
+        entity_id: input_boolean.security_system
+        state: 'on'
   action:
     service: homeassistant.turn_on
     entity_id: script.alarm_tripped
@@ -57,7 +57,6 @@
   trigger:
     platform: template
     value_template: "{% if is_state('sensor.garage_door_burglar_4.state', '0') %}false{% endif %}"
-    state: 'unlocked'
   condition:
     condition: and
     conditions:
@@ -65,8 +64,8 @@
         entity_id: group.users
         state: 'not_home'
       - condition: state
-        entity_id: input_boolean.disable_security
-        state: 'off'
+        entity_id: input_boolean.security_system
+        state: 'on'
   action:
     service: homeassistant.turn_on
     entity_id: script.alarm_tripped
@@ -83,8 +82,8 @@
         entity_id: group.users
         state: 'not_home'
       - condition: state
-        entity_id: input_boolean.disable_security
-        state: 'off'
+        entity_id: input_boolean.security_system
+        state: 'on'
   action:
     service: homeassistant.turn_on
     entity_id: script.alarm_tripped
@@ -93,7 +92,6 @@
   trigger:
     platform: template
     value_template: "{% if is_state('sensor.back_door_burglar_2.state', '0') %}false{% endif %}"
-    state: 'unlocked'
   condition:
     condition: and
     conditions:
@@ -101,8 +99,8 @@
         entity_id: group.users
         state: 'not_home'
       - condition: state
-        entity_id: input_boolean.disable_security
-        state: 'off'
+        entity_id: input_boolean.security_system
+        state: 'on'
   action:
     service: homeassistant.turn_on
     entity_id: script.alarm_tripped
@@ -119,8 +117,8 @@
         entity_id: group.users
         state: 'not_home'
       - condition: state
-        entity_id: input_boolean.disable_security
-        state: 'off'
+        entity_id: input_boolean.security_system
+        state: 'on'
   action:
     service: homeassistant.turn_on
     entity_id: script.alarm_tripped
@@ -129,7 +127,6 @@
   trigger:
     platform: template
     value_template: "{% if is_state('sensor.front_door_burglar_3.state', '0') %}false{% endif %}"
-    state: 'unlocked'
   condition:
     condition: and
     conditions:
@@ -137,8 +134,8 @@
         entity_id: group.users
         state: 'not_home'
       - condition: state
-        entity_id: input_boolean.disable_security
-        state: 'off'
+        entity_id: input_boolean.security_system
+        state: 'on'
   action:
     service: homeassistant.turn_on
     entity_id: script.alarm_tripped
@@ -155,8 +152,8 @@
         entity_id: group.users
         state: 'not_home'
       - condition: state
-        entity_id: input_boolean.disable_security
-        state: 'off'
+        entity_id: input_boolean.security_system
+        state: 'on'
   action:
     service: homeassistant.turn_on
     entity_id: script.alarm_tripped
@@ -173,8 +170,8 @@
         entity_id: group.users
         state: 'not_home'
       - condition: state
-        entity_id: input_boolean.disable_security
-        state: 'off'
+        entity_id: input_boolean.security_system
+        state: 'on'
   action:
     service: homeassistant.turn_on
     entity_id: script.alarm_tripped
@@ -191,8 +188,8 @@
         entity_id: group.users
         state: 'not_home'
       - condition: state
-        entity_id: input_boolean.disable_security
-        state: 'off'
+        entity_id: input_boolean.security_system
+        state: 'on'
   action:
     service: homeassistant.turn_on
     entity_id: script.alarm_tripped
@@ -209,8 +206,8 @@
         entity_id: group.users
         state: 'not_home'
       - condition: state
-        entity_id: input_boolean.disable_security
-        state: 'off'
+        entity_id: input_boolean.security_system
+        state: 'on'
   action:
     service: homeassistant.turn_on
     entity_id: script.alarm_tripped
@@ -289,9 +286,9 @@
     state: 'not_home'
   condition: use_trigger_values
   action:
-    - service: homeassistant.turn_off
+    - service: homeassistant.turn_on
       data:
-        entity_id: input_boolean.disable_alarm
+        entity_id: input_boolean.security_system
     - service: lock.lock
 
 #garage
@@ -308,6 +305,58 @@
     service: homeassistant.turn_on
     entity_id: script.timed_garage
 
+- alias: Unlock garage door detect phone
+  trigger:
+    platform: state
+    entity_id: sensor.nateiphone
+    state: 'home'
+  condition:
+    condition: state
+    entity_id: input_boolean.garage_bt
+    state: 'on'
+  action:
+    service: lock.unlock
+    entity_id: lock.garage_door__4
+
+- alias: Lock garage door no detect phone
+  trigger:
+    platform: state
+    entity_id: sensor.nateiphone
+    state: 'home'
+  condition:
+    condition: state
+    entity_id: input_boolean.garage_bt
+    state: 'on'
+  action:
+    service: lock.lock
+    entity_id: lock.garage_door__4
+
+- alias: Garage opener detect car
+  trigger:
+    platform: state
+    entity_id: sensor.natecar
+    state: 'home'
+  condition:
+    condition: state
+    entity_id: input_boolean.garage_bt
+    state: 'on'
+  action:
+    service: garage_door.open     
+    entity_id: garage_door.garage_opener
+
+- alias: Garage opener no detect car
+  trigger:
+    platform: state
+    entity_id: sensor.natecar
+    state: 'home'
+  condition:
+    condition: state
+    entity_id: input_boolean.garage_bt
+    state: 'on'
+  action:
+    service: garage_door.close
+    entity_id: garage_door.garage_opener
+
 #switch_lights
 - alias: Turn on laundry room light when coming home
   trigger:
@@ -318,9 +367,14 @@
       entity_id: device_tracker.her
       to: 'home'
   condition:
-    condition: sun
-    after: sunset
-    after_offset: '-4:00:00'
+    condition: and
+    conditions:
+      - condition: sun
+        after: sunset
+        after_offset: '-4:00:00'
+      - condition: state
+        entity_id: input_boolean.disable_light_timer
+        state: 'off'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_laundryroom
