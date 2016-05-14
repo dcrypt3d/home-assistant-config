@@ -39,10 +39,13 @@ security:
   view: no
   icon: mdi:shield-outline
   entities:
+    - sensor.hold_space
     - input_boolean.lock_all_doors
     - input_boolean.auto_lock_timer
+    - input_boolean.disable_light_timer
     - input_boolean.garageopener_autoclose
-    - input_boolean.disable_security
+    - input_boolean.garage_bt
+    - input_boolean.security_system
     - input_boolean.panic_mode
 
 entry:
