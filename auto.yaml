@@ -308,7 +308,7 @@
 - alias: Unlock garage door detect phone
   trigger:
     platform: state
-    entity_id: sensor.nateiphone
+    entity_id: sensor.phone_bluetooth
     state: 'home'
   condition:
     condition: state
@@ -321,7 +321,7 @@
 - alias: Lock garage door no detect phone
   trigger:
     platform: state
-    entity_id: sensor.nateiphone
+    entity_id: sensor.phone_bluetooth
     state: 'home'
   condition:
     condition: state
@@ -334,7 +334,7 @@
 - alias: Garage opener detect car
   trigger:
     platform: state
-    entity_id: sensor.natecar
+    entity_id: sensor.car_bluetooth
     state: 'home'
   condition:
     condition: state
@@ -347,7 +347,7 @@
 - alias: Garage opener no detect car
   trigger:
     platform: state
-    entity_id: sensor.natecar
+    entity_id: sensor.car_bluetooth
     state: 'home'
   condition:
     condition: state
