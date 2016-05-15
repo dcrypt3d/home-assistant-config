@@ -74,6 +74,9 @@ backdoor_lock_timer:
 timed_frontdoor:
   alias: "On unlock front door set timer"
   sequence:
+    - service: script.turn on
+      data:
+        entity_id: script.frontdoor_garage_bt_delay
       # Cancel old timers
     - service: script.turn_off
       data:
@@ -82,11 +85,8 @@ timed_frontdoor:
     - service: script.turn_on
       data:
         entity_id: script.frontdoor_lock_timer
-    - service: script.turn on
-      data:
-        entity_id: script.frontdoor_garage_bluetooth_delay
 
-frontdoor_garage_bluetooth_delay:
+frontdoor_garage_bt_delay:
   alias: "Temporarily disable garage bluetooth after unlocking front door"
   sequence:
     - service: homeassistant.turn_off
