@@ -82,6 +82,21 @@ timed_frontdoor:
     - service: script.turn_on
       data:
         entity_id: script.frontdoor_lock_timer
+    - service: script.turn on
+      data:
+        entity_id: script.frontdoor_garage_bluetooth_delay
+
+frontdoor_garage_bluetooth_delay:
+  alias: "Temporarily disable garage bluetooth after unlocking front door"
+  sequence:
+    - service: homeassistant.turn_off
+      data:
+         entity_id: input_boolean.garage_bt
+    - delay:
+        minutes: 10
+    - service: homeassistant.turn_on 
+      data:
+        entity_id: input_boolean.garage_bt
 
 frontdoor_lock_timer:
   alias: "Lock front door after minutes"
