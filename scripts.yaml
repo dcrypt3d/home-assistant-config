@@ -1,10 +1,13 @@
-#security
+security
 all_clear:
   alias: "All Clear"
   sequence:
     - service: homeassistant.turn_off
       data:
         entity_id: input_boolean.alarm_tripped
+    - service: switch.turn_off
+      data:
+        entity_id: switch.siren_switch_7
 
 alarm_tripped:
   alias: "Alarm Tripped"
@@ -12,15 +15,17 @@ alarm_tripped:
     - service: homeassistant.turn_on
       data:
         entity_id: input_boolean.alarm_tripped
-
     - service: homeassistant.turn_on
       data:
         entity_id: input_boolean.panic_mode
-
+    - service: switch.turn_on
+      data:
+        entity_id: switch.siren_switch_7
     - service: notify.googlevoice
       data:
         message: "Alarm Has Been Tripped!"
         target: me
+
 
 #garage
 timed_garage:
