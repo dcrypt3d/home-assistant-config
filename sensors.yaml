@@ -26,17 +26,6 @@
   sensors:
     garage_camera:
       value_template: '{{ states.camera.garage.state }}'
-      
-#external
-- platform: rest
-  resource: http://raspberrypi:8123/api/states/device_tracker.iphone_bluetooth?api_password=pass
-  name: iphone_bluetooth
-  value_template: '{{ value_json.state }}'
-
-- platform: rest
-  resource: http://raspberrypi:8123/api/states/device_tracker.car_bluetooth?api_password=pass
-  name: car_bluetooth  
-  value_template: '{{ value_json.state }}'
 
 #thermostat
 - platform: template
