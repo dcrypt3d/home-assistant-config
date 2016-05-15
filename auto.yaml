@@ -305,36 +305,10 @@
     service: homeassistant.turn_on
     entity_id: script.timed_garage
 
-- alias: Unlock garage door detect phone
-  trigger:
-    platform: state
-    entity_id: sensor.phone_bluetooth
-    state: 'home'
-  condition:
-    condition: state
-    entity_id: input_boolean.garage_bt
-    state: 'on'
-  action:
-    service: lock.unlock
-    entity_id: lock.garage_door__4
-
-- alias: Lock garage door no detect phone
-  trigger:
-    platform: state
-    entity_id: sensor.phone_bluetooth
-    state: 'home'
-  condition:
-    condition: state
-    entity_id: input_boolean.garage_bt
-    state: 'on'
-  action:
-    service: lock.lock
-    entity_id: lock.garage_door__4
-
 - alias: Garage opener detect car
   trigger:
     platform: state
-    entity_id: sensor.car_bluetooth
+    entity_id: device_tracker.car_bluetooth
     state: 'home'
   condition:
     condition: state
@@ -347,7 +321,7 @@
 - alias: Garage opener no detect car
   trigger:
     platform: state
-    entity_id: sensor.car_bluetooth
+    entity_id: device_tracker.car_bluetooth
     state: 'home'
   condition:
     condition: state
