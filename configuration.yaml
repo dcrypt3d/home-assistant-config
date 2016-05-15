@@ -68,8 +68,14 @@ ifttt:
 mqtt:
   broker: 127.0.0.1
   port: 1883
-  client_id: ha
+  username: user
+  password: pass
+  client_id: home
   keepalive: 60
+  protocol: 3.1
+
+mqtt_eventstream:
+  subscribe_topic: pi
 
 zwave:
   usb_path: /dev/ttyACM0
