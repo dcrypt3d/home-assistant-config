@@ -308,7 +308,7 @@
 - alias: Garage opener detect car
   trigger:
     platform: state
-    entity_id: device_tracker.car_bluetooth
+    entity_id: device_tracker.car_pi_bluetooth
     state: 'home'
   condition:
     condition: state
@@ -321,7 +321,7 @@
 - alias: Garage opener no detect car
   trigger:
     platform: state
-    entity_id: device_tracker.car_bluetooth
+    entity_id: device_tracker.car_pi_bluetooth
     state: 'home'
   condition:
     condition: state
