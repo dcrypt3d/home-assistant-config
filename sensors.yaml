@@ -1,4 +1,3 @@
-#locks
 - platform: template
   sensors:
     front_door_batt:
@@ -57,9 +56,15 @@
 #googletravel
 - platform: google_travel_time
   name: 'google_travel_time_car'
+<<<<<<< HEAD
   api_key: !env_var GOOGLE_API
   origin: !env_var HOME_LATITUDE , !env_var HOME_LONGITUDE
   destination: !env_var WORK_LAT , !env_var WORK_LONG
+=======
+  api_key: key
+  origin: latitude, longitude
+  destination: latitude, longitude
+>>>>>>> origin/master
   options:
     arrival_time: 08:00:00
     mode: driving
@@ -71,19 +76,31 @@
 
 - platform: google_travel_time
   name: 'google_travel_time_bike'
+<<<<<<< HEAD
   api_key: !env_var GOOGLE_API
   origin: !env_var HOME_LATITUDE , !env_var HOME_LONGITUDE
   destination: !env_var WORK_LAT , !env_var WORK_LONG
   options:
     mode: bicycling
     
+=======
+  api_key: key
+  origin: latitude, longitude
+  destination: latitude, longitude
+  options:
+    mode: bicycling
+>>>>>>> origin/master
 
 - platform: template
   sensors:
     google_travel_bike_time:
       value_template: '{{ states.sensor.google_travel_time_bike.attributes.duration }}'
 
+<<<<<<< HEAD
 speedtest
+=======
+#speedtest
+>>>>>>> origin/master
 - platform: speedtest
   minute: 30
   hour:

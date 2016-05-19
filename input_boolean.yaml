@@ -8,6 +8,7 @@ auto_lock_timer:
     initial: on
     icon: mdi:lock-open
 
+<<<<<<< HEAD
 auto_garageopener:
     name: Garage Opener Timer
     initial: on
@@ -17,6 +18,12 @@ auto_light_timer:
    name: Light Timers
    initial: off
    icon: mdi:lightbulb
+=======
+garageopener_autoclose:
+    name: Garage Opener Timer
+    initial: on
+    icon: mdi:lock-open
+>>>>>>> origin/master
 
 garage_bt:
     name: Garage Bluetooth
@@ -28,6 +35,7 @@ security_system:
     initial: off
     icon: mdi:shield
 
+<<<<<<< HEAD
 security_home:
     name: Home & Secure
     initial: off
@@ -42,3 +50,19 @@ alarm_tripped:
     name: Alarm Tripped
     initial: off
     icon: mdi:shield-outline
+=======
+panic_mode:
+    name: Panic Mode
+    initial: off
+    icon: mdi:shield-outline
+
+alarm_tripped:
+    name: Alarm Tripped
+    initial: off
+    icon: mdi:shield-outline
+
+disable_light_timer:
+   name: Light Timers
+   initial: on
+   icon: mdi:lightbulb
+>>>>>>> origin/master
