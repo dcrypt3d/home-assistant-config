@@ -74,12 +74,9 @@ sensor.thermostat_mode:
 sensor.thermostat_away:
   icon: mdi:account
   friendly_name: 'Away Mode'
-<<<<<<< HEAD
 sensor.thermostat_hvac:
   icon: mdi:chemical-weapon
   friendly_name: 'HVAC Mode'
-=======
->>>>>>> origin/master
 
 #cameras
 sensor.garage_camera:
