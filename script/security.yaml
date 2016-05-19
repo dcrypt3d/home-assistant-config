@@ -25,5 +25,4 @@ alarm_tripped:
     - service: homeassistant.turn_on
       data:
         entity_id: input_boolean.panic_mode
-    - service: switch.turn_on
 
