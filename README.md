@@ -1,7 +1,8 @@
 # homeassistant
-Example Home Assistant Configs
+Example Home Assistant Config
 
 https://home-assistant.io
+
 
 # Interface
 ![UI](images/home.png)
