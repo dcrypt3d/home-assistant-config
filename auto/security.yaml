@@ -1,19 +1,4 @@
-##security
-#- alias: Lock all doors, disable home & secure and enable security when not home
-#  trigger:
-#    platform: state
-#    entity_id: group.users
-#    state: 'not_home'
-#  condition: use_trigger_values
-#  action:
-#    - service: homeassistant.turn_off
-#      data:
-#        entity_id: input_boolean.security_home
-#    - service: homeassistant.turn_on
-#      data:
-#        entity_id: input_boolean.security_system
-#    - service: lock.lock
-
+#security
 - alias: Panic Mode On
   trigger:
     platform: state
