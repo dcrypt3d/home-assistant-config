@@ -1,4 +1,18 @@
-#security
+##security
+#- alias: Lock all doors, disable home & secure and enable security when not home
+#  trigger:
+#    platform: state
+#    entity_id: group.users
+#    state: 'not_home'
+#  condition: use_trigger_values
+#  action:
+#    - service: homeassistant.turn_off
+#      data:
+#        entity_id: input_boolean.security_home
+#    - service: homeassistant.turn_on
+#      data:
+#        entity_id: input_boolean.security_system
+#    - service: lock.lock
 
 - alias: Panic Mode On
   trigger:
@@ -6,8 +20,7 @@
     entity_id: input_boolean.panic_mode
     state: 'on'
   action:
-    service: homeassistant.turn_on
-    entity_id: script.alarm_tripped
+    service: script.alarm_tripped 
         
 - alias: Panic Mode Off
   trigger:
@@ -15,8 +28,7 @@
     entity_id: input_boolean.panic_mode
     state: 'off'
   action:
-    service: homeassistant.turn_on
-    entity_id: script.all_clear
+    service: script.all_clear
 
 - alias: Security Garage Opener
   trigger:
@@ -33,8 +45,7 @@
         entity_id: input_boolean.security_system
         state: 'on'
   action:
-    service: homeassistant.turn_on
-    entity_id: script.alarm_tripped
+    service: script.alarm_tripped
      
 - alias: Security Garage Door
   trigger:
@@ -51,8 +62,7 @@
         entity_id: input_boolean.security_system
         state: 'on'
   action:
-    service: homeassistant.turn_on
-    entity_id: script.alarm_tripped
+    service: script.alarm_tripped
 
 - alias: Security Garage Door Burglar
   trigger:
@@ -68,8 +78,7 @@
         entity_id: input_boolean.security_system
         state: 'on'
   action:
-    service: homeassistant.turn_on
-    entity_id: script.alarm_tripped
+    service: script.alarm_tripped
 
 - alias: Security Back Door
   trigger:
@@ -86,8 +95,7 @@
         entity_id: input_boolean.security_system
         state: 'on'
   action:
-    service: homeassistant.turn_on
-    entity_id: script.alarm_tripped
+    service: script.alarm_tripped
 
 - alias: Security Back Door Burglar
   trigger:
@@ -103,8 +111,7 @@
         entity_id: input_boolean.security_system
         state: 'on'
   action:
-    service: homeassistant.turn_on
-    entity_id: script.alarm_tripped
+    service: script.alarm_tripped
 
 - alias: Security Front Door
   trigger:
@@ -121,8 +128,7 @@
         entity_id: input_boolean.security_system
         state: 'on'
   action:
-    service: homeassistant.turn_on
-    entity_id: script.alarm_tripped
+    service: script.alarm_tripped
 
 - alias: Security Front Door Burglar
   trigger:
@@ -138,8 +144,7 @@
         entity_id: input_boolean.security_system
         state: 'on'
   action:
-    service: homeassistant.turn_on
-    entity_id: script.alarm_tripped
+    service: script.alarm_tripped
 
 - alias: Security Upstairs
   trigger:
@@ -156,8 +161,7 @@
         entity_id: input_boolean.security_system
         state: 'on'
   action:
-    service: homeassistant.turn_on
-    entity_id: script.alarm_tripped
+    service: script.alarm_tripped
 
 - alias: Security Downstairs
   trigger:
@@ -174,8 +178,7 @@
         entity_id: input_boolean.security_system
         state: 'on'
   action:
-    service: homeassistant.turn_on
-    entity_id: script.alarm_tripped
+    service: script.alarm_tripped
      
 - alias: Security Laundry Room Light
   trigger:
@@ -192,8 +195,7 @@
         entity_id: input_boolean.security_system
         state: 'on'
   action:
-    service: homeassistant.turn_on
-    entity_id: script.alarm_tripped
+    service: script.alarm_tripped
      
 - alias: Security Basement Window Sensor
   trigger:
@@ -210,5 +212,4 @@
         entity_id: input_boolean.security_system
         state: 'on'
   action:
-    service: homeassistant.turn_on
-    entity_id: script.alarm_tripped
+    service: script.alarm_tripped
