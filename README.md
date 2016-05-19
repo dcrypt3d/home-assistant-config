@@ -13,6 +13,7 @@ Devices:
 <li>Schlage BE469CEN</li>
 <li>GE 12722</li>
 <li>Aeotec Window/Door Sensor 6</li>
+<li>Aeotec Siren</li>
 <li>Ecobee 3</li>
 <li>MyQ Garage Door Controller</li>
 <li>Ubiquity UVC-Micro</li>
