@@ -36,28 +36,6 @@ history:
 logbook:
 sun:
 
-<<<<<<< HEAD
-=======
-#zones
-zone 1:
-  name: Work
-  latitude: 
-  longitude:
-  radius: 300
-
-#includes
-notify: !include notify.yaml
-group: !include groups.yaml
-script: !include scripts.yaml
-automation: !include auto.yaml
-sensor: !include sensors.yaml
-#scene: !include scenes.yaml
-device_tracker: !include device_trackers.yaml
-media_player: !include media_players.yaml
-#input_select: !include input_select.yaml
-input_boolean: !include input_boolean.yaml
-
->>>>>>> origin/master
 http:
   api_password: !env_var HA_API_PASSWORD
   ssl_certificate: !env_var HA_SSL_CERT
@@ -86,15 +64,9 @@ ifttt:
 mqtt:
   broker: 127.0.0.1
   port: 1883
-<<<<<<< HEAD
   username: !env_var MQTT_USERNAME
   password: !env_var MQTT_PASSWORD
   client_id: !env_var MQTT_CLIENT
-=======
-  username: user
-  password: pass
-  client_id: home
->>>>>>> origin/master
   keepalive: 60
   protocol: 3.1
 
