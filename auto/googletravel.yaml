@@ -1,28 +1,36 @@
 #googletravel
 - alias: "Commute to work by car"
   trigger:
-    platform: numeric_state
+    platform: state
     entity_id: sensor.google_travel_time_car
-    below: 30
   condition:
-    condition: time
-    after: '7:30'
-    before: '8:00'
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.google_travel_car_time
+        below: 30
+      - condition: time
+        after: '7:15'
+        before: '8:00'
   action:
     service: notify.googlevoice
     data:
       message: "Commute by car less than 30 minutes"
-      target: !env_var MYCELL
+      target: !env_var MYCEL
 
 - alias: "Commute to work by bike"
   trigger:
-    platform: numeric_state
+    platform: state
     entity_id: sensor.google_travel_time_bike
-    below: 50
   condition:
-    condition: time
-    after: '6:15'
-    before: '7:15'
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.google_travel_bike_time
+        below: 50
+      - condition: time
+        after: '6:15'
+        before: '7:15'
   action:
     service: notify.googlevoice
     data:
