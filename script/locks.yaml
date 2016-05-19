@@ -1,57 +1,3 @@
-<<<<<<< HEAD:script/locks.yaml
-=======
-#security
-all_clear:
-  alias: "All Clear"
-  sequence:
-    - service: switch.turn_off
-      data:
-        entity_id: switch.siren_switch_7
-    - service: homeassistant.turn_off
-      data:
-        entity_id: input_boolean.alarm_tripped
-
-alarm_tripped:
-  alias: "Alarm Tripped"
-  sequence:
-    - service: switch.turn_on
-      data:
-        entity_id: switch.siren_switch_7
-    - service: notify.googlevoice
-      data:
-        message: "Alarm Has Been Tripped!"
-        target: me
-    - service: homeassistant.turn_on
-      data:
-        entity_id: input_boolean.alarm_tripped
-    - service: homeassistant.turn_on
-      data:
-        entity_id: input_boolean.panic_mode
-    - service: switch.turn_on
-    
-#garage
-timed_garage:
-  alias: "On open garage set timer"
-  sequence:
-      # Cancel old timers
-    - service: script.turn_off
-      data:
-        entity_id: script.garage_opener_timer
-        # Set new timer
-    - service: script.turn_on
-      data:
-        entity_id: script.garage_opener_timer
-
-garage_opener_timer:
-  alias: "Close garage after minutes"
-  sequence:
-    - delay:
-        minutes: 5
-    - service: garage_door.close
-      data:
-        entity_id: garage_door.garage_opener
-
->>>>>>> origin/master:scripts.yaml
 #locks
 timed_backdoor:
   alias: "On unlock back door set timer"
@@ -77,14 +23,10 @@ backdoor_lock_timer:
 timed_frontdoor:
   alias: "On unlock front door set timer"
   sequence:
-<<<<<<< HEAD:script/locks.yaml
     - service: script.turn_off
       data:
         entity_id: script.frontdoor_garage_bt_delay
     - service: script.turn_on
-=======
-    - service: script.turn on
->>>>>>> origin/master:scripts.yaml
       data:
         entity_id: script.frontdoor_garage_bt_delay
       # Cancel old timers
@@ -101,17 +43,10 @@ frontdoor_garage_bt_delay:
   sequence:
     - service: homeassistant.turn_off
       data:
-<<<<<<< HEAD:script/locks.yaml
         entity_id: input_boolean.garage_bt
     - delay:
         minutes: 10
     - service: homeassistant.turn_on
-=======
-         entity_id: input_boolean.garage_bt
-    - delay:
-        minutes: 10
-    - service: homeassistant.turn_on 
->>>>>>> origin/master:scripts.yaml
       data:
         entity_id: input_boolean.garage_bt
 
@@ -144,31 +79,3 @@ garagedoor_lock_timer:
     - service: lock.lock
       data:
         entity_id: lock.garage_door__4
-<<<<<<< HEAD:script/locks.yaml
-=======
-
-#lights
-timed_laundryroom:
-  alias: "On home laundry room light"
-  sequence:
-      # Cancel old timers
-    - service: script.turn_off
-      data:
-        entity_id: script.laundryroom_light_timer
-    - service: switch.turn_on
-      data:
-        entity_id: switch.laundry_room__6
-        # Set new timer
-    - service: script.turn_on
-      data:
-        entity_id: script.laundryroom_light_timer
-
-laundryroom_light_timer:
-  alias: "Shut off light after minutes"
-  sequence:
-    - delay:
-        minutes: 10
-    - service: switch.turn_off
-      data:
-        entity_id: switch.laundry_room__6
->>>>>>> origin/master:scripts.yaml
