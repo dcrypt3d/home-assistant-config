@@ -1,11 +1,33 @@
 homeassistant:
   name: Home
-  latitude: 
-  longitude: 
+  latitude: !env_var HOME_LATITUDE
+  longitude: !env_var HOME_LONGITUDE
   temperature_unit: F
-  time_zone: 
+  time_zone: !env_var TIME_ZONE
   customize: !include customize.yaml
 
+#dir_includes
+script: !include_dir_merge_named script
+automation: !include_dir_merge_list auto
+#includes
+group: !include groups.yaml
+notify: !include notify.yaml
+sensor: !include sensors.yaml
+media_player: !include mediaplayers.yaml
+input_select: !include input_select.yaml
+input_boolean: !include input_boolean.yaml
+input_slider: !include input_slider.yaml
+device_tracker: !include device_trackers.yaml
+
+logger:
+  default: info
+  logs:
+    homeassistant.components.sensor: debug
+    homeassistant.components.script: debug
+    homeassistant.components.automation: debug
+    homeassistant.components.device_tracker: debug
+
+#enable
 frontend:
 #conversation:
 #updater:
@@ -14,75 +36,48 @@ history:
 logbook:
 sun:
 
-#zones
-zone 1:
-  name: Work
-  latitude: 
-  longitude:
-  radius: 300
-
-#includes
-notify: !include notify.yaml
-group: !include groups.yaml
-script: !include scripts.yaml
-automation: !include auto.yaml
-sensor: !include sensors.yaml
-#scene: !include scenes.yaml
-device_tracker: !include device_trackers.yaml
-media_player: !include media_players.yaml
-#input_select: !include input_select.yaml
-#input_boolean: !include input_boolean.yaml
-
 http:
-  api_password: 
+  api_password: !env_var HA_API_PASSWORD
+  ssl_certificate: !env_var HA_SSL_CERT
+  ssl_key: !env_var HA_SSL_KEY
 
 camera:
   platform: generic
-  still_image_url: http://camera.local:7080/api/2.0/snapshot/camera/rtspID?force=true&apiKey=key
+  still_image_url: http://!env_var GARAGECAM_IP/api/2.0/snapshot/camera/!env_var GARAGECAM_KEY?force=true&apiKey=!env_var GARAGECAM_API
   name: Garage
-  username: 
-  password: 
+  username: !env_var GARAGECAM_USERNAME
+  password: !env_var GARAGECAM_PASSWORD
 
 garage_door:
   platform: myq
   name: Garage Opener
-  username: 
-  password: 
+  username: !env_var MYQ_USERNAME
+  password: !env_var MYQ_PASSWORD
 
 ecobee:
-  api_key:  
-  hold_temp: True
-
-notify:
-  - platform: pushbullet
-    api_key: 
-    name: pushbullet
-  - platform: googlevoice
-    username:
-    password: 
-    name: Home Assistant
+  api_key: !env_var ECOBEE_KEY
+  hold_temp: False
 
 ifttt:
-  key: 
+  key: !env_var IFTTT_KEY
 
 mqtt:
   broker: 127.0.0.1
   port: 1883
-  client_id: ha
+  username: !env_var MQTT_USERNAME
+  password: !env_var MQTT_PASSWORD
+  client_id: !env_var MQTT_CLIENT
   keepalive: 60
+  protocol: 3.1
+
+mqtt_eventstream:
+  subscribe_topic: pi
 
 zwave:
   usb_path: /dev/ttyACM0
   config_path: /usr/local/lib/python3.5/dist-packages/libopenzwave-0.3.0b9-py3.5-linux-x86_64.egg/config
   polling_interval: 30000
-<<<<<<< HEAD
 #  customize:
 #    binary_sensor.window_sensor_sensor_5:
 # poll every 30 seconds
 #        polling_intensity: 1
-=======
-  customize:
-  #poll device every 30 seconds
-    binary_sensor.window_sensor_sensor_5:
-        polling_intensity: 1
->>>>>>> origin/master

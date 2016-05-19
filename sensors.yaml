@@ -22,11 +22,6 @@
   sensors:
     garagedoor_status:
       value_template: '{{ states.garage_door.garage_opener.state }}'
-      
-- platform: template
-  sensors:
-    garage_camera:
-      value_template: '{{ states.camera.garage.state }}'
 
 - platform: template
   sensors:
@@ -36,62 +31,59 @@
 #thermostat
 - platform: template
   sensors:
-<<<<<<< HEAD
     thermostat_mode:
       value_template: '{{ states.thermostat.home.attributes.mode }}'
 
 - platform: template
   sensors:
-=======
->>>>>>> origin/master
     thermostat_away:
       value_template: '{{ states.thermostat.home.attributes.away_mode }}'
+
+- platform: template
+  sensors:
+    thermostat_hvac:
+      value_template: '{{ states.thermostat.home.attributes.hvac_mode }}'
+
+- platform: template
+  sensors:
+    thermostat_target_temp_low:
+      value_template: '{{ states.thermostat.home.attributes.target_temp_low }}'
+
+- platform: template
+  sensors:
+    thermostat_target_temp_high:
+      value_template: '{{ states.thermostat.home.attributes.target_temp_high }}'
 
 #googletravel
 - platform: google_travel_time
   name: 'google_travel_time_car'
-  api_key: key
-  origin: street, city, state zip
-  destination: street, city, state zip
-  travel_mode: driving
+  api_key: !env_var GOOGLE_API
+  origin: !env_var HOME_LATITUDE , !env_var HOME_LONGITUDE
+  destination: !env_var WORK_LAT , !env_var WORK_LONG
+  options:
+    arrival_time: 08:00:00
+    mode: driving
 
 - platform: template
   sensors:
-<<<<<<< HEAD
     google_travel_car_time:
       value_template: '{{ states.sensor.google_travel_time_car.attributes.duration }}'
 
 - platform: google_travel_time
   name: 'google_travel_time_bike'
-  api_key: key
-  origin: street, city, state zip
-  destination: street, city, state zip
-  travel_mode: bicycling
+  api_key: !env_var GOOGLE_API
+  origin: !env_var HOME_LATITUDE , !env_var HOME_LONGITUDE
+  destination: !env_var WORK_LAT , !env_var WORK_LONG
+  options:
+    mode: bicycling
+    
 
 - platform: template
   sensors:
     google_travel_bike_time:
       value_template: '{{ states.sensor.google_travel_time_bike.attributes.duration }}'
 
-=======
-    thermostat_mode:
-      value_template: '{{ states.thermostat.home.attributes.mode }}'
-
-#googletravel
-- platform: google_travel_time
-  name: google_travel_time_car
-  api_key: key
-  origin: street, city, state zip
-  destination: street, city, state zip
-  travel_mode: driving
-
-- platform: template
-  sensors:
-    google_travel_car_time:
-      value_template: '{{ states.sensor.google_travel_time.attributes.duration }}'
-
->>>>>>> origin/master
-#speedtest
+speedtest
 - platform: speedtest
   minute: 30
   hour:
@@ -103,14 +95,10 @@
     - ping
     - download
     - upload
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> origin/master
 #weather
 - platform: forecast
-  api_key: key
+  api_key: !env_var FORECAST_API
   monitored_conditions:
     - summary
     - icon
@@ -130,11 +118,32 @@
     - visibility
     - ozone
 
+#system
+- platform: glances
+  name: System Stats
+  host: 127.0.0.1
+  port: 61208
+  resources:
+    - 'disk_use_percent'
+    - 'disk_use'
+    - 'disk_free'
+    - 'memory_use_percent'
+    - 'memory_use'
+    - 'memory_free'
+    - 'swap_use_percent'
+    - 'swap_use'
+    - 'swap_free'
+    - 'processor_load'
+    - 'process_running'
+    - 'process_total'
+    - 'process_thread'
+    - 'process_sleeping'
+
 #sabnzbd
 - platform: sabnzbd
   name: SABnzbd
-  api_key: key
-  base_url: http://ip:port
+  api_key: !env_var SABNZBD_KEY
+  base_url: http://!env_var SABNZBD_HOST
   monitored_variables:
     - type: 'current_status'
     - type: 'speed'

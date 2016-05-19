@@ -1,14 +1,44 @@
-thermo_home_away:
-    name: Disable Auto Away Mode
+lock_all_doors:
+    name: Lock Doors
     initial: off
-    icon: mdi:close-circle-outline
+    icon: mdi:lock
 
-thermo_away:
-    name: Away Mode
-    initial: '{{ states.thermostat.home.attributes.away_mode }}'
-    icon: mdi:close-circle-outline
+auto_lock_timer:
+    name: Lock Timers
+    initial: on
+    icon: mdi:lock-open
 
-garageopener_autoclose:
-    name: Disable Garage Auto Close
+auto_garageopener:
+    name: Garage Opener Timer
+    initial: on
+    icon: mdi:glassdoor
+
+auto_light_timer:
+   name: Light Timers
+   initial: off
+   icon: mdi:lightbulb
+
+garage_bt:
+    name: Garage Bluetooth
+    initial: on
+    icon: mdi:bluetooth
+    
+security_system:
+    name: Security System
     initial: off
-    icon: mdi:close-circle-outline
+    icon: mdi:shield
+
+security_home:
+    name: Home & Secure
+    initial: off
+    icon: mdi:shield
+
+panic_mode:
+    name: Panic Mode
+    initial: off
+    icon: mdi:shield-outline
+
+alarm_tripped:
+    name: Alarm Tripped
+    initial: off
+    icon: mdi:shield-outline

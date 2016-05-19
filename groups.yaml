@@ -1,22 +1,23 @@
 default_view: 
   view: yes
   entities:
-    - group.users
     - group.entry
-    - group.thermostat
+    - group.security
     - group.lights
+    - group.thermo
+    - group.users
 
 sensors:
   name: Sensors
   view: yes
-  icon: mdi:speedometer
+  icon: mdi:google-circles-extended
   entities:
-    - group.overrides
     - group.climate
     - group.speed 
     - group.sabnzbd
     - group.icloud
     - group.batt_locks
+    - group.lock_alarm
     - group.commute
 
 cameras:
@@ -34,12 +35,19 @@ media:
     - media_player.kodi
     - media_player.plex
 
-overrides:
-  name: Override
+security:
+  name: Security
   view: no
+  icon: mdi:shield-outline
   entities:
-    - input_boolean.thermo_away
-    - input_boolean.thermo_home_away
+    - sensor.hold_space
+    - input_boolean.lock_all_doors
+    - input_boolean.auto_lock_timer
+    - input_boolean.auto_light_timer
+    - input_boolean.auto_garageopener
+    - input_boolean.garage_bt
+    - input_boolean.security_system
+    - input_boolean.panic_mode
 
 entry:
   name: Entry
@@ -72,7 +80,6 @@ batt_locks:
 lights:
   name: Lights
   view: no
-<<<<<<< HEAD
   entities:
     - switch.laundry_room__6
 
@@ -81,26 +88,16 @@ indoor_lights:
   view: no
   entities:
     - switch.laundry_room__6
-=======
-  entities: switch.laundry_room_switch_6
-  
-indoor_lights:
-  name: Indoor Lights
-  view: no
-  entities: switch.laundry_room_switch_6
->>>>>>> origin/master
 
-outdoor_lights:
-  name: Outdoor Lights
-  view: no
-  entities:
-  
-thermostat:
+thermo:
   name: Thermostat
   view: no
   entities:
     - thermostat.home
-    - sensor.thermostat_away
+    - input_slider.thermo_high
+    - input_slider.thermo_low
+    - input_select.thermo_away
+    - input_select.thermo_hvac
     - sensor.thermostat_mode
     - sensor.home_humidity
     - sensor.home_occupancy
@@ -116,6 +113,13 @@ garage:
     - sensor.garage_camera
     - camera.garage
 
+cars:
+  name: Cars
+  view: no
+  entities:
+    - device_tracker.!env_var MYCAR
+    - device_tracker.!env_var HERCAR
+
 rooms:                                                                                                                                                       
   view: no
   icon: mdi:hexagon                                                                                                                                              
@@ -130,20 +134,15 @@ users:
   name: Users
   view: no
   entities:
-    - device_tracker.me
-    - device_tracker.her
+    - device_tracker.!env_var MYPHONE
+    - device_tracker.!env_var HERPHONE
 
 commute:
   name: Commute
   view: no
   entities:
     - sensor.google_travel_car_time
-
-alarm:
-  name: Alarm
-  icon: mdi:bell-ring
-  view: no
-  entities:
+    - sensor.google_travel_bike_time
 
 bedroom:
   view: no
@@ -171,10 +170,10 @@ icloud:
   name: Devices
   view: no
   entities:
-    - device_tracker.me
-    - device_tracker.her
-    - device_tracker.mbp
-    - device_tracker.ipad
+    - device_tracker.!env_var MYPHONE
+    - device_tracker.!env_var HERPHONE
+    - device_tracker.!env_var MBP
+    - device_tracker.!env_var IPAD
 
 climate:
   name: Weather
@@ -208,9 +207,8 @@ sabnzbd:
   name: SABnzbd
   view: no
   entities:
-    - sensor.sabnzbd_disk
+    - sensor.sabnzbd_status
+    - sensor.sabnzbd_disk_free
     - sensor.sabnzbd_speed
     - sensor.sabnzbd_queue
-    - sensor.sabnzbd_status
     - sensor.sabnzbd_left
-    - sensor.sabnzbd_disk_free

@@ -1,0 +1,15 @@
+thermo_high:
+  name: Low Temp
+  initial: 65
+  min: 60
+  max: 90
+  step: 1
+  icon: mdi:thermometer-lines
+
+thermo_low:
+  name: High Temp
+  initial: 75
+  min: 60
+  max: 90
+  step: 1
+  icon: mdi:thermometer-lines

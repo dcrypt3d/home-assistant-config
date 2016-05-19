@@ -1,0 +1,214 @@
+#security
+
+- alias: Panic Mode On
+  trigger:
+    platform: state
+    entity_id: input_boolean.panic_mode
+    state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+        
+- alias: Panic Mode Off
+  trigger:
+    platform: state
+    entity_id: input_boolean.panic_mode
+    state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.all_clear
+
+- alias: Security Garage Opener
+  trigger:
+    platform: state
+    entity_id: garage_door.garage_opener
+    state: 'open'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+     
+- alias: Security Garage Door
+  trigger:
+    platform: state
+    entity_id: lock.garage_door__4
+    state: 'unlocked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+
+- alias: Security Garage Door Burglar
+  trigger:
+    platform: template
+    value_template: "{% if is_state('sensor.garage_door_burglar_4.state', '0') %}false{% endif %}"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+
+- alias: Security Back Door
+  trigger:
+    platform: state
+    entity_id: lock.back_door__2
+    state: 'unlocked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+
+- alias: Security Back Door Burglar
+  trigger:
+    platform: template
+    value_template: "{% if is_state('sensor.back_door_burglar_2.state', '0') %}false{% endif %}"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+
+- alias: Security Front Door
+  trigger:
+    platform: state
+    entity_id: lock.front_door__3
+    state: 'unlocked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+
+- alias: Security Front Door Burglar
+  trigger:
+    platform: template
+    value_template: "{% if is_state('sensor.front_door_burglar_3.state', '0') %}false{% endif %}"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+
+- alias: Security Upstairs
+  trigger:
+    platform: state
+    entity_id: sensor.upstairs_occupancy
+    state: 'true'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+
+- alias: Security Downstairs
+  trigger:
+    platform: state
+    entity_id: sensor.home_occupancy
+    state: 'true'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+     
+- alias: Security Laundry Room Light
+  trigger:
+    platform: state
+    entity_id: switch.laundry_room__6
+    state: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped
+     
+- alias: Security Basement Window Sensor
+  trigger:
+    platform: state
+    entity_id: binary_sensor.basement_window_sensor_sensor_5
+    state: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.alarm_tripped

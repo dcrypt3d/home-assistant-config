@@ -1,0 +1,8 @@
+- platform: plex
+
+- platform: kodi
+  host: http://!env_var KODI_HOST
+  port: 8080
+  name: !env_var KODI_USER
+  user: !env_var KODI_PASS
+  password: kodi

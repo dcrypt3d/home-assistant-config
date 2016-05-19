@@ -1,0 +1,66 @@
+#locks
+- alias: Lock All Doors
+  trigger:
+    platform: state
+    entity_id: input_boolean.lock_all_doors
+    state: 'on'
+  condition: use_trigger_values
+  action:
+    service: lock.lock
+
+- alias: Lock back door after set time
+  trigger:
+    platform: state
+    entity_id: lock.back_door__2
+    state: 'unlocked'
+  condition:
+    condition: state
+    entity_id: input_boolean.auto_lock_timer
+    state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.timed_backdoor
+
+- alias: Lock front door after set time
+  trigger:
+    platform: state
+    entity_id: lock.front_door__3
+    state: 'unlocked'
+  condition:         
+    condition: state
+    entity_id: input_boolean.auto_lock_timer
+    state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.timed_frontdoor
+
+- alias: Lock garage door after set time
+  trigger:
+    platform: state
+    entity_id: lock.garage_door__4
+    state: 'unlocked'
+  condition:         
+    condition: state
+    entity_id: input_boolean.auto_lock_timer
+    state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.timed_garagedoor
+
+- alias: 'Battery Low Alert'
+  trigger:
+      - platform: numeric_state
+        entity_id: sensor.batt_frontdoor
+        below: 5
+      - platform: numeric_state
+        entity_id: sensor.batt_backdoor
+        below: 5
+      - platform: numeric_state
+        entity_id: sensor.batt_garagedoor
+        below: 5
+  condition: use_trigger_values
+  action:
+    service: notify.googlevoice
+    data:
+      message: "Time to change the front door's battery"
+      target: !env_var MYCELL

@@ -1,0 +1,31 @@
+#switch_lights
+- alias: Turn on laundry room light when coming home
+  trigger:
+    - platform: state
+      entity_id: device_tracker.!env_var MYPHONE
+      state: 'home'
+    - platform: state
+      entity_id: device_tracker.!env_var HERPHONE
+      state: 'home'
+  condition:
+    condition: and
+    conditions:
+      - condition: sun
+        after: sunset
+        after_offset: '-4:00:00'
+      - condition: state
+        entity_id: input_boolean.auto_light_timer
+        state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.timed_laundryroom
+
+- alias: Turn off all indoor lights
+  trigger:
+    platform: state
+    entity_id: group.users
+    state: 'not_home'
+  condition: use_trigger_values
+  action:
+    service: switch.turn_off
+    entity_id: group.indoor_lights

@@ -1,0 +1,39 @@
+#garage
+- alias: Close Garage Door after set time
+  trigger:  
+    platform: state
+    entity_id: garage_door.garage_opener
+    state: 'open'
+  condition:
+    condition: state
+    entity_id: input_boolean.auto_garageopener
+    state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.timed_garage
+
+- alias: Garage opener detect car
+  trigger:
+    platform: state
+    entity_id: device_tracker.natecar
+    state: 'home'
+  condition:
+    condition: state
+    entity_id: input_boolean.garage_bt
+    state: 'on'
+  action:
+    service: garage_door.open
+    entity_id: garage_door.garage_opener
+
+- alias: Garage opener no detect car
+  trigger:
+    platform: state
+    entity_id: device_tracker.natecar
+    state: 'not_home'
+  condition:
+    condition: state
+    entity_id: input_boolean.garage_bt
+    state: 'on'
+  action:
+    service: garage_door.close
+    entity_id: garage_door.garage_opener

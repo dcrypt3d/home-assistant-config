@@ -1,11 +1,25 @@
 - platform: icloud
-- platform: nmap_tracker
-  hosts: 192.168.1.0/24
+  username: !env_var ICLOUD_USERNAME
+  password: !env_var ICLOUD_PASSWORD
   track_new_devices: no
+  consider_home: 60
+  interval_seconds: 30
+  home_interval: 10
+
+- platform: icloud
+  username: !env_var HER_ICLOUD
+  password: !env_var HER_PASSWORD
+  consider_home: 60
+  interval_seconds: 30
+  home_interval: 10
+
+- platform: nmap_tracker
+  hosts: !env_var NMAP_HOSTS
+  consider_home: 900
   interval_seconds: 12
-  home_interval: 15
-  consider_home: 120
+  home_interval: 45
+
 - platform: bluetooth_tracker
-  track_new_devices: yes
-  interval_seconds: 60
-  consider_home: 30
+  consider_home: 120
+  interval_seconds: 30
+  home_interval: 10

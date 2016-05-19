@@ -1,25 +1,3 @@
-#garage
-timed_garage:
-  alias: "On open garage set timer"
-  sequence:
-      # Cancel old timers
-    - service: script.turn_off
-      data:
-        entity_id: script.garage_opener_timer
-        # Set new timer
-    - service: script.turn_on
-      data:
-        entity_id: script.garage_opener_timer
-
-garage_opener_timer:
-  alias: "Close garage after minutes"
-  sequence:
-    - delay:
-        minutes: 5
-    - service: garage_door.close
-      data:
-        entity_id: garage_door.garage_opener
-
 #locks
 timed_backdoor:
   alias: "On unlock back door set timer"
@@ -45,6 +23,12 @@ backdoor_lock_timer:
 timed_frontdoor:
   alias: "On unlock front door set timer"
   sequence:
+    - service: script.turn_off
+      data:
+        entity_id: script.frontdoor_garage_bt_delay
+    - service: script.turn_on
+      data:
+        entity_id: script.frontdoor_garage_bt_delay
       # Cancel old timers
     - service: script.turn_off
       data:
@@ -53,6 +37,18 @@ timed_frontdoor:
     - service: script.turn_on
       data:
         entity_id: script.frontdoor_lock_timer
+
+frontdoor_garage_bt_delay:
+  alias: "Temporarily disable garage bluetooth after unlocking front door"
+  sequence:
+    - service: homeassistant.turn_off
+      data:
+        entity_id: input_boolean.garage_bt
+    - delay:
+        minutes: 10
+    - service: homeassistant.turn_on
+      data:
+        entity_id: input_boolean.garage_bt
 
 frontdoor_lock_timer:
   alias: "Lock front door after minutes"
@@ -83,27 +79,3 @@ garagedoor_lock_timer:
     - service: lock.lock
       data:
         entity_id: lock.garage_door__4
-#lights
-timed_laundryroom:
-  alias: "On home laundry room light"
-  sequence:
-      # Cancel old timers
-    - service: script.turn_off
-      data:
-        entity_id: script.laundryroom_light_timer
-    - service: switch.turn_on
-      data:
-        entity_id: switch.laundry_room__6
-        # Set new timer
-    - service: script.turn_on
-      data:
-        entity_id: script.laundryroom_light_timer
-
-laundryroom_light_timer:
-  alias: "Shut off light after minutes"
-  sequence:
-    - delay:
-        minutes: 10
-    - service: switch.turn_off
-      data:
-        entity_id: switch.laundry_room__6
