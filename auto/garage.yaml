@@ -15,7 +15,7 @@
 - alias: Garage opener detect car
   trigger:
     platform: state
-    entity_id: device_tracker.natecar
+    entity_id: device_tracker.!env_var CAR
     state: 'home'
   condition:
     condition: state
@@ -28,7 +28,7 @@
 - alias: Garage opener no detect car
   trigger:
     platform: state
-    entity_id: device_tracker.natecar
+    entity_id: device_tracker.!env_var CAR
     state: 'not_home'
   condition:
     condition: state
