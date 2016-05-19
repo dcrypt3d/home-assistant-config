@@ -9,8 +9,7 @@
     entity_id: input_boolean.auto_garageopener
     state: 'on'
   action:
-    service: homeassistant.turn_on
-    entity_id: script.timed_garage
+    service: script.timed_garage
 
 - alias: Garage opener detect car
   trigger:
