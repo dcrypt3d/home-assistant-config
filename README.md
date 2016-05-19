@@ -1,5 +1,5 @@
-# homeassistant
-Example Home Assistant Config
+# Home Assistant
+Example Config
 
 https://home-assistant.io
 
