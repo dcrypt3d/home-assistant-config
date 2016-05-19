@@ -8,7 +8,7 @@ auto_lock_timer:
     initial: on
     icon: mdi:lock-open
 
-auto_garageopener:
+garageopener_timer:
     name: Garage Opener Timer
     initial: on
     icon: mdi:glassdoor
