@@ -14,8 +14,7 @@
         after: sunset
         after_offset: '-4:00:00'
   action:
-    service: homeassistant.turn_on
-    entity_id: script.timed_laundryroom
+    service: script.timed_laundryroom
 
 - alias: Turn off all indoor lights
   trigger:
