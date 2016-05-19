@@ -60,4 +60,4 @@
     service: notify.googlevoice
     data:
       message: "Time to change the front door's battery"
-      target: !env_var MYPHONE
+      target: !env_var MYCELL
