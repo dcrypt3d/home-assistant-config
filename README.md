@@ -19,7 +19,7 @@ Devices:
 </ul>
 
 Notes:<ul>
-<li>Ecobee currently using this <a href=https://github.com/home-assistant/home-assistant/pull/2092>Pull Request</a></li>
+<li>Ecobee currently using this: <a href=https://github.com/home-assistant/home-assistant/pull/2092>Pull Request</a></li>
 <li>MyQ with PI in garage using bluetooth device_tracker for car and MQTT event_stream... slow to detect but works</li>
 <li>My input sliders don't work correctly and using some of the templating options breaks stuff for now</li>
 </ul>
