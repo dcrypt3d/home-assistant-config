@@ -44,7 +44,7 @@ security:
     - input_boolean.lock_all_doors
     - input_boolean.auto_lock_timer
     - input_boolean.auto_light_timer
-    - input_boolean.auto_garageopener
+    - input_boolean.garageopener_timer
     - input_boolean.garage_bt
     - input_boolean.security_system
     - input_boolean.panic_mode
