@@ -17,6 +17,9 @@ timed_laundryroom:
 laundryroom_light_timer:
   alias: "Shut off light after minutes"
   sequence:
+    - condition: state
+      entity_id: input_boolean.auto_light_timer
+      state: 'on'
     - delay:
         minutes: 10
     - service: switch.turn_off
