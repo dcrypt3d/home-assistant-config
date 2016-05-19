@@ -1,5 +1,4 @@
 - platform: icloud
-<<<<<<< HEAD
   username: !env_var ICLOUD_USERNAME
   password: !env_var ICLOUD_PASSWORD
   track_new_devices: no
@@ -24,17 +23,3 @@
   consider_home: 120
   interval_seconds: 30
   home_interval: 10
-=======
-  username: user
-  password: pass
-  track_new_devices: yes
-  consider_home: 120
-  interval_seconds: 30
-- platform: icloud
-  username: user
-  password: pass 
-- platform: nmap_tracker
-  hosts: subnet
-  home_interval: 10
-- platform: bluetooth_tracker
->>>>>>> origin/master
