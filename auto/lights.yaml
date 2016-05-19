@@ -2,17 +2,14 @@
 - alias: Turn on laundryroom when backdoor unlocked from keypad
   trigger:
     platform: state
-    entity_id: lock.back_door__2
-    state: 'unlocked'
+    entity_id: sensor.back_door_alarm_type_2
+    state: '19'
   condition:
     condition: and
     conditions:
       - condition: state
         entity_id: sensor.back_door_access_control_2
         state: '6'
-      - condition: state
-        entity_id: sensor.back_door_alarm_type_2
-        state: '19'
       - condition: sun
         after: sunset
         after_offset: '-4:00:00'
