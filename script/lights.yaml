@@ -1,6 +1,6 @@
 #lights
 timed_laundryroom:
-  alias: "On home laundry room light"
+  alias: "Laundry room light timer on"
   sequence:
       # Cancel old timers
     - service: script.turn_off
@@ -15,7 +15,7 @@ timed_laundryroom:
         entity_id: script.laundryroom_light_timer
 
 laundryroom_light_timer:
-  alias: "Shut off light after minutes"
+  alias: "Laundry room light timer"
   sequence:
     - condition: state
       entity_id: input_boolean.auto_light_timer
