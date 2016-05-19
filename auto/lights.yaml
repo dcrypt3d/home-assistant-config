@@ -1,21 +1,21 @@
 #switch_lights
-- alias: Turn on laundry room light when coming home
+- alias: Turn on laundryroom when backdoor unlocked from keypad
   trigger:
-    - platform: state
-      entity_id: device_tracker.!env_var MYPHONE
-      state: 'home'
-    - platform: state
-      entity_id: device_tracker.!env_var HERPHONE
-      state: 'home'
+    platform: state
+    entity_id: lock.back_door__2
+    state: 'unlocked'
   condition:
     condition: and
     conditions:
+      - condition: state
+        entity_id: sensor.back_door_access_control_2
+        state: '6'
+      - condition: state
+        entity_id: sensor.back_door_alarm_type_2
+        state: '19'
       - condition: sun
         after: sunset
         after_offset: '-4:00:00'
-      - condition: state
-        entity_id: input_boolean.auto_light_timer
-        state: 'on'
   action:
     service: homeassistant.turn_on
     entity_id: script.timed_laundryroom
