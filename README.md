@@ -11,7 +11,7 @@ Host:<ul>
 Devices:
 <ul>
 <li>Schlage BE469CEN</li>
-<li>GE 12722</li>
+<li>GE 12722 / Linear WD500Z-1</li>
 <li>Aeotec Window/Door Sensor 6</li>
 <li>Aeotec Siren</li>
 <li>Ecobee 3</li>
@@ -21,8 +21,7 @@ Devices:
 
 Notes:<ul>
 <li>Ecobee currently using this: <a href=https://github.com/home-assistant/home-assistant/pull/2092>Pull Request</a></li>
-<li>MyQ with PI in garage using bluetooth device_tracker for car and MQTT event_stream... slow to detect but works</li>
-<li>My input sliders don't work correctly and using some of the templating options breaks stuff for now</li>
+<li>MyQ currently using this: <a href=https://github.com/home-assistant/home-assistant/pull/1961>Pull Request</a></li>
 </ul>
 
 # Interface
