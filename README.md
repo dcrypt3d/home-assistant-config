@@ -27,4 +27,4 @@ Notes:<ul>
 
 # Interface
 ![UI](images/home.png)
-![UI](images/sensor.png)
+![UI](images/sensors.png)
