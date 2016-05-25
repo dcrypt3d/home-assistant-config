@@ -1,8 +1,0 @@
-#zwave
-- alias: heal at 2:30am
-  trigger:
-    platform: time
-    after: '2:30:00'
-  condition: use_trigger_values
-  action:
-    service: zwave.heal_network
