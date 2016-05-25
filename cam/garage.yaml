@@ -1,0 +1,5 @@
+- platform: generic
+  still_image_url: !env_var GARAGECAMURL
+  name: Garage
+  username: !env_var CAMUSER
+  password: !env_var CAMPASS

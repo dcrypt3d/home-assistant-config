@@ -1,0 +1,49 @@
+lock_all_doors:
+    name: Lock Doors
+    initial: off
+    icon: mdi:lock
+
+auto_lock_timer:
+    name: Lock Timers
+    initial: on
+    icon: mdi:lock-open
+
+garageopener_timer:
+    name: Garage Opener Timer
+    initial: on
+    icon: mdi:glassdoor
+
+thermo_away:
+  name: Away Mode
+  initial: off
+  icon: mdi:account
+
+thermo_weather:
+  name: Weather Mode
+  initial: on
+  icon: mdi:weather-lightning
+
+auto_light_timer:
+   name: Light Timers
+   initial: on
+   icon: mdi:lightbulb
+    
+security_system:
+    name: Security System
+    initial: off
+    icon: mdi:shield
+
+security_home:
+    name: Home & Secure
+    initial: off
+    icon: mdi:shield
+
+panic_mode:
+    name: Panic Mode
+    initial: off
+    icon: mdi:shield-outline
+
+alarm_tripped:
+    name: Alarm Tripped
+    initial: off
+    icon: mdi:shield-outline

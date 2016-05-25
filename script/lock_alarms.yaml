@@ -1,0 +1,39 @@
+#lock alarms
+fdburglar:
+  alias: "Front Door Lock Alarm"
+  sequence:
+    - service: notify.googlevoice
+      data:
+        message: "Front door lock alarm was tripped"
+        target: !env_var MYCELL
+    - event: LOGBOOK_ENTRY
+      event_data:
+        name: Front Door
+        message: alarm was tripped
+        entity_id: !env_var FRONTDOORLOCK
+
+bdburglar:
+  alias: "Back Door Lock Alarm"
+  sequence:
+    - service: notify.googlevoice
+      data:         
+        message: "Back door lock alarm was tripped"      
+        target: !env_var MYCELL
+    - event: LOGBOOK_ENTRY
+      event_data:
+        name: Back Door
+        message: alarm was tripped      
+        entity_id: !env_var BACKDOORLOCK
+
+gdburglar:
+  alias: "Garage Door Lock Alarm"
+  sequence:
+    - service: notify.googlevoice
+      data:         
+        message: "Garage door lock alarm was tripped"      
+        target: !env_var MYCELL
+    - event: LOGBOOK_ENTRY
+      event_data:
+        name: Garage Door
+        message: alarm was tripped
+        entity_id: !env_var GARAGEDOORLOCK

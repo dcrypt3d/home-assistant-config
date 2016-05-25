@@ -1,0 +1,54 @@
+#lights
+timed_mudroom:
+  alias: "Mud room light timer on"
+  sequence:
+      # Cancel old timers
+    - service: script.turn_off
+      data:
+        entity_id: script.mudroom_light_timer
+    - service: switch.turn_on
+      data:
+        entity_id: !env_var MUDROOM
+        # Set new timer
+    - service: script.turn_on
+      data:
+        entity_id: script.mudroom_light_timer
+
+mudroom_light_timer:
+  alias: "Mud room light timer"
+  sequence:
+    - condition: state
+      entity_id: input_boolean.auto_light_timer
+      state: 'on'
+    - delay:
+        minutes: 10
+    - service: switch.turn_off
+      data:
+        entity_id: !env_var MUDROOM
+
+timed_hallway:
+  alias: "Hallway light timer on"
+  sequence:
+      # Cancel old timers
+    - service: script.turn_off
+      data:
+        entity_id: script.hallway_light_timer
+    - service: switch.turn_on
+      data:
+        entity_id: !env_var HALLWAY
+        # Set new timer
+    - service: script.turn_on
+      data:
+        entity_id: script.hallway_light_timer
+
+hallway_light_timer:
+  alias: "Hallway light timer"
+  sequence:
+    - condition: state
+      entity_id: input_boolean.auto_light_timer
+      state: 'on'
+    - delay:
+        minutes: 10
+    - service: switch.turn_off
+      data:
+        entity_id: !env_var HALLWAY

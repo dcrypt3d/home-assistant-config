@@ -1,0 +1,26 @@
+- alias: Front Door Lock Alarm
+  trigger:
+      - platform: state
+        entity_id: !env_var FDB
+        state: '2'
+  condition: use_trigger_values
+  action:
+    service: script.fdburglar
+
+- alias: Back Door Lock Alarm
+  trigger:
+      - platform: state
+        entity_id: !env_var BDB
+        state: '2'
+  condition: use_trigger_values
+  action:
+    service: script.bdburglar
+
+- alias: Gararage Door Lock Alarm
+  trigger:
+      - platform: state
+        entity_id: !env_var GDB
+        state: '2'
+  condition: use_trigger_values
+  action:
+    service: script.gdburglar

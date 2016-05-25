@@ -1,0 +1,74 @@
+#door lock events
+- alias: "Front Door Locked With Keypad"
+  trigger:
+    - platform: state
+      entity_id: !env_var FDAC                     
+      state: '5'
+    - platform: state
+      entity_id: !env_var FDAT                 
+      state: '18'
+  condition: use_trigger_values
+  action:
+    - service: script.leaving
+    - service: script.fdkeypadlocked
+
+- alias: "Front Door Unlocked With Keypad"
+  trigger:
+    - platform: state
+      entity_id: !env_var FDAC
+      state: '6'
+    - platform: state
+      entity_id: !env_var FDAT
+      state: '19'
+  condition: use_trigger_values
+  action:
+    service: script.fdkeypadunlocked
+
+- alias: "Back Door Locked With Keypad"
+  trigger:
+    - platform: state
+      entity_id: !env_var BDAC
+      state: '5'
+    - platform: state
+      entity_id: !env_var BDAT
+      state: '18'
+  condition: use_trigger_values
+  action:
+    - service: script.leaving
+    - service: script.bdkeypadlocked
+
+- alias: "Back Door Unlocked With Keypad"
+  trigger:
+    - platform: state
+      entity_id: !env_var BDAC
+      state: '6'
+    - platform: state
+      entity_id: !env_var BDAT
+      state: '19'
+  condition: use_trigger_values
+  action:
+    service: script.bdkeypadunlocked
+
+- alias: "Garage Door Locked With Keypad"
+  trigger:
+    - platform: state
+      entity_id: !env_var GDAC
+      state: '5'
+    - platform: state
+      entity_id: !env_var GDAT
+      state: '18'
+  condition: use_trigger_values
+  action:
+    service: script.gdkeypadlocked
+
+- alias: "Garage Door Unlocked With Keypad"
+  trigger:
+    - platform: state
+      entity_id: !env_var GDAC
+      state: '6'
+    - platform: state
+      entity_id: !env_var GDAT
+      state: '19'
+  condition: use_trigger_values
+  action:
+    service: script.gdkeypadunlocked
