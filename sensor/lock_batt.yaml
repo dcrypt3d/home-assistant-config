@@ -2,17 +2,17 @@
 - platform: template
   sensors:
     front_door_batt:
-      value_template: '{{ states.lock.front_door__3.attributes.battery_level }}'
+      value_template: '{{ states.sensor.front_door_power_management_3.battery_level }}'
       unit_of_measurement: '%'
 
 - platform: template
   sensors:
     back_door_batt:
-      value_template: '{{ states.lock.back_door__2.attributes.battery_level }}'
+      value_template: '{{ states.sensor.back_door_power_management_2.attributes.battery_level }}'
       unit_of_measurement: '%'
 
 - platform: template
   sensors:
     garage_door_batt:
-      value_template: '{{ states.lock.garage_door__4.attributes.battery_level }}'
+      value_template: '{{ states.sensor.garage_door_power_management_4.attributes.battery_level }}'
       unit_of_measurement: '%'
