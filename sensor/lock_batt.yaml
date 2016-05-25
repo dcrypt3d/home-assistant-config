@@ -2,7 +2,7 @@
 - platform: template
   sensors:
     front_door_batt:
-      value_template: '{{ states.sensor.front_door_power_management_3.battery_level }}'
+      value_template: '{{ states.sensor.front_door_power_management_3.attributes.battery_level }}'
       unit_of_measurement: '%'
 
 - platform: template
