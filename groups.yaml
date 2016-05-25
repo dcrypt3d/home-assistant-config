@@ -14,7 +14,8 @@ sensors:
   view: yes
   icon: mdi:google-circles-extended
   entities:
-    - group.climate 
+    - group.climate
+    - group.radar 
     - group.sabnzbd
     - group.icloud
     - group.batt_locks
@@ -22,6 +23,7 @@ sensors:
     - group.commute
 #    - group.speed
     - group.system
+    
 
 cameras:
   name: Cameras
@@ -238,7 +240,12 @@ mudroom:
   view: no
   entities:
     - !env_var MUDROOM
-
+radar:
+  name: Radar
+  view: no
+  entities:
+    - camera.radar
+    
 climate:
   name: Weather
   icon: mdi:weather-partlycloudy
@@ -256,7 +263,6 @@ climate:
     - sensor.weather_precip_probability
 #    - sensor.weather_wind_speed
 #    - sensor.weather_wind_bearing
-    - camera.radar
 
 system:
   name: System
