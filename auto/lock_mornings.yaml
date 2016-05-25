@@ -6,6 +6,7 @@
   condition:
     - condition: time
       after: '06:45:00'
+      before: '08:30:00'
     - condition: time
       weekday:
       - mon
