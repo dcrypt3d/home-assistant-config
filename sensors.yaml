@@ -83,18 +83,18 @@
     google_travel_bike_time:
       value_template: '{{ states.sensor.google_travel_time_bike.attributes.duration }}'
 
-speedtest
-- platform: speedtest
-  minute: 30
-  hour:
-    - 0
-    - 6
-    - 12
-    - 18
-  monitored_conditions:
-    - ping
-    - download
-    - upload
+#speedtest
+#- platform: speedtest
+#  minute: 30
+#  hour:
+#    - 0
+#    - 6
+#    - 12
+#    - 18
+#  monitored_conditions:
+#    - ping
+#    - download
+#    - upload
 
 #weather
 - platform: forecast
