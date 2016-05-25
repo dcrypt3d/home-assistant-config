@@ -101,7 +101,7 @@
 
 - alias: Security Back Door Burglar
   trigger:
-    platform: template
+    platform: state
     entity_id: !env_var BDB
     state: '2'
   condition:
