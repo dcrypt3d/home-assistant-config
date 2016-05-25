@@ -10,8 +10,8 @@ Host:<ul>
 
 Devices:
 <ul>
-<li>Schlage BE469CEN</li>
-<li>GE 12722 / Linear WD500Z-1</li>
+<li>Schlage BE469CEN Locks</li>
+<li>GE 12722 / Linear WD500Z-1 Switches/Dimmers</li>
 <li>Aeotec Window/Door Sensor 6</li>
 <li>Aeotec Siren</li>
 <li>Ecobee 3</li>
