@@ -22,6 +22,7 @@ Devices:
 Notes:<ul>
 <li>Ecobee currently using this: <a href=https://github.com/home-assistant/home-assistant/pull/2092>Pull Request</a></li>
 <li>MyQ currently using this: <a href=https://github.com/home-assistant/home-assistant/pull/1961>Pull Request</a></li>
+<li>iCloud using @Bart274 's: <a href=https://github.com/Bart274/icloudplatform>custom component</a></li>
 </ul>
 
 # Interface
