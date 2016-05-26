@@ -19,17 +19,14 @@ zone:
     latitude: !env_var HOMELAT
     longitude: !env_var HOMELON
     radius: 35
-    icon: mdi:home
   - name: Work
     latitude: !env_var MYWORKLAT
     longitude: !env_var MYWORKLON
     radius: 300
-    icon: mdi:school
   - name: Work
     latitude: !env_var HERWORKLAT
     longitude: !env_var HERWORKLON
     radius: 150
-    icon: mdi:fingerprint
 
 #dir_includes
 script: !include_dir_merge_named script
