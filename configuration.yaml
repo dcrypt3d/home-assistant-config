@@ -14,20 +14,6 @@ logger:
 #    homeassistant.components.automation: debug
 #    homeassistant.components.device_tracker: debug
 
-zone:
-  - name: Home
-    latitude: !env_var HOMELAT
-    longitude: !env_var HOMELON
-    radius: 35
-  - name: Work
-    latitude: !env_var MYWORKLAT
-    longitude: !env_var MYWORKLON
-    radius: 300
-  - name: Work
-    latitude: !env_var HERWORKLAT
-    longitude: !env_var HERWORKLON
-    radius: 150
-
 #dir_includes
 script: !include_dir_merge_named script
 automation: !include_dir_merge_list auto
@@ -41,6 +27,8 @@ media_player: !include mediaplayers.yaml
 input_select: !include input_select.yaml
 input_boolean: !include input_boolean.yaml
 device_tracker: !include device_trackers.yaml
+icloud: !include icloud.yaml
+zone: !include zones.yaml
 
 #enable
 frontend:
