@@ -1,0 +1,16 @@
+#light wakeup
+- alias: Boudoir wakeup
+  trigger:
+    platform: time
+    after: '06:45:00'
+  condition:
+    condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+    service: scene.turn_on
+    entity_id: scene.wakeup_boudoir

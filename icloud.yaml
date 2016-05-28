@@ -1,0 +1,18 @@
+me:
+  username: !env_var MYICLOUDU
+  password: !env_var MYICLOUDP
+  manual_update:
+    - '8:00'
+    - '17:30'
+    - '22:30'
+  ignored_devices:
+    - macpro
+
+her:
+  username: !env_var HERICLOUDU
+  password: !env_var HERICLOUDP
+  manual_update:
+    - '9:30'
+    - '15:30'
+    - '18:30'
+    - '22:30'

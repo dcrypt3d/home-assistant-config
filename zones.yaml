@@ -1,0 +1,12 @@
+- name: Home
+  latitude: !env_var HOMELAT
+  longitude: !env_var HOMELON
+  radius: 35
+- name: Work
+  latitude: !env_var MYWORKLAT
+  longitude: !env_var MYWORKLON
+  radius: 300
+- name: Work
+  latitude: !env_var HERWORKLAT
+  longitude: !env_var HERWORKLON
+  radius: 150

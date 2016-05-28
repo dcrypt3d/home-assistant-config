@@ -1,0 +1,75 @@
+homeassistant:
+  name: Home
+  latitude: !env_var HOMELAT
+  longitude: !env_var HOMELON
+  temperature_unit: F
+  time_zone: !env_var HATIMEZONE
+  customize: !include customize.yaml
+
+logger:
+  default: info
+  logs:
+#    homeassistant.components.sensor: debug
+#    homeassistant.components.script: debug
+#    homeassistant.components.automation: debug
+#    homeassistant.components.device_tracker: debug
+
+#dir_includes
+script: !include_dir_merge_named script
+automation: !include_dir_merge_list auto
+scene: !include_dir_merge_list scene
+sensor: !include_dir_merge_list sensor
+camera: !include_dir_merge_list cam
+#includes
+group: !include groups.yaml
+notify: !include notify.yaml
+media_player: !include mediaplayers.yaml
+input_select: !include input_select.yaml
+input_boolean: !include input_boolean.yaml
+device_tracker: !include device_trackers.yaml
+icloud: !include icloud.yaml
+zone: !include zones.yaml
+
+#enable
+frontend:
+#conversation:
+#updater:
+discovery:
+history:
+logbook:
+sun:
+
+http:
+  api_password: !env_var HAPASS
+  ssl_certificate: !env_var HACERT
+  ssl_key: !env_var HAKEY
+    
+garage_door:
+  platform: myq
+  name: !env_var MYQNAME
+  username: !env_var MYQUSER
+  password: !env_var MYQPASS
+
+ecobee:
+  api_key: !env_var ECOBEEKEY
+  hold_temp: False
+
+ifttt:
+  key: !env_var IFTTTKEY
+
+mqtt:
+  broker: !env_var MQTTHOST
+  port: !env_var MQTTPORT
+  username: !env_var MQTTUSER
+  password: !env_var MQTTPASS
+  client_id: !env_var MQTTID
+  keepalive: 60
+  protocol: 3.1
+
+mqtt_eventstream:
+  subscribe_topic: pi
+
+zwave:
+  usb_path: !env_var ZWAVEUSB
+  config_path: !env_var ZWAVEPATH
+  polling_interval: 60000

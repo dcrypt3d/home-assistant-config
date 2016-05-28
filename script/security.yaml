@@ -1,0 +1,35 @@
+#security
+all_clear:
+  alias: "All Clear"
+  sequence:
+    - service: switch.turn_off
+      data:
+        entity_id: !env_var SIREN
+    - service: homeassistant.turn_off
+      data:
+        entity_id: input_boolean.alarm_tripped
+    - service: script.turn_off
+      data:
+        entity_id: script.alarm_tripped
+
+alarm_tripped:
+  alias: "Alarm Tripped"
+  sequence:
+    - service: notify.googlevoice
+      data:
+        message: "Alarm Has Been Tripped!"
+        target: !env_var MYCELL
+    - service: homeassistant.turn_on
+      data:
+        entity_id: input_boolean.alarm_tripped
+    - service: homeassistant.turn_on
+      data:
+        entity_id: input_boolean.panic_mode
+leaving:
+  alias: "Locked & Leaving"
+  sequence:
+    - delay:
+        minutes: 5
+    - service: homeassistant.turn_on
+      data:
+        entity_id: input_boolean.security_system

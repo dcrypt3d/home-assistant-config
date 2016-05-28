@@ -1,0 +1,163 @@
+#thermostat
+- alias: Thermostat Weather Mode - Home
+  trigger:
+    platform: state
+    entity_id: sensor.weather_temperature
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: sensor.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.thermo_weather
+      state: 'on'
+    - condition: state
+      entity_id: sensor.thermostat_mode
+      state: 'home'
+  action:
+    service: script.auto_thermo
+
+- alias: Thermostat Weather Mode - Sleep
+  trigger:
+    platform: state
+    entity_id: sensor.weather_temperature
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: sensor.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.thermo_weather
+      state: 'on'
+    - condition: state
+      entity_id: sensor.thermostat_mode
+      state: 'sleep'
+  action:
+    service: script.auto_thermo
+
+- alias: Thermostat - Auto Home
+  trigger:
+    platform: state
+    entity_id: group.users
+    state: 'home'
+  condition: use_trigger_values
+  action:
+    - service: thermostat.set_away_mode
+      data:
+        entity_id: !env_var THERMONAME
+        away_mode: 'False'
+    - service: homeassistant.turn_off
+      data:
+        entity_id: input_boolean.thermo_away
+
+- alias: Thermostat - Auto Away
+  trigger:
+    platform: state
+    entity_id: group.users
+    state: 'not_home'
+    for:
+      minutes: 720
+  condition: use_trigger_values 
+  action:
+    - service: thermostat.set_away_mode
+      data:
+        entity_id: !env_var THERMONAME
+        away_mode: 'True'
+    - service: homeassistant.turn_on
+      data:
+        entity_id: input_boolean.thermo_away
+
+- alias: Thermostat - Select HVAC Auto
+  trigger:
+    platform: state
+    entity_id: input_select.thermo_hvac
+    state: 'Auto'
+  condition: use_trigger_values
+  action:
+    service: thermostat.set_hvac_mode
+    data:
+      entity_id: !env_var THERMONAME
+      hvac_mode: 'auto'
+
+- alias: Thermostat - Select HVAC Cool
+  trigger:
+    platform: state
+    entity_id: input_select.thermo_hvac
+    state: 'Cool'
+  condition: use_trigger_values
+  action:
+    service: thermostat.set_hvac_mode
+    data:
+      entity_id: !env_var THERMONAME
+      hvac_mode: 'cool'
+
+- alias: Thermostat - Select HVAC Heat
+  trigger:
+    platform: state
+    entity_id: input_select.thermo_hvac
+    state: 'Heat'
+  condition: use_trigger_values
+  action:
+    service: thermostat.set_hvac_mode
+    data:
+      entity_id: !env_var THERMONAME
+      hvac_mode: 'heat'
+
+- alias: Thermostat - Select HVAC Off
+  trigger:
+    platform: state
+    entity_id: input_select.thermo_hvac
+    state: 'Off'
+  condition: use_trigger_values
+  action:
+    service: thermostat.set_hvac_mode
+    data:
+      entity_id: !env_var THERMONAME
+      hvac_mode: 'off'
+
+- alias: Thermostat - Select Away Off
+  trigger:
+    platform: state
+    entity_id: input_boolean.thermo_away
+    state: 'off'
+  condition: use_trigger_values
+  action:
+    service: thermostat.set_away_mode
+    data:
+      entity_id: !env_var THERMONAME
+      away_mode: 'False'
+
+- alias: Thermostat - Select Away On
+  trigger:
+    platform: state
+    entity_id: input_boolean.thermo_away
+    state: 'on'
+  condition: use_trigger_values
+  action:
+    service: thermostat.set_away_mode
+    data:
+      entity_id: !env_var THERMONAME
+      away_mode: 'True'
+
+#- alias: Thermostat - Select low temp
+#  trigger:
+#    platform: state
+#    entity_id: input_slider.thermo_low
+#  condition: use_trigger_values
+#  action:      
+#    service: script.turn_on
+#    data:
+#      entity_id: script.thermo_slider_low 
+
+#- alias: Thermostat - Select high temp
+#  trigger:
+#    platform: state
+#    entity_id: input_slider.thermo_high
+#  condition: use_trigger_values
+#  action:
+#    service: thermostat.set_target_temp_high
+#    data:
+#      entity_id: thermostat.home
+#      target_temp_high: '{{ state.input_slider.thermo_high.state }}'
