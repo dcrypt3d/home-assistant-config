@@ -1,4 +1,5 @@
-- alias: Front Door Lock Alarm
+#lock alarms
+- alias: Front Door Lock Forced Entry
   trigger:
       - platform: state
         entity_id: !env_var FDB
@@ -7,7 +8,7 @@
   action:
     service: script.fdburglar
 
-- alias: Back Door Lock Alarm
+- alias: Back Door Lock Forced Entry
   trigger:
       - platform: state
         entity_id: !env_var BDB
@@ -16,7 +17,7 @@
   action:
     service: script.bdburglar
 
-- alias: Gararage Door Lock Alarm
+- alias: Gararage Door Lock Forced Entry
   trigger:
       - platform: state
         entity_id: !env_var GDB
@@ -24,3 +25,39 @@
   condition: use_trigger_values
   action:
     service: script.gdburglar
+    
+- alias: Front Door Lock Keypad Tamper
+  trigger:
+      - platform: state
+        entity_id: !env_var FDAC
+        state: '16'
+      - platform: state
+         entity_id: !env_var FDAT
+         state: '161'
+  condition: use_trigger_values
+  action:
+    service: script.fdtamper
+
+- alias: Front Door Lock Keypad Tamper
+  trigger:
+      - platform: state
+        entity_id: !env_var BDAC
+        state: '16'
+      - platform: state
+         entity_id: !env_var BDAT
+         state: '161'
+  condition: use_trigger_values
+  action:
+    service: script.bdtamper
+    
+- alias: Front Door Lock Keypad Tamper
+  trigger:
+      - platform: state
+        entity_id: !env_var GDAC
+        state: '16'
+      - platform: state
+         entity_id: !env_var GDAT
+         state: '161'
+  condition: use_trigger_values
+  action:
+    service: script.gdtamper
