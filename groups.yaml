@@ -9,8 +9,6 @@ default_view:
     - group.thermo
     - group.users
 
-#controls
-
 sensors:
   name: Sensors
   view: yes
