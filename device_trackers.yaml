@@ -1,4 +1,0 @@
-- platform: nmap_tracker
-  hosts: !env_var NETBLOCK
-  consider_home: 120
-  home_interval: 1

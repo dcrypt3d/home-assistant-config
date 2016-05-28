@@ -1,8 +1,0 @@
-- platform: pushbullet
-  api_key: !env_var PBKEY
-  name: pushbullet
-
-- platform: googlevoice
-  username: !env_var GVUSER
-  password: !env_var GVPASS
-  name: googlevoice
