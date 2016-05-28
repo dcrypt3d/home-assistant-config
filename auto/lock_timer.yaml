@@ -1,0 +1,59 @@
+#locks
+- alias: Lock All Doors
+  trigger:
+    platform: state
+    entity_id: input_boolean.lock_all_doors
+    state: 'on'
+  condition: use_trigger_values
+  action:
+    service: lock.lock
+
+- alias: Disable Lock Timers
+  trigger:
+    platform: state
+    entity_id: input_boolean.auto_lock_timer
+    state: 'off'
+  condition: use_trigger_values
+  action:
+    - service: script.turn_off
+      entity_id: script.backdoor_lock_timer
+    - service: script.turn_off
+      entity_id: script.frontdoor_lock_timer
+    - service: script.turn_off
+      entity_id: script.garagedoor_lock_timer
+
+- alias: Lock back door after set time
+  trigger:
+    platform: state
+    entity_id: !env_var BACKDOORLOCK
+    state: 'unlocked'
+  condition:
+    condition: state
+    entity_id: input_boolean.auto_lock_timer
+    state: 'on'
+  action:
+    service: script.timed_backdoor
+
+- alias: Lock front door after set time
+  trigger:
+    platform: state
+    entity_id: !env_var FRONTDOORLOCK
+    state: 'unlocked'
+  condition:         
+    condition: state
+    entity_id: input_boolean.auto_lock_timer
+    state: 'on'
+  action:
+    service: script.timed_frontdoor
+
+- alias: Lock garage door after set time
+  trigger:
+    platform: state
+    entity_id: !env_var GARAGEDOORLOCK
+    state: 'unlocked'
+  condition:         
+    condition: state
+    entity_id: input_boolean.auto_lock_timer
+    state: 'on'
+  action:
+    service: script.timed_garagedoor

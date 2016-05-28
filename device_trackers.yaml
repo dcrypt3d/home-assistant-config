@@ -1,0 +1,10 @@
+- platform: nmap_tracker
+  hosts: !env_var NETBLOCK
+  track_new_devices: no
+  consider_home: 300
+  home_interval: 1
+  
+#- platform: bluetooth_tracker
+#  consider_home: 120
+#  interval_seconds: 30
+#  home_interval: 10

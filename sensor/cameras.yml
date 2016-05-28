@@ -1,0 +1,4 @@
+- platform: template
+  sensors:
+    garage_camera:
+      value_template: '{{ states.camera.garage.state }}'

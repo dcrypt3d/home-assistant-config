@@ -1,0 +1,166 @@
+#locks
+!env_var BACKDOORLOCK:
+  icon: mdi:lock
+  friendly_name: Back Door Lock
+!env_var FRONTDOORLOCK:
+  icon: mdi:lock
+  friendly_name: Front Door Lock
+!env_var GARAGEDOORLOCK:
+  icon: mdi:lock
+  friendly_name: Garage Door Lock
+sensor.back_door_batt:
+  icon: mdi:battery
+  friendly_name: 'Back Door Battery'
+sensor.front_door_batt:
+  icon: mdi:battery
+  friendly_name: 'Front Door Battery'
+sensor.garage_door_batt:
+  icon: mdi:battery
+  friendly_name: 'Garage Door Battery'
+!env_var FDAC:
+    friendly_name: 'Front Door Access Control'
+!env_var FDAL:
+    friendly_name: 'Front Door Alarm Level'
+!env_var FDAT:
+    friendly_name: 'Front Door Alarm Type'
+!env_var FDB:
+    friendly_name: 'Front Door Burglar'
+!env_var BDAC:
+    friendly_name: 'Back Door Access Control'
+!env_var BDAL:
+    friendly_name: 'Back Door Alarm Level'
+!env_var BDAT:
+    friendly_name: 'Back Door Alarm Type'
+!env_var BDB:
+    friendly_name: 'Back Door Burglar'
+!env_var GDAC:
+    friendly_name: 'Garage Door Access Control'
+!env_var GDAL:
+    friendly_name: 'Garage Door Alarm Level'
+!env_var GDAT:
+    friendly_name: 'Garage Door Alarm Type'
+!env_var GDB:
+    friendly_name: 'Garage Door Burglar'
+
+#garage
+sensor.garageopener_status:
+  friendly_name: 'Garage Status'
+
+#thermostat
+!env_var THERMONAME:
+  icon: mdi:fan
+  friendly_name: 'Ecobee'
+sensor.thermostat_mode:
+  icon: mdi:calendar-clock
+  friendly_name: 'Schedule'
+sensor.thermostat_away:
+  icon: mdi:account
+  friendly_name: 'Away Mode'
+sensor.thermostat_hvac:
+  icon: mdi:chemical-weapon
+  friendly_name: 'HVAC Mode'
+
+#cameras
+sensor.garage_camera:
+  icon: mdi:camcorder
+  friendly_name: 'Garage Camera'
+
+#lights
+!env_var MUDROOM:
+  icon: mdi:broom
+  friendly_name: 'Mud Room'
+!env_var BOUDOIR:
+  icon: mdi:hanger
+  friendly_name: 'Boudoir'
+!env_var BEDROOM:
+  icon: mdi:hotel
+  friendly_name: 'Bed Room'
+!env_var LIVINGROOM:
+  icon: mdi:readability
+  friendly_name: 'Living Room'
+!env_var FRONTPATIO:
+  icon: mdi:home-variant
+  friendly_name: 'Front Patio'
+!env_var BACKPATIO:
+  icon: mdi:home
+  friendly_name: 'Back Patio'
+!env_var HALLWAY:
+  icon: mdi:stairs
+  friendly_name: 'Hallway'
+!env_var KITCHENMAIN:
+  icon: mdi:food-variant
+  friendly_name: 'Kitchen Main'
+!env_var KITCHENCENTER:
+  icon: mdi:spotlight
+  friendly_name: 'Kitchen Center'
+  
+#googletravel
+sensor.google_travel_car_time:
+  icon: mdi:car
+  friendly_name: 'To Work'
+sensor.google_travel_car_work_time:
+  icon: mdi:car
+  friendly_name: 'From Work'
+sensor.google_travel_bike_time:
+  icon: mdi:bike
+  friendly_name: 'To Work'
+
+#devices
+!env_var IPAD:
+  icon: mdi:tablet-ipad
+!env_var MBP:
+  icon: mdi:laptop-mac
+
+#speedtest
+sensor.speedtest_download:
+  icon: mdi:arrow-down
+sensor.speedtest_upload:
+  icon: mdi:arrow-up
+sensor.speedtest_ping:
+  icon: mdi:autorenew
+
+#sabnzbd
+sensor.sabnzbd_disk:
+  icon: mdi:harddisk
+sensor.sabnzbd_disk_free:
+  icon: mdi:harddisk
+sensor.sabnzbd_left:
+  icon: mdi:database-minus
+sensor.sabnzbd_queue:
+  icon: mdi:database-plus
+sensor.sabnzbd_speed:
+  icon: mdi:speedometer
+sensor.sabnzbd_status:
+  icon: mdi:alert-circle-outline
+
+#weather
+sensor.weather_summary:
+  friendly_name: 'Summary'
+sensor.weather_temperature:
+  friendly_name: 'Temperature'
+sensor.weather_cloud_coverage:
+  icon: mdi:weather-cloudy
+  friendly_name: 'Cloud Coverage'
+sensor.weather_dew_point:
+  friendly_name: 'Dew Point'
+sensor.weather_humidity:
+  icon: mdi:water-percent
+  friendly_name: 'Humidity'
+sensor.weather_pressure:
+  friendly_name: 'Pressure'
+sensor.weather_nearest_storm_distance:
+  icon: mdi:weather-lightning
+  friendly_name: 'Storm Distance'
+sensor.weather_precip:
+  icon: mdi:weather-pouring
+  friendly_name: 'Precipitation'
+sensor.weather_precip_probability:
+  icon: mdi:weather-pouring
+  friendly_name: 'Probability'
+sensor.weather_visibility:
+  friendly_name: 'Visibility'
+sensor.weather_wind_speed:
+  icon: mdi:weather-windy
+  friendly_name: 'Wind Speed'
+sensor.weather_wind_bearing:
+  friendly_name: 'Wind Bearing'

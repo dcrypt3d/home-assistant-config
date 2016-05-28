@@ -1,0 +1,219 @@
+#work in progress
+##security
+#- alias: Lock all doors, disable home & secure and enable security when not home
+#  trigger:
+#    platform: state
+#    entity_id: group.users
+#    state: 'not_home'
+#  condition: use_trigger_values
+#  action:
+#    - service: homeassistant.turn_off
+#      data:
+#        entity_id: input_boolean.security_home
+#    - service: homeassistant.turn_on
+#      data:
+#        entity_id: input_boolean.security_system
+#    - service: lock.lock
+
+- alias: Panic Mode On
+  trigger:
+    platform: state
+    entity_id: input_boolean.panic_mode
+    state: 'on'
+  action:
+    service: script.alarm_tripped 
+        
+- alias: Panic Mode Off
+  trigger:
+    platform: state
+    entity_id: input_boolean.panic_mode
+    state: 'off'
+  action:
+    service: script.all_clear
+
+- alias: Security Garage Opener
+  trigger:
+    platform: state
+    entity_id: garage_door.garage_opener
+    state: 'open'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: script.alarm_tripped
+     
+- alias: Security Garage Door
+  trigger:
+    platform: state
+    entity_id: !env_var GARAGEDOORLOCK
+    state: 'unlocked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: script.alarm_tripped
+
+- alias: Security Garage Door Burglar
+  trigger:
+    platform: state
+    entity_id: !env_var GDB
+    state: '2'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: script.alarm_tripped
+
+- alias: Security Back Door
+  trigger:
+    platform: state
+    entity_id: !env_var BACKDOORLOCK
+    state: 'unlocked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: script.alarm_tripped
+
+- alias: Security Back Door Burglar
+  trigger:
+    platform: state
+    entity_id: !env_var BDB
+    state: '2'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: script.alarm_tripped
+
+- alias: Security Front Door
+  trigger:
+    platform: state
+    entity_id: !env_var FRONTDOORLOCK
+    state: 'unlocked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: script.alarm_tripped
+
+- alias: Security Front Door Burglar
+  trigger:
+    platform: state
+    entity_id: !env_var FDB
+    state: '2'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: script.alarm_tripped
+
+- alias: Security Upstairs
+  trigger:
+    platform: state
+    entity_id: !env_var THERMOEXTOC
+    state: 'true'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: script.alarm_tripped
+
+- alias: Security Downstairs
+  trigger:
+    platform: state
+    entity_id: !env_var THERMOOC
+    state: 'true'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: script.alarm_tripped
+     
+- alias: Security Mud Room Light
+  trigger:
+    platform: state
+    entity_id: !env_var MUDROOM
+    state: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: script.alarm_tripped
+     
+- alias: Security Basement Window Sensor
+  trigger:
+    platform: state
+    entity_id: !env_var BASEMENTWINDOW
+    state: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.security_system
+        state: 'on'
+  action:
+    service: script.alarm_tripped

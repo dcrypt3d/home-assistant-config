@@ -1,0 +1,12 @@
+#sabnzbd
+- platform: sabnzbd
+  name: SABnzbd
+  api_key: !env_var SABKEY
+  base_url: !env_var SABURL
+  monitored_variables:
+    - type: 'current_status'
+    - type: 'speed'
+    - type: 'queue_size'
+    - type: 'queue_remaining'
+    - type: 'disk_size'
+    - type: 'disk_free'

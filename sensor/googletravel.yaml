@@ -1,0 +1,41 @@
+#googletravel
+- platform: google_travel_time
+  name: 'google_travel_time_car'
+  api_key: !env_var GOOGLEKEY
+  origin: !env_var CARORIGIN
+  destination: !env_var CARDEST
+  options:
+    departure_time: '07:30:00'
+    mode: driving
+
+- platform: template
+  sensors:
+    google_travel_car_time:
+      value_template: '{{ states.sensor.google_travel_time_car.attributes.duration }}'
+
+- platform: google_travel_time
+  name: 'google_travel_time_car_work'
+  api_key: !env_var GOOGLEKEY
+  origin: !env_var CARDEST
+  destination: !env_var CARORIGIN
+  options:
+    departure_time: '16:45:00'
+    mode: driving
+
+- platform: template
+  sensors:
+    google_travel_car_work_time:
+      value_template: '{{ states.sensor.google_travel_time_car_work.attributes.duration }}'
+
+- platform: google_travel_time
+  name: 'google_travel_time_bike'
+  api_key: !env_var GOOGLEKEY
+  origin: !env_var BIKEORIGIN
+  destination: !env_var BIKEDEST
+  options:
+    mode: bicycling  
+
+- platform: template
+  sensors:
+    google_travel_bike_time:
+      value_template: '{{ states.sensor.google_travel_time_bike.attributes.duration }}'
