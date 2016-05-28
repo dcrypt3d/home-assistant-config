@@ -10,7 +10,3 @@
   latitude: !env_var HERWORKLAT
   longitude: !env_var HERWORKLON
   radius: 150
-- name: Practice
-  latitude: !env_var LAIRLAT
-  longitude: !env_var LAIRLON
-  radius: 150
