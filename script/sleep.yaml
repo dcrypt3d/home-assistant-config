@@ -1,8 +1,0 @@
-sleep:
-  alias: "I am sleeping"
-  sequence:
-    - service: switch.turn_on
-      entity_id: group.patio_lights
-    - service: homeassistant.turn_off
-      entity_id: group.indoor_lights
-    - service: lock.lock
