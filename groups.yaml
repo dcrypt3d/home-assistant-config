@@ -206,13 +206,6 @@ commute:
     - sensor.google_travel_car_work_time
     - sensor.google_travel_bike_time
 
-cars:
-  name: Cars
-  view: no
-  entities:
-    - !env_var MYCAR
-    - !env_var HERCAR
-
 rooms:                                                                                                                                                      
   view: no
   icon: mdi:hexagon                                                                                                                                              
