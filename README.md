@@ -23,7 +23,7 @@ Notes:<ul>
 <li>Ecobee currently using this: <a href=https://github.com/home-assistant/home-assistant/pull/2092>Pull Request</a></li>
 <li>MyQ currently using this: <a href=https://github.com/home-assistant/home-assistant/pull/1961>Pull Request</a></li>
 <li>Owntracks, Mosquitto server & <a href=http://www.amazon.com/Long-Range-Bluetooth-Programmable-Management-Platform/dp/B01CERV4KG>iBeacons</a> for presence detection</li>
-<li>Beta testing Homeassistant iOS App with custom notifcation component by @robbiet480</li>
+<li>Beta testing Homeassistant iOS App with custom component for notifications by @robbiet480</li>
 </ul>
 
 # Interface
