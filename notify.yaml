@@ -1,7 +1,3 @@
-- name: ipadmini
-  platform: ios
-  target: '[redacted]'
-
 - name: myiphone
   platform: ios
   target: '[redacted]'
