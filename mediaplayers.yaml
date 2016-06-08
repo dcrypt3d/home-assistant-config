@@ -1,8 +1,0 @@
-- platform: plex
-
-- platform: kodi
-  host: !env_var KODIHOST
-  port: !env_var KODIPORT
-  name: Kodi
-  user: kodi
-  password: kodi
