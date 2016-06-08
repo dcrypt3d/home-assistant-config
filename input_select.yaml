@@ -1,9 +1,0 @@
-thermo_hvac:
-  name: HVAC Mode
-  options:
-   - 'Auto'
-   - 'Cool'
-   - 'Heat'
-   - 'Off'
-  initial: '{{ states.sensor.thermostat_hvac.state }}'
-  icon: mdi:chemical-weapon

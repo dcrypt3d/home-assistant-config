@@ -1,3 +1,0 @@
-- platform: generic
-  still_image_url: !env_var RADARURL
-  name: Radar
