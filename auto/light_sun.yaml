@@ -1,0 +1,22 @@
+#light sunrise/sunset
+- alias: Turn on patio lights after sunset
+  trigger:
+    platform: numeric_state
+    entity_id: sun.sun
+    value_template: '{{ state.attributes.elevation }}'
+    below: 0
+  condition: use_trigger_values
+  action:
+    service: switch.turn_on
+    entity_id: group.patio_lights
+      
+- alias: Turn off patio lights after sunrise
+  trigger:
+    platform: numeric_state
+    entity_id: sun.sun
+    value_template: '{{ state.attributes.elevation }}'
+    above: 0
+  condition: use_trigger_values
+  action:
+    service: switch.turn_off
+    entity_id: group.patio_lights

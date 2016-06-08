@@ -1,0 +1,16 @@
+#sensor alarms
+basementwindow:
+  alias: "Basement Window Alarm"
+  sequence:
+    - service: notify.myphone
+      data:
+        message: "Basement Window Sensor was tripped"
+        data:
+          push:
+            badge: 1
+            category: "ALARM"
+    - event: LOGBOOK_ENTRY
+      event_data:
+        name: Basement Window Sensor
+        message: was tripped
+        entity_id: !env_var BASEMENTWINDOW

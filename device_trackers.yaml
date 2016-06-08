@@ -1,0 +1,5 @@
+- platform: owntracks
+  track_new_devices: no
+  consider_home: 180
+  home_interval: 1
+  max_gps_accuracy: 300

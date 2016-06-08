@@ -1,0 +1,54 @@
+#thermo home/away
+- alias: Thermostat - Auto Home
+  trigger:
+    platform: state
+    entity_id: group.users
+    state: 'home'
+  condition: use_trigger_values
+  action:
+    - service: thermostat.set_away_mode
+      data:
+        entity_id: !env_var THERMONAME
+        away_mode: 'False'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.thermo_away
+
+- alias: Thermostat - Auto Away
+  trigger:
+    platform: state
+    entity_id: group.users
+    state: 'not_home'
+    for:
+      minutes: 720
+  condition: use_trigger_values 
+  action:
+    - service: thermostat.set_away_mode
+      data:
+        entity_id: !env_var THERMONAME
+        away_mode: 'True'
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.thermo_away
+
+- alias: Thermostat - Select Away Off
+  trigger:
+    platform: state
+    entity_id: input_boolean.thermo_away
+    state: 'off'
+  condition: use_trigger_values
+  action:
+    service: thermostat.set_away_mode
+    data:
+      entity_id: !env_var THERMONAME
+      away_mode: 'False'
+
+- alias: Thermostat - Select Away On
+  trigger:
+    platform: state
+    entity_id: input_boolean.thermo_away
+    state: 'on'
+  condition: use_trigger_values
+  action:
+    service: thermostat.set_away_mode
+    data:
+      entity_id: !env_var THERMONAME
+      away_mode: 'True'

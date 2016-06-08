@@ -1,0 +1,4 @@
+- platform: uvc
+  nvr: !env_var NVRHOST
+  port: !env_var NVRPORT
+  key: !env_var NVRKEY

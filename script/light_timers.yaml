@@ -1,0 +1,65 @@
+#light timers
+timed_mudroom:
+  alias: "Mud room light timer on"
+  sequence:
+    - service: script.turn_off
+      entity_id: script.mudroom_light_timer
+    - service: switch.turn_on
+      entity_id: !env_var MUDROOM
+    - service: script.turn_on
+      entity_id: script.mudroom_light_timer
+
+mudroom_light_timer:
+  alias: "Mud room light timer"
+  sequence:
+    - condition: state
+      entity_id: input_boolean.auto_light_timer
+      state: 'on'
+    - delay:
+        minutes: 10
+    - service: switch.turn_off
+      entity_id: !env_var MUDROOM
+
+timed_diningroom:
+  alias: "Dining room light timer on"
+  sequence:
+    - service: script.turn_off
+      entity_id: script.diningroom_light_timer
+    - service: light.turn_on
+      entity_id: !env_var DININGROOM
+    - service: script.turn_on
+      entity_id: script.diningroom_light_timer
+
+diningroom_light_timer:
+  alias: "Dining room light timer"
+  sequence:
+    - condition: state
+      entity_id: input_boolean.auto_light_timer
+      state: 'on'
+    - delay:
+        minutes: 10
+    - service: light.turn_off
+      entity_id: !env_var DININGROOM
+
+timed_garage_lights:
+  alias: "On garage lights set timer"
+  sequence:
+    - service: script.turn_off
+      entity_id: script.garage_lights_timer
+    - service: switch.turn_on
+      entity_id: !env_var GARAGELIGHTS
+    - service: script.turn_on
+      entity_id: script.garage_lights_timer
+
+garage_lights_timer:
+  alias: "Turn off garage lights after minutes"
+  sequence:
+    - condition: state
+      entity_id: input_boolean.auto_light_timer
+      state: 'on'
+    - delay:
+        minutes: 10
+    - service: switch.turn_off
+      entity_id: !env_var GARAGELIGHTS
+
+

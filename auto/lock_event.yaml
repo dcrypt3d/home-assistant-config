@@ -1,0 +1,68 @@
+#lock events
+- alias: Front Door Lock Event           
+  trigger:
+    platform: event
+    event_type: call_service
+    event_data:
+      service: lock
+      service_data:
+        entity_id: lock.front_door__3
+  action:
+    service: shell_command.frontdoorlocked
+    
+- alias: Front Door Unlock Event           
+  trigger:
+    platform: event
+    event_type: call_service
+    event_data:
+      service: unlock
+      service_data:
+        entity_id: lock.front_door__3
+  action:
+    service: shell_command.frontdoorunlocked
+    
+- alias: Back Door Lock Event           
+  trigger:
+    platform: event
+    event_type: call_service
+    event_data:
+      service: lock
+      service_data:
+        entity_id: lock.back_door__2
+  action:
+    service: shell_command.backdoorlocked
+    
+- alias: Back Door Unlock Event           
+  trigger:
+    platform: event
+    event_type: call_service
+    event_data:
+      service: unlock
+      service_data:
+        entity_id: lock.back_door__2
+  action:
+    service: shell_command.backdoorunlocked
+
+- alias: Garage Door Lock Event           
+  trigger:
+    platform: event
+    event_type: call_service
+    event_data:
+      service: lock
+      service_data:
+        entity_id: lock.garage_door__4
+  action:
+    service: shell_command.garagedoorlocked
+    
+- alias: Garage Door Unlock Event           
+  trigger:
+    platform: event
+    event_type: call_service
+    event_data:
+      service: unlock
+      service_data:
+        entity_id: lock.garage_door__3
+  action:
+    service: shell_command.garagedoorunlocked
+
+

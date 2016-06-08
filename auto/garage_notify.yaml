@@ -1,0 +1,31 @@
+#garage notify
+- alias: Notify garage open
+  trigger:  
+    - platform: state
+      entity_id: sensor.garageopener_status
+      state: 'open'
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: sensor.garageopener_status
+      state: 'open'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: sensor.garageopener_status
+      state: 'open'
+      for:
+        minutes: 20
+    - platform: state
+      entity_id: sensor.garageopener_status
+      state: 'open'
+      for:
+        minutes: 30  
+  condition:
+    condition: state
+    entity_id: input_boolean.garageopener_timer
+    state: 'on'
+  action:
+    - service: notify.myiphone
+      data:
+        message: "Garage door was left open"

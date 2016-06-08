@@ -1,0 +1,8 @@
+- name: "Dinner"
+  entities:
+    !env_var MUDROOM: on
+    !env_var KITCHENCENTER: on
+    !env_var KITCHENMAIN: on
+    !env_var DININGROOM:
+      state: 'on'
+      brightness: '75'

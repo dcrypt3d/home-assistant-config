@@ -1,0 +1,49 @@
+#thermo hvac
+- alias: Thermostat - Select HVAC Auto
+  trigger:
+    platform: state
+    entity_id: input_select.thermo_hvac
+    state: 'Auto'
+  condition: use_trigger_values
+  action:
+    service: thermostat.set_hvac_mode
+    data:
+      entity_id: !env_var THERMONAME
+      hvac_mode: 'auto'
+
+- alias: Thermostat - Select HVAC Cool
+  trigger:
+    platform: state
+    entity_id: input_select.thermo_hvac
+    state: 'Cool'
+  condition: use_trigger_values
+  action:
+    service: thermostat.set_hvac_mode
+    data:
+      entity_id: !env_var THERMONAME
+      hvac_mode: 'cool'
+
+- alias: Thermostat - Select HVAC Heat
+  trigger:
+    platform: state
+    entity_id: input_select.thermo_hvac
+    state: 'Heat'
+  condition: use_trigger_values
+  action:
+    service: thermostat.set_hvac_mode
+    data:
+      entity_id: !env_var THERMONAME
+      hvac_mode: 'heat'
+
+- alias: Thermostat - Select HVAC Off
+  trigger:
+    platform: state
+    entity_id: input_select.thermo_hvac
+    state: 'Off'
+  condition: use_trigger_values
+  action:
+    service: thermostat.set_hvac_mode
+    data:
+      entity_id: !env_var THERMONAME
+      hvac_mode: 'off'
+

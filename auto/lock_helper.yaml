@@ -1,0 +1,43 @@
+- alias: Back Door Lock keypad unlocks Garage Door Lock
+  trigger:
+    platform: state
+    entity_id: !env_var BDAT
+    state: '18'
+  condition:
+    condition: and
+    conditions:
+    - condition: time
+      after: '06:00:00'
+      before: '23:00:00'
+    - condition: state
+      entity_id: group.users
+      state: 'home'
+  action:
+    - condition: template
+      value_template: "{{ trigger.from_state.state != '18' }}"
+    - service: script.timed_garage_lights
+    - service: lock.unlock
+      entity_id: !env_var GARAGEDOORLOCK
+      
+- alias: Garage Door Lock keypad unlocks Back Door Lock
+  trigger:
+    platform: state
+    entity_id: !env_var GDAT
+    state: '18'
+  condition:
+    condition: and
+    conditions:
+    - condition: time
+      after: '06:00:00'
+      before: '23:00:00'              
+    - condition: state
+      entity_id: group.users
+      state: 'home'
+  action:
+    - condition: template
+      value_template: "{{ trigger.from_state.state != '18' }}"
+    - service: lock.unlock
+      entity_id: !env_var BACKDOORLOCK
+    - service: switch.turn_off
+      entity_id: !env_var GARAGELIGHTS
+    - service: script.timed_mudroom

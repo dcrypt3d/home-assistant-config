@@ -1,0 +1,40 @@
+#lights cloud cover
+- alias: Turn on patio lights when cloud coverage is high
+  trigger:
+    platform: state
+    entity_id: sensor.weather_cloud_coverage
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.patio_lights
+        state: 'off'
+      - condition: template
+        value_template: "{{ state.sensor.weather_precip_probability >= 60 }}"
+      - condition: template
+        value_template: "{{ trigger.to_state.state >= '75' }}"
+  action:
+    service: switch.turn_on
+    entity_id: group.patio_lights
+
+- alias: Turn off patio lights when cloud coverage is low
+  trigger:
+    platform: state
+    entity_id: sensor.weather_cloud_coverage
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.patio_lights
+        state: 'on'
+      - condition: numeric_state
+        entity_id: sun.sun
+        value_template: '{{ state.attributes.elevation }}'
+        above: 0
+      - condition: template     
+        value_template: "{{ state.sensor.weather_precip_probability <= 60 }}"
+      - condition: template
+        value_template: "{{ trigger.to_state.state <= '75' }}"
+  action:
+    service: switch.turn_off
+    entity_id: group.patio_lights

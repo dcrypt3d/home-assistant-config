@@ -1,0 +1,5 @@
+- name: "Movie Time"
+  entities:
+    !env_var DININGROOM: off
+    !env_var LIVINGROOM: off
+    !env_var KITCHENCENTER: on

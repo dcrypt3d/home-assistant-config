@@ -1,0 +1,48 @@
+#lock timers
+timed_backdoor:
+  alias: "Back door lock timer on"
+  sequence:
+    - service: script.turn_off
+      entity_id: script.backdoor_lock_timer
+    - service: script.turn_on
+      entity_id: script.backdoor_lock_timer
+
+backdoor_lock_timer:
+  alias: "Back door lock timer"
+  sequence:
+    - delay:
+        minutes: 5
+    - service: lock.lock
+      entity_id: !env_var BACKDOORLOCK
+
+timed_frontdoor:
+  alias: "Front door lock timer on"
+  sequence:
+    - service: script.turn_off
+      entity_id: script.frontdoor_lock_timer
+    - service: script.turn_on
+      entity_id: script.frontdoor_lock_timer
+
+frontdoor_lock_timer:
+  alias: "Front door lock timer"
+  sequence:
+    - delay:
+        minutes: 5
+    - service: lock.lock
+      entity_id: !env_var FRONTDOORLOCK
+
+timed_garagedoor:
+  alias: "Garage door lock timer on"
+  sequence:
+    - service: script.turn_off
+      entity_id: script.garagedoor_lock_timer
+    - service: script.turn_on
+      entity_id: script.garagedoor_lock_timer
+
+garagedoor_lock_timer:
+  alias: "Garage door lock timer"
+  sequence:
+    - delay:
+        minutes: 5
+    - service: lock.lock
+      entity_id: !env_var GARAGEDOORLOCK

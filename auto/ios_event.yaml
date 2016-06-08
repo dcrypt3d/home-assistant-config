@@ -1,0 +1,21 @@
+- alias: iOS Event Sound Alarm
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: SOUND_ALARM
+  action:
+    service: switch.turn_on
+    entity_id: !env_var SIREN
+
+- alias: iOS Event Silence Alarm
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: SILENCE_ALARM
+  action:
+    - service: switch.turn_off
+      entity_id: !env_var SIREN
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.panic_mode

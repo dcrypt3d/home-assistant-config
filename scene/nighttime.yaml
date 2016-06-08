@@ -1,0 +1,9 @@
+- name: "Night Time"
+  entities:
+    !env_var BEDROOM:
+      state: on
+      brightness: '40'
+    !env_var BOUDOIR:
+      state: 'on'
+      brightness: '75'
+

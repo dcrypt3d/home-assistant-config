@@ -1,0 +1,62 @@
+- platform: template
+  sensors:
+      bdlockstatus:
+        friendly_name: 'Back Door Lock Status'
+        value_template: >-
+            {%- if is_state("sensor.back_door_alarm_type_2", "21") %}
+                locked manually
+            {%  elif is_state("sensor.back_door_alarm_type_2", "22") %}
+                unlocked manually
+            {%  elif is_state("sensor.back_door_alarm_type_2", "18") %}
+                locked with keypad
+            {%  elif is_state("sensor.back_door_alarm_type_2", "19") %}
+                unlocked with keypad
+            {%  elif is_state("sensor.back_door_alarm_type_2", "1") %}
+                locked with HA
+            {%  elif is_state("sensor.back_door_alarm_type_2", "2") %}
+                unlocked with HA
+            {% else %}
+                unknown
+            {%- endif %}
+
+- platform: template
+  sensors:
+      fdlockstatus:
+        friendly_name: 'Front Door Lock Status'
+        value_template: >-
+            {%- if is_state("sensor.front_door_alarm_type_3", "21") %}
+                locked manually
+            {%  elif is_state("sensor.front_door_alarm_type_3", "22") %}
+                unlocked manually
+            {%  elif is_state("sensor.front_door_alarm_type_3", "18") %}
+                locked with keypad
+            {%  elif is_state("sensor.front_door_alarm_type_3", "19") %}
+                unlocked with keypad
+            {%  elif is_state("sensor.front_door_alarm_type_3", "1") %}
+                locked with HA
+            {%  elif is_state("sensor.front_door_alarm_type_3", "2") %}
+                unlocked with HA
+            {% else %}
+                unknown
+            {%- endif %}
+
+- platform: template
+  sensors:
+      gdlockstatus:
+        friendly_name: 'Garage Door Lock Status'
+        value_template: >-
+            {%- if is_state("sensor.garage_door_alarm_type_4", "21") %}
+                locked manually
+            {%  elif is_state("sensor.garage_door_alarm_type_4", "22") %}
+                unlocked manually
+            {%  elif is_state("sensor.garage_door_alarm_type_4", "18") %}
+                locked with keypad
+            {%  elif is_state("sensor.garage_door_alarm_type_4", "19") %}
+                unlocked with keypad
+            {%  elif is_state("sensor.garage_door_alarm_type_4", "1") %}
+                locked with HA
+            {%  elif is_state("sensor.garage_door_alarm_type_4", "2") %}
+                unlocked with HA
+            {% else %}
+                unknown
+            {%- endif %}

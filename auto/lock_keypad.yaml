@@ -1,0 +1,35 @@
+#door lock keypad
+- alias: Front Door Locked With Keypad
+  trigger:
+    - platform: state
+      entity_id: !env_var FRONTDOORLOCK
+      state: 'locked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: !env_var FDAC                     
+        state: '5'
+      - condition: state
+        entity_id: !env_var FDAT                 
+        state: '18'
+  action:
+    - service: script.frontdoor_leaving
+
+- alias: Back Door Locked With Keypad
+  trigger:
+    - platform: state
+      entity_id: !env_var BACKDOORLOCK
+      state: 'locked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: !env_var BDAC                     
+        state: '5'
+      - condition: state
+        entity_id: !env_var BDAT                 
+        state: '18'
+  action:
+    - service: script.backdoor_leaving
+

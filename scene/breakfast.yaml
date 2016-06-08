@@ -1,0 +1,5 @@
+- name: "Breakfast"
+  entities:
+    !env_var HALLWAY: on
+    !env_var MUDROOM: on
+    !env_var KITCHENCENTER: on

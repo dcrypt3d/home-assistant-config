@@ -1,0 +1,39 @@
+#security
+- alias: Disable Security When Home
+  trigger:
+    platform: state
+    entity_id: group.users
+    from: not_home
+    to: home
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.security_system
+
+- alias: Enable Security When Not Home
+  trigger:
+    platform: state
+    entity_id: group.users  
+    from: home
+    to: not_home
+  action:
+    - service: lock.lock
+    - service: homeassistant.turn_off
+      entity_id: group.indoor_lights
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.security_system
+
+- alias: Panic Mode On
+  trigger:
+    platform: state
+    entity_id: input_boolean.panic_mode
+    state: 'on'
+  action:
+    service: script.alarm_tripped 
+        
+- alias: Panic Mode Off
+  trigger:
+    platform: state
+    entity_id: input_boolean.panic_mode
+    state: 'off'
+  action:
+    service: script.all_clear

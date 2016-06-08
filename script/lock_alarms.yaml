@@ -1,0 +1,96 @@
+#lock alarms
+fdburglar:
+  alias: "Front Door Lock Forced Entry"
+  sequence:
+    - service: notify.myiphone
+      data:
+        message: "Front door lock forced entry alarm was tripped"
+        data:
+          push:
+            badge: 1
+            category: "ALARM"
+    - event: LOGBOOK_ENTRY
+      event_data:
+        name: Front Door Lock
+        message: forced entry alarm was tripped
+        entity_id: !env_var FRONTDOORLOCK
+
+bdburglar:
+  alias: "Back Door Lock Forced Entry"
+  sequence:
+    - service: notify.myiphone
+      data:         
+        message: "Back door lock forced entry alarm was tripped"
+        data:
+          push:
+            badge: 1
+            category: "ALARM"
+    - event: LOGBOOK_ENTRY
+      event_data:
+        name: Back Door Lock
+        message: forced entry alarm was tripped      
+        entity_id: !env_var BACKDOORLOCK
+
+gdburglar:
+  alias: "Garage Door Lock Forced Entry"
+  sequence:
+    - service: notify.myiphone
+      data:         
+        message: "Garage door lock forced entry alarm was tripped"
+        data:
+          push:
+            badge: 1
+            category: "ALARM"
+    - event: LOGBOOK_ENTRY
+      event_data:
+        name: Garage Door Lock
+        message: forced entry alarm was tripped
+        entity_id: !env_var GARAGEDOORLOCK
+
+fdtamper:
+  alias: "Front Door Lock Keypad Tamper"
+  sequence:
+    - service: notify.myiphone
+      data:
+        message: "Front door lock keypad tamper alarm was tripped"
+        data:
+          push:
+            badge: 1
+            category: "ALARM"
+    - event: LOGBOOK_ENTRY
+      event_data:
+        name: Front Door Lock
+        message: keypad tamper alarm was tripped
+        entity_id: !env_var FRONTDOORLOCK
+
+bdtamper:
+  alias: "Back Door Lock Keypad Tamper"
+  sequence:
+    - service: notify.myiphone
+      data:
+        message: "Back door lock keypad tamper alarm was tripped"
+        data:
+          push:
+            badge: 1
+            category: "ALARM"
+    - event: LOGBOOK_ENTRY
+      event_data:
+        name: Back Door Lock
+        message: keypad tamper alarm was tripped
+        entity_id: !env_var BACKDOORLOCK
+
+gdtamper:
+  alias: "Garage Door Lock Keypad Tamper"
+  sequence:
+    - service: notify.myiphone
+      data:
+        message: "Garage door lock keypad tamper alarm was tripped"
+        data:
+          push:
+            badge: 1
+            category: "ALARM"
+    - event: LOGBOOK_ENTRY
+      event_data:
+        name: Garage Door Lock
+        message: keypad tamper alarm was tripped
+        entity_id: !env_var GARAGEDOORLOCK

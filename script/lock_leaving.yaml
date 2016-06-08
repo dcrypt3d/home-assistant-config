@@ -1,0 +1,27 @@
+#leaving
+frontdoor_leaving:
+  alias: "Front Door Locked & Leaving"
+  sequence:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.garage_beacon
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.house_beacon
+    - service: script.garagebeacon_delay
+
+backdoor_leaving:
+  alias: "Back Door Locked & Leaving"
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.garage_beacon
+    - service: homeassistant.turn_on 
+      entity_id: input_boolean.house_beacon
+
+garagebeacon_delay:
+  alias: "Garage Beacon Delay"
+  sequence:
+    - delay:
+        minutes: 10
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.house_beacon
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.garage_beacon

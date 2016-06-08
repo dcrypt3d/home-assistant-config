@@ -1,0 +1,18 @@
+#lock battery alerts
+- alias: Lock battery low alert
+  trigger:
+    - platform: state
+      entity_id: sensor.front_door_batt
+    - platform: state
+      entity_id: sensor.back_door_batt
+    - platform: state
+      entity_id: sensor.garage_door_batt
+  condition:
+    condition: template
+    value_template: "{{ trigger.to_state.state <= '5' }}"
+  action:
+    service: notify.myiphone
+    data_template:
+      message: >
+        The {{ trigger.entity_id.split('.')[1].replace('_batt', '').replace('_',' ') }} lock batteries are at {{ trigger.to_state.state }} %. 
+

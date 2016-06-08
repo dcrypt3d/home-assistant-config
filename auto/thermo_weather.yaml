@@ -1,0 +1,42 @@
+#thermo weather
+- alias: Thermostat Weather Mode - Home
+  trigger:
+    platform: state
+    entity_id: sensor.weather_temperature
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: sensor.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.thermo_weather
+      state: 'on'
+    - condition: state
+      entity_id: sensor.thermostat_mode
+      state: 'home'
+    - condition: template
+      value_template: '{% if trigger.to_state.state|round != trigger.from_state.state|round %}true{% endif %}'
+  action:
+    service: script.auto_thermo
+
+- alias: Thermostat Weather Mode - Sleep
+  trigger:
+    platform: state
+    entity_id: sensor.weather_temperature
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: sensor.thermostat_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.thermo_weather
+      state: 'on'
+    - condition: state
+      entity_id: sensor.thermostat_mode
+      state: 'sleep'
+    - condition: template
+      value_template: '{% if trigger.to_state.state|round != trigger.from_state.state|round %}true{% endif %}'
+  action:
+    service: script.auto_thermo

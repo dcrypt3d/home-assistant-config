@@ -1,0 +1,19 @@
+#garage
+timed_garageopener:
+  alias: "On open garage set timer"
+  sequence:
+    - service: script.turn_off
+      entity_id: script.garage_opener_timer
+    - service: script.turn_on
+      entity_id: script.garage_opener_timer
+
+garage_opener_timer:
+  alias: "Close garage after minutes"
+  sequence:
+    - condition: state
+      entity_id: input_boolean.garageopener_timer
+      state: 'on'
+    - delay:
+        minutes: 5
+    - service: garage_door.close
+      entity_id: garage_door.garage_opener

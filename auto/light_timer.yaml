@@ -1,0 +1,63 @@
+#lights & locks
+- alias: Turn on mudroom when backdoor unlocked from keypad
+  trigger:
+    platform: state
+    entity_id: !env_var BACKDOORLOCK
+    state: 'unlocked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: !env_var BDAT
+        state: '19'
+      - condition: state
+        entity_id: !env_var BDAC 
+        state: '6'
+  action:
+    service: script.timed_mudroom
+
+- alias: Turn on dining room when frontdoor unlocked from keypad
+  trigger:
+    platform: state
+    entity_id: !env_var FRONTDOORLOCK
+    state: 'unlocked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: !env_var FDAT
+        state: '19'
+      - condition: state
+        entity_id: !env_var FDAC
+        state: '6'
+  action:
+    service: script.timed_diningroom
+
+- alias: Turn on garage lights when garagedoor unlocked from keypad
+  trigger:
+    platform: state
+    entity_id: !env_var GARAGEDOORLOCK
+    state: 'unlocked'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: !env_var GDAT
+        state: '19'
+      - condition: state
+        entity_id: !env_var GDAC
+        state: '6'
+  action:
+    service: script.timed_garage_lights
+
+- alias: Turn on garage lights when garage door opened
+  trigger:
+    platform: state
+    entity_id: !env_var MYQDOOR
+    state: 'open'
+  condition:
+    condition: state
+    entity_id: group.users
+    state: 'home'
+  action:
+    service: script.timed_garage_lights

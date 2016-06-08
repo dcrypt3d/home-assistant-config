@@ -1,0 +1,9 @@
+#system
+- platform: glances
+  name: System Stats
+  host: !env_var GLANCESHOST
+  port: !env_var GLANCESPORT
+  resources:
+    - 'disk_use_percent'
+    - 'memory_use_percent'
+    - 'processor_load'

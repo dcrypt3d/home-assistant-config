@@ -1,0 +1,5 @@
+- name: "Lock Doors"
+  entities:
+    !env_var FRONTDOORLOCK: locked
+    !env_var BACKDOORLOCK: locked
+    !env_var GARAGEDOORLOCK: locked
