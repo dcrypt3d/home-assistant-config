@@ -1,5 +1,4 @@
 # Home Assistant
-Example Config
 
 https://home-assistant.io
 
