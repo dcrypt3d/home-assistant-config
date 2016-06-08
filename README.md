@@ -17,6 +17,7 @@ Devices:
 <li>Ecobee 3</li>
 <li>MyQ Garage Door Controller</li>
 <li>Ubiquity UVC-Micro</li>
+<li>Minew i3 Long Range iBeacons</li>
 </ul>
 
 Notes:<ul>
