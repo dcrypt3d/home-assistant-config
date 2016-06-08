@@ -2,10 +2,8 @@
 auto_thermo:
   alias: "Thermostat weather control"
   sequence:
-    - service: thermostat.set_hvac_mode
-      data:
-        entity_id: thermostat.home
-        hvac_mode: 'auto'
+    - condition: template
+      value_template: "{% if is_state_attr('thermostat.home', 'hvac_mode', 'auto') %}true{% endif %}"
 
     - service: thermostat.set_target_temp_high
       data_template:
