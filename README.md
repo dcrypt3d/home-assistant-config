@@ -16,7 +16,7 @@ Devices:
 <li>Ecobee 3</li>
 <li>MyQ Garage Door Controller</li>
 <li>Ubiquity UVC-Micro</li>
-<li>Minew i3 Long Range iBeacons</li>
+<li>Minew i3 Long Range <a href=http://www.amazon.com/Long-Range-Bluetooth-Programmable-Management-Platform/dp/B01CERV4KG>iBeacons</a></li>
 </ul>
 
 Notes:<ul>
