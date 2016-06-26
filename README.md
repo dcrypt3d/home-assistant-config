@@ -11,11 +11,11 @@ Devices:
 <ul>
 <li>Schlage BE469CEN Locks</li>
 <li>GE 12722 / Linear WD500Z-1 Switches/Dimmers</li>
-<li>Aeotec Window/Door Sensor 6</li>
+<li>Aeotec Window/Door Sensor</li>
 <li>Aeotec Siren</li>
-<li>Ecobee 3</li>
+<li>Ecobee 3 Thermostat</li>
 <li>MyQ Garage Door Controller</li>
-<li>Ubiquity UVC-Micro</li>
+<li>Ubiquity UVC-Micro Camera</li>
 <li>Minew i3 Long Range <a href=http://www.amazon.com/Long-Range-Bluetooth-Programmable-Management-Platform/dp/B01CERV4KG>iBeacons</a></li>
 </ul>
 
