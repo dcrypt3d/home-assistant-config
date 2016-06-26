@@ -2,11 +2,29 @@
 - platform: template
   sensors:
     front_door_batt:
-      value_template: '{{ states.sensor.front_door_power_management_3.attributes.battery_level }}'
+      value_template: >-
+        {% if states.lock.front_door__3 != None %}
+          {{ states.lock.front_door__3.attributes.battery_level }}
+        {% else %}
+        {% endif %}
       unit_of_measurement: '%'
+      warnings: off
+      entity_id: lock.front_door__3
     back_door_batt:
-      value_template: '{{ states.sensor.back_door_power_management_2.attributes.battery_level }}'
+      value_template: >-
+        {% if states.lock.back_door__2 != None %}
+          {{ states.lock.back_door__2.attributes.battery_level }}
+        {% else %}
+        {% endif %}
       unit_of_measurement: '%'
+      warnings: off
+      entity_id: lock.back_door__2
     garage_door_batt:
-      value_template: '{{ states.sensor.garage_door_power_management_4.attributes.battery_level }}'
+      value_template: >-
+        {% if states.lock.garage_door__4 != None %}
+          {{ states.lock.garage_door__4.attributes.battery_level }}
+        {% else %}
+        {% endif %}
       unit_of_measurement: '%'
+      warnings: off
+      entity_id: lock.garage_door__4

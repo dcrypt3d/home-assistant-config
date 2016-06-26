@@ -13,6 +13,19 @@
     - service: script.turn_off
       entity_id: script.garagedoor_lock_timer
 
+- alias: Re-enable lock timers
+  trigger:  
+    platform: state
+    entity_id: input_boolean.auto_lock_timer
+    state: 'off'
+    for:
+      minutes: 60
+  condition: use_trigger_values
+  action:
+    service: homeassistant.turn_on
+    data:
+        entity_id: input_boolean.auto_lock_timer
+
 - alias: Lock back door after set time
   trigger:
     platform: state

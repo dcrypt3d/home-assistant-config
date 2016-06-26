@@ -4,6 +4,5 @@
     platform: state
     entity_id: !env_var BASEMENTWINDOW
     state: 'on'
-  condition: use_trigger_values
   action:
     service: script.basementwindow

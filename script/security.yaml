@@ -2,25 +2,46 @@
 all_clear:
   alias: "All Clear"
   sequence:
+    - service: homeassistant.turn_off
+      entity_id: script.alarm_home
+    - service: homeassistant.turn_off
+      entity_id: script.alarm_away
     - service: switch.turn_off
       entity_id: !env_var SIREN
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.alarm_tripped
-    - service: script.turn_off
-      data:
-        entity_id: script.alarm_tripped
-
-alarm_tripped:
-  alias: "Alarm Tripped"
-  sequence:
+    - service: alarm_control_panel.alarm_disarm
+      entity_id: alarm_control_panel.security_system
     - service: notify.myiphone
       data:
-        message: "Alarm Has Been Tripped!"
+        message: "All Clear"
         data:
           push:
             badge: 0
             category: "ALARM"
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.alarm_tripped
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.panic_mode
+
+alarm_away:
+  alias: "Away Alarm Tripped"
+  sequence:
+    - service: switch.turn_on
+      entity_id: !env_var SIREN
+    - service: notify.myiphone
+      data:
+        message: "Siren Activated!"
+        data:
+          push:
+            badge: 0
+            category: "ALARM"
+
+alarm_home:
+  alias: "Away Alarm Tripped"
+  sequence:
+    - delay:
+        minutes: 5
+    - service: switch.turn_on
+      entity_id: !env_var SIREN
+    - service: notify.myiphone
+      data:
+        message: "Siren Activated!"
+        data:
+          push:
+            badge: 0
+            category: "ALARM"

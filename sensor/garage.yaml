@@ -1,5 +1,12 @@
 #garage
 - platform: template
   sensors:
-    garageopener_status:
-      value_template: '{{ states.garage_door.garage_opener.state }}'
+      garageopener_status:
+        value_template: >-
+            {% if states.garage_door.garage_opener != None %}
+              {{ states.garage_door.garage_opener.state }}
+            {% else %}
+              unknown
+            {% endif %}
+        warnings: off
+        entity_id: garage_door.garage_opener

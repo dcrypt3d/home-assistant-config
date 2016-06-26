@@ -1,0 +1,9 @@
+- name: "Morning"
+  entities:
+    !env_var BOUDOIR:
+      state: 'on'
+      transition: '300'
+      brightness: '65'
+    !env_var HALLWAY: on
+    !env_var KITCHENMAIN: on
+    !env_var MUDROOM: on

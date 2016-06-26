@@ -1,13 +1,16 @@
 #locks
 !env_var BACKDOORLOCK:
   icon: mdi:lock
-  friendly_name: Back Door Lock
+  friendly_name: 'Back Door'
+  haaska_hidden: true
 !env_var FRONTDOORLOCK:
   icon: mdi:lock
-  friendly_name: Front Door Lock
+  friendly_name: 'Front Door'
+  haaska_hidden: true
 !env_var GARAGEDOORLOCK:
   icon: mdi:lock
-  friendly_name: Garage Door Lock
+  friendly_name: 'Garage Door'
+  haaska_hidden: true
 sensor.bdlockstatus:
   icon: mdi:lock
 sensor.fdlockstatus:
@@ -50,7 +53,7 @@ sensor.garage_door_batt:
 
 #garage
 sensor.garageopener_status:
-  friendly_name: 'Garage Status'
+  friendly_name: 'Garage Opener'
 
 #thermostat
 group.thermostat:
@@ -58,25 +61,47 @@ group.thermostat:
 !env_var THERMONAME:
   icon: mdi:fan
   friendly_name: 'Ecobee'
-sensor.thermostat_mode:
+sensor.ecobee_humidity:
+  icon: mdi:water-percent
+  friendly_name: 'Home Humidity'
+sensor.ecobee_occupancy:
+  friendly_name: 'Home Occupancy'
+sensor.ecobee_mode:
   icon: mdi:calendar-clock
   friendly_name: 'Schedule'
-sensor.thermostat_away:
+sensor.ecobee_away:
   icon: mdi:account
   friendly_name: 'Away Mode'
-sensor.thermostat_hvac:
+sensor.ecobee_hvac:
   icon: mdi:chemical-weapon
   friendly_name: 'HVAC Mode'
 
 #cameras
 camera.garage:
-  friendly_name: 'Garage Camera'
   icon: mdi:camcorder
+  friendly_name: 'Garage'
 
 #scenes
 scene.lock_doors:
   icon: mdi:lock
-  friendly_name: "Lock Doors"
+  friendly_name: 'Lock Doors'
+  haaska_hidden: true
+scene.dinner:
+  hasska_name: 'Dinner'
+scene.movie_time:
+  hasska_name: 'Movie Time'
+scene.night_time:
+  hasska_name: 'Night Time'
+scene.wakeup:
+  hasska_name: 'Morning'
+
+#input_boolean
+input_boolean.auto_lock_timer:
+  haaska_name: 'Auto Locks'
+input_boolean.garageopener_timer:
+  haaska_name: 'Auto Garage'
+input_boolean.auto_light_timer:
+  haaska_name: 'Auto Lights'
 
 #lights
 !env_var GARAGELIGHTS:
@@ -88,9 +113,11 @@ scene.lock_doors:
 !env_var BOUDOIR:
   icon: mdi:hanger
   friendly_name: 'Boudoir'
+  haaska_name: 'Closet'
 !env_var BEDROOM:
   icon: mdi:hotel
   friendly_name: 'Bed Room'
+  haaska_name: 'Bedroom'
 !env_var LIVINGROOM:
   icon: mdi:readability
   friendly_name: 'Living Room'
@@ -109,7 +136,143 @@ scene.lock_doors:
 !env_var KITCHENCENTER:
   icon: mdi:spotlight
   friendly_name: 'Kitchen Center'
-  
+!env_var DININGROOM:
+  haaska_name: 'Dining Room'
+
+#groups & views
+group.default_view:
+  haaska_hidden: true
+group.sensor_view:
+  haaska_hidden: true
+group.light_view:
+  haaska_hidden: true
+group.camera_view:
+  haaska_hidden: true
+group.media_view:
+  haaska_hidden: true
+group.security:
+  haaska_hidden: true
+group.entry:
+  haaska_hidden: true
+group.controls:
+  haaska_hidden: true
+group.scenes:
+  haaska_hidden: true
+group.lights:
+  haaska_hidden: true
+group.indoor_lights:
+  haaska_hidden: true
+group.patio_lights:
+  haaska_name: 'Patio'
+group.outdoor_lights:
+  haaska_name: 'Outdoor Lights'
+group.thermo:
+  haaska_hidden: true
+group.garage:
+  haaska_hidden: true
+group.locks:
+  haaska_hidden: true
+group.batt_locks:
+  haaska_hidden: true
+group.lock_alarm:
+  haaska_hidden: true
+group.lock_status:
+  haaska_hidden: true
+group.users:
+  haaska_hidden: true
+group.commute:
+  haaska_hidden: true
+group.rooms:
+  haaska_hidden: true
+group.bedroom:
+  haaska_name: 'Bedroom Lights'
+group.hallway:
+  haaska_hidden: true
+group.diningroom:
+  haaska_hidden: true
+group.kitchen:
+  haaska_name: 'Kitchen'
+group.livingroom:
+  haaska_hidden: true
+group.mudroom:
+  haaska_hidden: true
+group.radar:
+  haaska_hidden: true
+group.climate:
+  haaska_hidden: true
+group.system:
+  haaska_hidden: true
+group.speed:
+  haaska_hidden: true
+group.sabnzbd:
+  haaska_hidden: true
+group.all_switches:
+  haaska_hidden: true
+group.all_garage_doors:
+  haaska_hidden: true
+group.all_lights:
+  haaska_hidden: true
+group.all_locks:
+  haaska_hidden: true
+group.all_devices:
+  haaska_hidden: true
+
+#script
+script.alarm_tripped:
+  haaska_hidden: true
+script.all_clear:
+  haaska_hidden: true
+script.auto_thermo:
+  haaska_hidden: true
+script.backdoor_leaving:
+  haaska_hidden: true
+script.backdoor_lock_timer:
+  haaska_hidden: true
+script.basementwindow:
+  haaska_hidden: true
+script.bdburglar:
+  haaska_hidden: true
+script.bdtamper:
+  haaska_hidden: true
+script.diningroom_light_timer:
+  haaska_hidden: true
+script.fdburglar:
+  haaska_hidden: true
+script.fdtamper:
+  haaska_hidden: true
+script.frontdoor_leaving:
+  haaska_hidden: true
+script.frontdoor_lock_timer:
+  haaska_hidden: true
+script.garage_lights_timer:
+  haaska_hidden: true
+script.garage_opener_timer:
+  haaska_hidden: true
+script.garagebeacon_delay:
+  haaska_hidden: true
+script.garagedoor_lock_timer:
+  haaska_hidden: true
+script.gdburglar:
+  haaska_hidden: true
+script.gdtamper:
+  haaska_hidden: true
+script.mudroom_light_timer:
+  haaska_hidden: true
+script.timed_backdoor:
+  haaska_hidden: true
+script.timed_diningroom:
+  haaska_hidden: true
+script.timed_frontdoor:
+  haaska_hidden: true
+script.timed_garage_lights:
+  haaska_hidden: true
+script.timed_garagedoor:
+  haaska_hidden: true
+script.timed_garageopener:
+  haaska_hidden: true
+script.timed_mudroom:
+  haaska_hidden: true
+
 #googletravel
 sensor.google_travel_car_time:
   icon: mdi:car

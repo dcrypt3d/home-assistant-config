@@ -1,0 +1,23 @@
+#users
+- platform: template
+  sensors:
+      myphonedistance:
+        friendly_name: "Distance"
+        value_template: >-
+            {% if states.device_tracker.myphone != None %}
+              {{ distance(states.device_tracker.myphone) |  multiply(0.000621) | round }} miles
+            {% endif %}
+        warnings: off
+        entity_id: device_tracker.myphone
+        
+- platform: template
+  sensors:
+      herphonedistance:
+        friendly_name: "Distance"
+        value_template: >-
+            {% if states.device_tracker.herphone != None %}
+              {{ distance(states.device_tracker.herphone) | multiply(0.000621) | round }} miles
+            {% endif %}
+        warnings: off
+        entity_id: device_tracker.herphone
+

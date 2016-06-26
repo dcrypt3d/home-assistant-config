@@ -3,11 +3,10 @@ auto_thermo:
   alias: "Thermostat weather control"
   sequence:
     - condition: template
-      value_template: "{% if is_state_attr('thermostat.home', 'hvac_mode', 'auto') %}true{% endif %}"
-
-    - service: thermostat.set_target_temp_high
+      value_template: "{% if is_state_attr('thermostat.ecobee', 'hvac_mode', 'auto') %}true{% endif %}"
+    - service: thermostat.set_temperature
       data_template:
-        target_temp_high: >
+        temperature: >
           {% if states.sensor.weather_temperature.state | float >= 90.0 %}
             {{ 64|round }}
           {% elif states.sensor.weather_temperature.state | float >= 85.0 %}

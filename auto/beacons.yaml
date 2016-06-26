@@ -1,4 +1,4 @@
-#garage beacon detect
+#beacon detect
 - alias: Open Garage When Beacon Detected
   trigger:
     - platform: state
@@ -10,32 +10,40 @@
       from: not_home
       to: garage
   condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ trigger.from_state.state != 'home' }}"
+      - condition: state
+        entity_id: input_boolean.garage_beacon
+        state: 'on'
+  action:
+    - service: alarm_control_panel.alarm_disarm
+    - service: switch.turn_on
+      entity_id: !env_var GARAGELIGHTS
+    - service: garage_door.open
+      entity_id: garage_door.garage_opener
+
+- alias: Close Garage When Beacon Not Detected
+  trigger:
+    - platform: state
+      entity_id: !env_var MYPHONE
+      from: garageclose
+      to: garage
+    - platform: state
+      entity_id: !env_var HERPHONE                 
+      from: garageclose
+      to: garage
+  condition:
+    condition: and
+    conditions:
       - condition: template
         value_template: "{{ trigger.to_state.state != 'home' }}"
       - condition: state
         entity_id: input_boolean.garage_beacon
         state: 'on'
   action:
-    - service: script.timed_garage_lights
-    - service: garage_door.open
-      entity_id: garage_door.garage_opener
-
-- alias: Close Garage When Beacon Not Detected
-  trigger:
-    - platform: zone
-      entity_id: !env_var MYPHONE
-      zone: zone.garage
-      event: leave
-    - platform: zone
-      entity_id: !env_var HERPHONE
-      zone: zone.garage
-      event: leave
-  condition:
-      - condition: state
-        entity_id: input_boolean.garage_beacon
-        state: 'on'
-      - condition: template
-        value_template: "{{ trigger.to_state.state != 'home' }}" 
-  action:
     - service: garage_door.close
       entity_id: garage_door.garage_opener
+    - service: switch.turn_off
+      entity_id: !env_var GARAGELIGHTS

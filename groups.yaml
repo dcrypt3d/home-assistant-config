@@ -18,6 +18,7 @@ sensor_view:
     - group.radar 
     - group.sabnzbd
     - group.batt_locks
+    - group.lock_alarm
     - group.commute
     - group.system
     - group.lock_status
@@ -53,7 +54,8 @@ security:
   icon: mdi:shield-outline
   entities:
     - scene.lock_doors
-    - input_boolean.security_system
+    - alarm_control_panel.security_system
+    - input_boolean.security
     - input_boolean.panic_mode
 
 entry:
@@ -64,7 +66,6 @@ entry:
     - !env_var BACKDOORLOCK
     - !env_var GARAGEDOORLOCK
     - !env_var MYQDOOR
-    - sensor.garageopener_status
 
 controls:
   name: Controls
@@ -79,8 +80,7 @@ scenes:
   name: Scenes
   view: no
   entities:
-    - scene.wakeup
-    - scene.breakfast
+    - scene.morning
     - scene.dinner
     - scene.movie_time
     - scene.night_time
@@ -133,14 +133,13 @@ thermo:
   name: Thermostat
   view: no
   entities:
-    - !env_var THERMONAME
+    - thermostat.ecobee
     - input_boolean.thermo_away
     - input_boolean.thermo_weather
     - input_select.thermo_hvac
-    - !env_var THERMOHUM
-    - !env_var THERMOOC
-    - !env_var THERMOEXTTEMP
-    - !env_var THERMOEXTOC
+    - sensor.ecobee_humidity
+    - sensor.bedroom_temperature
+    - sensor.office_temperature
 
 garage:
   name: Garage
@@ -148,7 +147,6 @@ garage:
   entities:
     - !env_var MYQDOOR
     - !env_var GARAGELIGHTS
-    - sensor.garagedoor_status
     - sensor.garage_camera
     - camera.garage
 
@@ -196,7 +194,11 @@ users:
   view: no
   entities:
     - !env_var MYPHONE
+    - sensor.myphoneupdated
+    - sensor.myphonedistance
     - !env_var HERPHONE
+    - sensor.herphoneupdated
+    - sensor.herphonedistance
 
 commute:
   name: Commute
@@ -204,7 +206,6 @@ commute:
   entities:
     - sensor.google_travel_car_time
     - sensor.google_travel_car_work_time
-    - sensor.google_travel_bike_time
 
 rooms:                                                                                                                                                      
   view: no
@@ -222,8 +223,8 @@ bedroom:
   view: no
   name: Bed Room
   entities:
-    - !env_var THERMOEXTOC
-    - !env_var THERMOEXTTEMP
+    - sensor.bedroom_temperature
+    - sensor.bedroom_occupancy
     - !env_var BOUDOIR
     - !env_var BEDROOM
 

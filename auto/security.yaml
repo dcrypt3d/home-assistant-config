@@ -1,26 +1,78 @@
 #security
-- alias: Disable Security When Home
+- alias: Security - Enable Home/Away
+  trigger:
+    - platform: state
+      entity_id: input_boolean.security
+      state: 'on'
+    - platform: state
+      entity_id: input_boolean.security
+      state: 'off'
+  action:
+    service_template: >
+      {% if is_state('input_boolean.security', 'on') %}
+        alarm_control_panel.alarm_arm_away
+      {% elif is_state('input_boolean.security', 'off') %}
+        alarm_control_panel.alarm_arm_home
+      {% else %}
+      {% endif %}
+    entity_id: alarm_control_panel.security_system
+
+- alias: Security - Arm Home/Away
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.security_system
+      state: 'armed_away'
+    - platform: state
+      entity_id: alarm_control_panel.security_system
+      state: 'armed_home'
+  action:
+    service_template: >
+      {% if is_state('alarm_control_panel.security_system', 'armed_away') %}
+        homeassistant.turn_on
+      {% elif is_state('alarm_control_panel.security_system', 'armed_home') %}
+        homeassistant.turn_off
+      {% else %}
+      {% endif %}
+    entity_id: input_boolean.security
+
+- alias: Security Arm Home
+  trigger:
+    - platform: state
+      entity_id: !env_var FRONTDOORLOCK
+      from: 'unlocked'
+      to: 'locked'
+    - platform: state
+      entity_id: !env_var BACKDOORLOCK
+      from: 'unlocked'
+      to: 'locked'
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: group.users
+        state: 'home'
+      - condition: state
+        entity_id: !env_var MYPHONE
+        state: 'garage'
+      - condition: state
+        entity_id: !env_var HERPHONE
+        state: 'garage'
+  action:
+    - service: alarm_control_panel.alarm_arm_home
+      entity_id: alarm_control_panel.security_system
+
+- alias: Security Arm Away
   trigger:
     platform: state
     entity_id: group.users
-    from: not_home
-    to: home
+    state: 'not_home'
   action:
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.security_system
-
-- alias: Enable Security When Not Home
-  trigger:
-    platform: state
-    entity_id: group.users  
-    from: home
-    to: not_home
-  action:
+    - service: alarm_control_panel.alarm_arm_away
+      entity_id: alarm_control_panel.security_system
     - service: lock.lock
+    - service: garage_door.close
     - service: homeassistant.turn_off
       entity_id: group.indoor_lights
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.security_system
 
 - alias: Panic Mode On
   trigger:
@@ -28,7 +80,13 @@
     entity_id: input_boolean.panic_mode
     state: 'on'
   action:
-    service: script.alarm_tripped 
+    - service: notify.myiphone
+      data:
+        message: "Panic Mode!"
+        data:
+          push:
+            badge: 0
+            category: "ALARM"
         
 - alias: Panic Mode Off
   trigger:
@@ -36,4 +94,6 @@
     entity_id: input_boolean.panic_mode
     state: 'off'
   action:
-    service: script.all_clear
+    - service: script.all_clear
+    - service: alarm_control_panel.alarm_arm_home
+      entity_id: alarm_control_panel.security_system

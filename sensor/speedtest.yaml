@@ -15,4 +15,4 @@
     - ping
     - download
     - upload
-
+  warnings: off

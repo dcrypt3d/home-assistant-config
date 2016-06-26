@@ -5,5 +5,5 @@ thermo_hvac:
    - 'Cool'
    - 'Heat'
    - 'Off'
-  initial: '{{ states.sensor.thermostat_hvac.state }}'
+  initial: 'Auto'
   icon: mdi:chemical-weapon

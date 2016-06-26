@@ -1,0 +1,10 @@
+speech:
+  type: plaintext
+  text: >
+    {%- for state in states.device_tracker -%}
+      {%- if state.name.lower() == User.lower() -%}
+        {{ state.name }} is at {{ state.state }} and is {{ distance(state.attributes.latitude, state.attributes.longitude) | multiply(0.000621) | round }} miles from home as of {{ relative_time(state.last_updated) }} ago
+      {%- endif -%}
+      {%- else -%}
+        I am sorry, I do not know where {{ User }} is.
+      {%- endfor -%}

@@ -29,7 +29,10 @@
   sensors:
     google_travel_car_time:
       value_template: '{{ states.sensor.google_travel_time_car.attributes.duration }}'
+      warnings: off
     google_travel_car_work_time:
       value_template: '{{ states.sensor.google_travel_time_car_work.attributes.duration }}'
+      warnings: off
     google_travel_bike_time:
       value_template: '{{ states.sensor.google_travel_time_bike.attributes.duration }}'
+      warnings: off

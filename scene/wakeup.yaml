@@ -1,7 +1,0 @@
-- name: "Wakeup"
-  entities:
-    !env_var BOUDOIR:
-      state: 'on'
-      transition: '300'
-      brightness: '75'
-

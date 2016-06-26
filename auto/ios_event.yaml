@@ -5,8 +5,7 @@
     event_data:
       actionName: SOUND_ALARM
   action:
-    service: switch.turn_on
-    entity_id: !env_var SIREN
+    service: script.alarm_away
 
 - alias: iOS Event Silence Alarm
   trigger:
@@ -15,7 +14,6 @@
     event_data:
       actionName: SILENCE_ALARM
   action:
-    - service: switch.turn_off
-      entity_id: !env_var SIREN
+    - service: script.all_clear
     - service: homeassistant.turn_off
       entity_id: input_boolean.panic_mode

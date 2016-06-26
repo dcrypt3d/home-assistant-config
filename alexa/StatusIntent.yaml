@@ -1,0 +1,10 @@
+speech:
+  type: plaintext
+  text: >
+    {%- for state in states.sensor -%}
+      {%- if state.name.lower() == Sensor.lower() -%}
+        {{ state.name }} is {{ state.state }} as of {{ relative_time(state.last_updated) }} ago
+      {%- endif -%}
+      {%- else -%}
+        I could not find a sensor named {{ Sensor }}
+    {%- endfor -%}

@@ -1,13 +1,18 @@
 #thermostat
 - platform: template
   sensors:
-    thermostat_mode:
-      value_template: '{{ states.thermostat.home.attributes.mode }}'
-    thermostat_away:
-      value_template: '{{ states.thermostat.home.attributes.away_mode }}'
-    thermostat_hvac:
-      value_template: '{{ states.thermostat.home.attributes.hvac_mode }}'
-    thermostat_target_temp_low:
-      value_template: '{{ states.thermostat.home.attributes.target_temp_low }}'
-    thermostat_target_temp_high:
-      value_template: '{{ states.thermostat.home.attributes.target_temp_high }}'
+    ecobee_mode:
+      value_template: '{{ states.thermostat.ecobee.attributes.mode }}'
+      warnings: off
+    ecobee_away:
+      value_template: '{{ states.thermostat.ecobee.attributes.away_mode }}'
+      warnings: off
+    ecobee_hvac:
+      value_template: '{{ states.thermostat.ecobee.attributes.hvac_mode }}'
+      warnings: off
+    ecobee_target_temp_low:
+      value_template: '{{ states.thermostat.ecobee.attributes.target_temp_low }}'
+      warnings: off
+    ecobee_target_temp_high:
+      value_template: '{{ states.thermostat.ecobee.attributes.target_temp_high }}'
+      warnings: off

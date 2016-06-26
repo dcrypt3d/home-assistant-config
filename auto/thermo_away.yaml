@@ -3,15 +3,15 @@
   trigger:
     platform: state
     entity_id: group.users
-    state: 'home'
-  condition: use_trigger_values
+    from: not_home
+    to: home
+  condition:
+    condition: state
+    entity_id: input_boolean.thermo_away
+    state: 'on'
   action:
-    - service: thermostat.set_away_mode
-      data:
-        entity_id: !env_var THERMONAME
-        away_mode: 'False'
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.thermo_away
+    service: homeassistant.turn_off
+    entity_id: input_boolean.thermo_away
 
 - alias: Thermostat - Auto Away
   trigger:
@@ -19,36 +19,49 @@
     entity_id: group.users
     state: 'not_home'
     for:
-      minutes: 720
-  condition: use_trigger_values 
-  action:
-    - service: thermostat.set_away_mode
-      data:
-        entity_id: !env_var THERMONAME
-        away_mode: 'True'
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.thermo_away
-
-- alias: Thermostat - Select Away Off
-  trigger:
-    platform: state
+      hours: 3
+  condition:
+    condition: state
     entity_id: input_boolean.thermo_away
     state: 'off'
-  condition: use_trigger_values
   action:
-    service: thermostat.set_away_mode
-    data:
-      entity_id: !env_var THERMONAME
-      away_mode: 'False'
-
-- alias: Thermostat - Select Away On
-  trigger:
-    platform: state
+    service: homeassistant.turn_on
     entity_id: input_boolean.thermo_away
-    state: 'on'
-  condition: use_trigger_values
+
+- alias: Thermostat - Away Input
+  trigger:
+    - platform: state
+      entity_id: sensor.ecobee_away
+      state: 'on'
+    - platform: state
+      entity_id: sensor.ecobee_away
+      state: 'off'
+  action:
+    service_template: >
+      {% if is_state('sensor.ecobee_away', 'off') %}
+        homeassistant.turn_off
+      {% elif is_state('sensor.ecobee_away', 'on') %}
+        homeassistant.turn_on
+      {% else %}
+      {% endif %}
+    entity_id: input_boolean.thermo_away
+    
+- alias: Thermostat - Input Away
+  trigger:
+    - platform: state
+      entity_id: input_boolean.thermo_away
+      state: 'on'
+    - platform: state
+      entity_id: input_boolean.thermo_away
+      state: 'off'
   action:
     service: thermostat.set_away_mode
-    data:
-      entity_id: !env_var THERMONAME
-      away_mode: 'True'
+    entity_id: thermostat.ecobee
+    data_template:
+      away_mode: >
+        {% if is_state('input_boolean.thermo_away', 'off') %}
+          off
+        {% elif is_state('input_boolean.thermo_away', 'on') %}
+          on
+        {% else %}
+        {% endif %}

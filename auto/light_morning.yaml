@@ -1,5 +1,5 @@
-#light wakeup
-- alias: Boudoir wakeup
+#light scenes
+- alias: Wakeup
   trigger:
     platform: time
     after: '06:45:00'
@@ -13,5 +13,5 @@
     - fri
   action:
     service: scene.turn_on
-    entity_id: scene.wakeup_boudoir
+    entity_id: scene.morning
 

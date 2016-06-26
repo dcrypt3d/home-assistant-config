@@ -1,0 +1,12 @@
+#cameras
+- platform: template
+  sensors:
+    garage_camera:
+      value_template: >-
+          {% if states.camera.garage != None) %}
+            {{ states.camera.garage.state }}
+          {% else %}
+            unknown
+          {% endif %}
+      entity_id: camera.garage
+      warnings: off

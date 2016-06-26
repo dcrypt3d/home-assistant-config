@@ -1,13 +1,14 @@
-- alias: Alarm Triggers
+- alias: Alarm Home Triggers
   trigger:
+      #garagedoorunlockedmanually
+    - platform: state
+      entity_id: !env_var GDAT
+      state: '22'
       #garagedooropener
     - platform: state
       entity_id: garage_door.garage_opener
-      state: 'open'
-      #garagedoorlock
-    - platform: state
-      entity_id: !env_var GARAGEDOORLOCK
-      state: 'unlocked'
+      from: 'closed'
+      to: 'open'
       #garagedoorlock burglar
     - platform: state
       entity_id: !env_var GDB
@@ -16,10 +17,6 @@
     - platform: state
       entity_id: !env_var GDAT
       state: '161'
-      #backdoorlock
-    - platform: state
-      entity_id: !env_var BACKDOORLOCK
-      state: 'unlocked'
       #backdoorlock burglar
     - platform: state
       entity_id: !env_var BDB
@@ -28,10 +25,6 @@
     - platform: state
       entity_id: !env_var BDAT
       state: '161'
-      #frontdoorlock
-    - platform: state
-      entity_id: !env_var FRONTDOORLOCK
-      state: 'unlocked'
       #frontdoorlock burglar
     - platform: state
       entity_id: !env_var FDB
@@ -40,21 +33,6 @@
     - platform: state
       entity_id: !env_var FDAT
       state: '161'  
-      #upstairs occupancy
-    - platform: state
-      entity_id: !env_var THERMOEXTOC
-      from: 'false'
-      to: 'true'
-      #downstairs occupancy
-    - platform: state
-      entity_id: !env_var THERMOOC
-      from: 'false'
-      to: 'true'
-      #indoor lights
-    - platform: state
-      entity_id: group.indoor_lights
-      from: 'off'
-      to: 'on'
       #basementwindow sensor
     - platform: state
       entity_id: !env_var BASEMENTWINDOW
@@ -62,7 +40,16 @@
       to: 'on'
   condition:
       condition: state
-      entity_id: input_boolean.security_system
-      state: 'on'
+      entity_id: alarm_control_panel.security_system
+      state: 'armed_home'
   action:
-    service: script.alarm_tripped
+    - service: notify.myiphone
+      data:
+        message: "Alarm Tripped!"
+#      data_template:
+#        message: >
+#          Alarm tripped at {{ trigger.to_state.name }}!
+        data:
+          push:
+            badge: 0
+            category: "ALARM"

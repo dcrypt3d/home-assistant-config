@@ -1,6 +1,7 @@
 #weather
 - platform: forecast
   api_key: !env_var FORECASTKEY
+  warnings: off
   monitored_conditions:
     - summary
     - icon

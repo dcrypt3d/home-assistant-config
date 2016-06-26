@@ -1,0 +1,7 @@
+secure_all:
+  alias: "Secure Entry"
+  sequence:
+    - service: lock.lock
+    - service: garage_door.close
+    - service: homeassistant.turn_on
+      entity_id: group.patio_lights

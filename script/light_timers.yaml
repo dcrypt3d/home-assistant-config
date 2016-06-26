@@ -2,6 +2,8 @@
 timed_mudroom:
   alias: "Mud room light timer on"
   sequence:
+    - condition: template
+      value_template: "{% if states.sun.sun.attributes.elevation <= 30 %}true{% endif %}"
     - service: script.turn_off
       entity_id: script.mudroom_light_timer
     - service: switch.turn_on
@@ -23,6 +25,8 @@ mudroom_light_timer:
 timed_diningroom:
   alias: "Dining room light timer on"
   sequence:
+    - condition: template
+      value_template: "{% if states.sun.sun.attributes.elevation <= 30 %}true{% endif %}"
     - service: script.turn_off
       entity_id: script.diningroom_light_timer
     - service: light.turn_on

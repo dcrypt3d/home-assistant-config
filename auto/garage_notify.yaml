@@ -1,23 +1,47 @@
 #garage notify
 - alias: Notify garage open
+  trigger:
+    - platform: state
+      entity_id: !env_var MYQDOOR
+      state: 'open'
+  action:
+    - service: notify.myiphone
+      data:
+        message: "Garage opened"
+        data:
+          push:
+            badge: 0
+            category: "ALARM"
+
+- alias: Notify garage closed
+  trigger:
+    - platform: state
+      entity_id: !env_var MYQDOOR
+      state: 'closed'
+  action:
+    - service: notify.myiphone
+      data:
+        message: "Garage closed"
+
+- alias: Notify garage open for time
   trigger:  
     - platform: state
-      entity_id: sensor.garageopener_status
+      entity_id: !env_var MYQDOOR
       state: 'open'
       for:
         minutes: 5
     - platform: state
-      entity_id: sensor.garageopener_status
+      entity_id: !env_var MYQDOOR
       state: 'open'
       for:
         minutes: 10
     - platform: state
-      entity_id: sensor.garageopener_status
+      entity_id: !env_var MYQDOOR 
       state: 'open'
       for:
         minutes: 20
     - platform: state
-      entity_id: sensor.garageopener_status
+      entity_id: !env_var MYQDOOR 
       state: 'open'
       for:
         minutes: 30  
@@ -28,4 +52,4 @@
   action:
     - service: notify.myiphone
       data:
-        message: "Garage door was left open"
+        message: "Garage was left open"
