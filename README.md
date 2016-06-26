@@ -2,7 +2,7 @@
 
 https://home-assistant.io
 
-Host:<ul>
+System:<ul>
 <li>Intel NUC</li>
 <li>Aeotec USB Z-Stick Gen 5</li>
 </ul>
