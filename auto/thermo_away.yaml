@@ -1,10 +1,26 @@
 #thermo home/away
-- alias: Thermostat - Auto Home
+- alias: Thermostat - Coming Home
   trigger:
-    platform: state
-    entity_id: group.users
-    from: not_home
-    to: home
+    platform: numeric_state
+    entity_id: proximity.home
+    below: 5
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{% if is_state_attr('proximity.home', 'dir_of_travel', 'towards') %}true{% endif %}"
+      - condition: state
+        entity_id: input_boolean.thermo_away
+        state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: input_boolean.thermo_away
+
+- alias: Thermostat - Home
+  trigger:
+    platform: numeric_state
+    entity_id: proximity.home
+    below: 1
   condition:
     condition: state
     entity_id: input_boolean.thermo_away
@@ -13,13 +29,11 @@
     service: homeassistant.turn_off
     entity_id: input_boolean.thermo_away
 
-- alias: Thermostat - Auto Away
+- alias: Thermostat - Away
   trigger:
-    platform: state
-    entity_id: group.users
-    state: 'not_home'
-    for:
-      hours: 3
+    platform: numeric_state
+    entity_id: proximity.home
+    above: 2
   condition:
     condition: state
     entity_id: input_boolean.thermo_away
@@ -32,10 +46,6 @@
   trigger:
     - platform: state
       entity_id: sensor.ecobee_away
-      state: 'on'
-    - platform: state
-      entity_id: sensor.ecobee_away
-      state: 'off'
   action:
     service_template: >
       {% if is_state('sensor.ecobee_away', 'off') %}
@@ -50,13 +60,9 @@
   trigger:
     - platform: state
       entity_id: input_boolean.thermo_away
-      state: 'on'
-    - platform: state
-      entity_id: input_boolean.thermo_away
-      state: 'off'
   action:
-    service: thermostat.set_away_mode
-    entity_id: thermostat.ecobee
+    service: climate.set_away_mode
+    entity_id: climate.ecobee
     data_template:
       away_mode: >
         {% if is_state('input_boolean.thermo_away', 'off') %}
