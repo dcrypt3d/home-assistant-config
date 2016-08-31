@@ -1,19 +1,8 @@
 #thermo hvac
-#thermo hvac
 - alias: Thermostat - Input Select
   trigger:
     - platform: state
       entity_id: sensor.ecobee_hvac
-      state: 'cool'
-    - platform: state
-      entity_id: sensor.ecobee_hvac
-      state: 'heat'
-    - platform: state
-      entity_id: sensor.ecobee_hvac
-      state: 'auto'
-    - platform: state
-      entity_id: sensor.ecobee_hvac
-      state: 'off' 
   action:
     service: input_select.select_option
     entity_id: input_select.thermo_hvac
@@ -35,21 +24,11 @@
   trigger:
     - platform: state
       entity_id: input_select.thermo_hvac
-      state: 'Auto'
-    - platform: state
-      entity_id: input_select.thermo_hvac
-      state: 'Cool'
-    - platform: state
-      entity_id: input_select.thermo_hvac
-      state: 'Heat'
-    - platform: state
-      entity_id: input_select.thermo_hvac
-      state: 'Off'
   action:
-    service: thermostat.set_hvac_mode
-    entity_id: thermostat.ecobee
+    service: climate.set_operation_mode
+    entity_id: climate.ecobee
     data_template:
-      hvac_mode: >
+      operation_mode: >
         {% if is_state('input_select.thermo_hvac', 'Auto') %}
           auto
         {% elif is_state('input_select.thermo_hvac', 'Cool') %}
@@ -60,4 +39,3 @@
           off
         {% else %}
         {% endif %}
-
