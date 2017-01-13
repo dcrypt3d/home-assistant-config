@@ -1,0 +1,110 @@
+- alias: Rooms Adjust Volume
+  trigger:
+    platform: state
+    entity_id: input_slider.all_rooms
+  action:
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.gym
+        volume_level: '{{ trigger.to_state.state }}'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.office
+        volume_level: '{{ trigger.to_state.state }}'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.livingroom
+        volume_level: '{{ trigger.to_state.state }}'
+
+- alias: Music Select Volume
+  trigger:
+    platform: state
+    entity_id: input_slider.music
+  action:
+    service: media_player.volume_set
+    data_template:
+      entity_id: media_player.music
+      volume_level: '{{ trigger.to_state.state }}'
+
+- alias: Music Adjust Volume
+  trigger:
+    platform: state
+    entity_id: sensor.music_volume
+  action:
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.music
+        value: '{{ states.sensor.music_volume.state }}'
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.gym
+        value: '{{ states.sensor.gym_volume.state }}'
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.office
+        value: '{{ states.sensor.office_volume.state }}'
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.livingroom
+        value: '{{ states.sensor.livingroom_volume.state }}'
+
+- alias: Gym Select Volume
+  trigger:
+    platform: state
+    entity_id: input_slider.gym
+  action:
+    service: media_player.volume_set
+    data_template:
+      entity_id: media_player.gym
+      volume_level: '{{ trigger.to_state.state }}'
+
+- alias: Gym Adjust Volume
+  trigger:
+    platform: state
+    entity_id: sensor.gym_volume
+  action:
+    service: input_slider.select_value
+    data_template:
+      entity_id: input_slider.gym
+      value: '{{ trigger.to_state.state }}'
+
+- alias: Office Select Volume
+  trigger:
+    platform: state
+    entity_id: input_slider.office
+  action:
+    service: media_player.volume_set
+    data_template:
+      entity_id: media_player.office
+      volume_level: '{{ trigger.to_state.state }}'
+
+- alias: Office Adjust Volume
+  trigger:
+    platform: state
+    entity_id: sensor.office_volume
+  action:
+    service: input_slider.select_value
+    data_template:
+      entity_id: input_slider.office
+      value: '{{ trigger.to_state.state }}'
+
+- alias: Living Room Select Volume
+  trigger:
+    platform: state
+    entity_id: input_slider.livingroom
+  action:
+    service: media_player.volume_set
+    data_template:
+      entity_id: media_player.livingroom
+      volume_level: '{{ trigger.to_state.state }}'
+      
+- alias: Living Room Adjust Volume
+  trigger:
+    platform: state
+    entity_id: sensor.livingroom_volume
+  action:
+    service: input_slider.select_value
+    data_template:
+      entity_id: input_slider.livingroom
+      value: '{{ trigger.to_state.state }}'
+
